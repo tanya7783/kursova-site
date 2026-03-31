@@ -3,14 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Нейронні мережі - AI Study</title>
+    <title>Нейронні мережі: Академічний курс | AI Study</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { --primary: #6c5ce7; --bg: #f4f7f6; --dark: #2d3436; --accent: #00b894; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.9; color: var(--dark); background: var(--bg); margin: 0; }
+        
+        .hero-header {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white; padding: 50px 0; text-align: center; border-bottom: 8px solid var(--primary);
+            position: relative; overflow: hidden;
+        }
+
+        .main-container { 
+            display: grid; 
+            grid-template-columns: 3fr 1fr; 
+            gap: 40px; 
+            padding: 40px 0; 
+            align-items: start;
+        }
+        
+        .article-section { 
+            background: white; 
+            border-radius: 25px; 
+            padding: 40px; 
+            margin-bottom: 35px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05); 
+            border: 1px solid #eee; 
+        }
+        
+        .highlight-theory {
+            background: #f8f9ff; border-left: 6px solid var(--primary);
+            padding: 25px; border-radius: 0 20px 20px 0; margin: 25px 0; font-style: italic; font-size: 0.95rem;
+        }
+
+        .img-box { width: 100%; border-radius: 15px; margin: 20px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 1px solid #eee; }
+
+        .data-table { width: 100%; border-collapse: collapse; margin: 30px 0; background: white; border-radius: 15px; overflow: hidden; }
+        .data-table th { background: var(--primary); color: white; padding: 15px; text-align: left; }
+        .data-table td { padding: 15px; border: 1px solid #eee; font-size: 15px; }
+
+        .lab-box { background: #2d3436; color: white; padding: 30px; border-radius: 25px; margin: 30px 0; border: 3px solid var(--primary); }
+        .neuron-anim { display: flex; justify-content: center; align-items: center; gap: 15px; margin: 25px 0; }
+        .pulse { width: 15px; height: 15px; background: var(--primary); border-radius: 50%; animation: pulse-move 2s infinite linear; }
+        @keyframes pulse-move { 0% { transform: translateX(-80px); opacity: 0; } 50% { opacity: 1; } 100% { transform: translateX(80px); opacity: 0; } }
+
+        .sidebar-sticky { position: sticky; top: 20px; }
+        .sidebar-card { background: white; padding: 25px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); margin-bottom: 20px; }
+        
+        /* Адаптивність для телефонів */
+        @media (max-width: 992px) {
+            .main-container { grid-template-columns: 1fr; padding: 20px; }
+            .sidebar-sticky { position: static; }
+        }
+    </style>
 </head>
 <body>
+
     <header>
         <nav class="container">
-<a href="neural.html" class="btn-sm">Вивчити модуль</a>
+            <div class="logo">AI<span>Study</span></div>
             <ul class="nav-links">
                 <li><a href="index.html">Головна</a></li>
                 <li><a href="theory.html">Матеріали</a></li>
@@ -19,41 +72,104 @@
         </nav>
     </header>
 
-    <section class="section container">
-        <div class="section-header" style="text-align: left;">
-            <h1><i class="fas fa-network-wired"></i> Нейронні мережі</h1>
-            <p>Як комп'ютер імітує роботу людського мозку для навчання на даних.</p>
-        </div>
-
-        <div class="content-grid" style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 40px; align-items: start;">
-            <div class="text-info">
-                <h3>Що це таке?</h3>
-                <p>Нейронна мережа — це послідовність шарів, через які проходять дані. Кожен шар намагається знайти певні закономірності (наприклад, лінії на фото, потім очі, а потім уже ціле обличчя).</p>
-                
-                <div class="info-card" style="background: #efecff; padding: 20px; border-radius: 10px; margin: 20px 0;">
-                    <h4>Ключові поняття:</h4>
-                    <ul>
-                        <li><strong>Вхідний шар:</strong> Дані, які ми надаємо (картинка, текст).</li>
-                        <li><strong>Приховані шари:</strong> Тут відбувається магія обчислень.</li>
-                        <li><strong>Вихідний шар:</strong> Результат (наприклад, відповідь "Це кіт").</li>
-                    </ul>
-                </div>
-
-                <h3>Приклади використання:</h3>
-                <p>Розпізнавання голосу в Siri, автоматичний переклад у Google Translate та діагностика хвороб у медицині.</p>
-            </div>
-
-            <div class="media-block">
-                <img src="images/neural.jpg" alt="Схема нейромережі" style="width: 100%; border-radius: 15px; box-shadow: 0 5px 20px rgba(108, 92, 231, 0.2);">
-                <p style="font-size: 14px; color: #777; margin-top: 15px; text-align: center;">Візуалізація структури штучної нейронної мережі</p>
-                
-                <a href="theory.html" class="btn-sm" style="display: block; text-align: center; margin-top: 20px; text-decoration: none;">← Назад до модулів</a>
-            </div>
+    <section class="hero-header">
+        <div class="container">
+            <span style="background: var(--accent); padding: 5px 15px; border-radius: 50px; font-size: 0.8rem; font-weight: bold; color:white">ADVANCED MODULE</span>
+            <h1 style="font-size: 2.5rem; margin-top: 10px; font-weight: 900;">Штучні нейронні мережі</h1>
         </div>
     </section>
 
+    <main class="container main-container">
+        
+        <div class="theory-content">
+            
+            <article class="article-section">
+                <h2>01. Що таке ШНМ? (Фундаментальне визначення)</h2>
+                <p>Штучні нейронні мережі — це математичні моделі, побудовані за принципом функціонування біологічних мереж нервових клітин. Це обчислювальні системи, натхнені мозком тварин. ШНМ ґрунтується на сукупності з'єднаних вузлів, які називають штучними нейронами. Кожне з'єднання, як і синапси в біологічному мозку, може передавати сигнал. Штучний нейрон отримує сигнали, обробляє їх і може сигналізувати нейронам, з якими його з'єднано. «Сигнал» у з'єднанні це дійсне число. Вихід кожного нейрона обчислюється деякою нелінійною функцією суми його входів. З'єднання називають ребрами (edges). Нейрони та ребра зазвичай мають вагу, яка підлаштовується в процесі навчання. Вага збільшує або зменшує силу сигналу на з'єднанні. Нейрони можуть мати такий поріг, що сигнал надсилається лише тоді, коли сукупний сигнал перевищує цей поріг. </p>
+                
+                <img src="https://upload.wikimedia.org/wikipedia/commons/4/46/Colored_neural_network.svg" class="img-box" alt="Neural Network Structure">
+
+                <div class="highlight-theory">
+                    Системи вчаться виконувати завдання, розглядаючи приклади, без програмування жорстких правил. Це дозволяє розпізнавати котів на фото, просто аналізуючи тисячі мічених зображень.
+                </div>
+                <p>Нейронні мережі є ядром сучасного штучного інтелекту. Вони дозволяють комп'ютерам розуміти людську мову, водити автомобілі та ставити медичні діагнози. Навчання здійснюється шляхом визначення різниці між передбаченням мережі та реальним результатом. Ця різниця називається похибкою. Послідовні підлаштовування ваг призводять до результатів, усе більше схожих на цільові.</p>
+            </article>
+
+            <article class="article-section">
+                <h2>02. Архітектура: Шари та Гіперпараметри</h2>
+                <p>Як правило, нейрони зібрано в шари. Різні шари виконують різні перетворення даних. Сигнали проходять від вхідного шару до вихідного. Багатошарові мережі дозволяють будувати ієрархію ознак. Перші шари можуть розпізнавати прості лінії, а наступні — складні форми. Пошук нейронної архітектури (ПНА) використовує машинне навчання для автоматизації побудови мереж. Гіперпараметри, такі як темп навчання та кількість нейронів, визначаються заздалегідь. Правильний вибір моделі залежить від застосування. Надмірно складні моделі навчаються повільно. Робастність мережі залежить від функції витрат та алгоритму навчання.</p>
+                
+                <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=1000" class="img-box" alt="AI Logic">
+
+                <p>Існують різні типи архітектур: згорткові мережі для зору, рекурентні для тексту та довга короткочасна пам'ять для послідовностей. Кожен тип має свої статичні та динамічні складові. Динамічні типи дозволяють топології еволюціонувати під час навчання. Це набагато складніше, але дає кращі результати в обробці мінливих даних.</p>
+            </article>
+
+            <article class="article-section">
+                <h2>03. Парадигми навчання та Метод Кухаря</h2>
+                <p>Існують три головні парадигми: кероване навчання, некероване та навчання з підкріпленням. Кероване навчання використовує мічені дані. Некероване навчання шукає приховані структури в даних. Навчання з підкріпленням базується на системі нагород та покарань, що часто використовується в робототехніці та іграх. Процес навчання — це ітераційне оновлення ваг для мінімізації похибки.</p>
+                
+                <div class="lab-box">
+                    <h3><i class="fas fa-flask"></i> Лабораторія (Метод Backpropagation)</h3>
+                    <div class="neuron-anim">
+                        <div style="color: #00b894;">ВХІД</div> <div class="pulse"></div> <div style="color: #ff7675;">ВИХІД</div>
+                    </div>
+                    <p>Уявіть кухаря: якщо суп занадто солоний, він не просто викидає його, а аналізує, який інгредієнт (вага) зіпсував страву, і наступного разу додає менше солі. Так працює зворотне поширення помилки.</p>
+                </div>
+
+                <p>Алгоритм зворотного поширення помилки є найефективнішим методом тренування. Він обчислює градієнт функції втрат відносно всіх ваг у мережі. Це дозволяє вносити крихітні зміни в кожен нейрон, щоб крок за кроком наближатися до ідеальної точності. Сучасні GPU дозволяють проводити мільярди таких обчислень за секунду.</p>
+            </article>
+
+            <article class="article-section">
+                <h2>04. Історія ШНМ: Від 1943 року до сьогодення</h2>
+                <p>Дослідження почалися в 1943 році з праці Маккалоха та Піттса. Вони створили першу обчислювальну модель нейрона. У 1958 році Френк Розенблат винайшов перцептрон. Це була перша реалізація нейромережі, фінансована флотом США. Проте в 1969 році Мінскі та Пейперт виявили обмеження перцептронів, що спричинило застій у галузі. Відродження почалося у 80-х роках. Самоорганізаційні карти Кохонена та згорткові мережі Фукусіми змінили підхід до даних. У 2012 році глибоке навчання довело свою перевагу в розпізнаванні образів. Сьогодні ми живемо в еру трансформерів та великих мовних моделей, які стали можливими завдяки десятиліттям математичних пошуків.</p>
+                
+                <img src="https://images.unsplash.com/photo-1507413245164-6160d8298b31?auto=format&fit=crop&q=80&w=1000" class="img-box" alt="History of Technology">
+            </article>
+
+            <article class="article-section">
+                <h2>05. Сфери застосування та Майбутнє</h2>
+                <p>Застосування ШНМ охоплює майже всі сфери: від квантової хімії до керування транспортними засобами. У медицині вони діагностують хвороби, аналізуючи дані давачів. У фінансах — передбачають курси валют та виявляють шахрайство. Розпізнавання жестів, голосу та друкованого тексту стало стандартом. Робототехніка використовує мережі для скеровування маніпуляторів. </p>
+                
+                <table class="data-table">
+                    <tr><th>Сфера</th><th>Приклад використання</th></tr>
+                    <tr><td>Медицина</td><td>Аналіз рентгенівських знімків</td></tr>
+                    <tr><td>Фінанси</td><td>Оцінка кредитоспроможності</td></tr>
+                    <tr><td>Транспорт</td><td>Автопілот безпілотних авто</td></tr>
+                    <tr><td>Мистецтво</td><td>Генерація зображень та музики</td></tr>
+                </table>
+
+                <p>Майбутнє нейронних мереж полягає в підвищенні їх енергоефективності та здатності до самонавчання без втручання людини. Вже сьогодні існують мережі, що змагаються між собою для покращення результатів. Це шлях до створення справжнього загального штучного інтелекту.</p>
+                <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=1000" class="img-box" alt="AI Future">
+            </article>
+
+        </div>
+
+        <aside class="sidebar-sticky">
+            <div class="sidebar-card">
+                <h4 style="color: var(--primary);"><i class="fas fa-bookmark"></i> Ключова теза</h4>
+                <p style="font-size: 0.85rem; margin-top: 10px;">Нейронна мережа — це взаємопов'язана група вузлів. Кожен нейрон отримує сигнал, обробляє його і передає далі.</p>
+            </div>
+            
+            <div class="sidebar-card" style="background: var(--primary); color: white;">
+                <h4>Перевірити знання?</h4>
+                <p style="font-size: 0.8rem; margin: 10px 0;"></p>
+                <a href="quiz.html" style="color: white; font-weight: bold; text-decoration: underline;">До тестів →</a>
+            </div>
+
+            <div class="sidebar-card">
+                <h4 style="color: var(--primary);">Швидка навігація</h4>
+                <a href="neural.html" style="display:block; font-size: 0.85rem; color: #555; margin-bottom: 5px;">01. Визначення</a>
+                <a href="#history" style="display:block; font-size: 0.85rem; color: #555;">04. Історія ШНМ</a>
+            </div>
+        </aside>
+
+    </main>
+
     <footer>
-        <div class="container"><p>&copy; 2026 AI Study Project</p></div>
+        <div class="container" style="text-align: center; padding: 40px 0; opacity: 0.6;">
+            <p>&copy; 2026 AI Study Project | Open Education | TNPU</p>
+        </div>
     </footer>
+
 </body>
 </html>
