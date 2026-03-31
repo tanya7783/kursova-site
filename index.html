@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Study | Безкоштовна освіта майбутнього</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Анімації для "живості" сторінки */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero {
+            animation: fadeInUp 1s ease-out;
+            background: linear-gradient(rgba(108, 92, 231, 0.9), rgba(108, 92, 231, 0.8)), url('https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&q=80&w=1500');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero h1, .hero p, .hero .hero-btns {
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        /* Стиль бейджа "FREE" */
+        .free-badge {
+            background: #ff7675;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            box-shadow: 0 4px 15px rgba(255, 118, 117, 0.4);
+        }
+
+        /* Анімація карток при наведенні */
+        .card:hover {
+            transform: scale(1.05);
+            transition: 0.3s;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="container">
+            <div class="logo">AI<span>Study</span></div>
+            <ul class="nav-links">
+                <li><a href="index.html">Головна</a></li>
+                <li><a href="theory.html">Матеріали</a></li>
+                <li><a href="teachers.html">Вчителям</a></li>
+                <li><a href="quiz.html">Тести</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container" style="text-align: center;">
+            <div class="free-badge"><i class="fas fa-gift"></i> Повністю безкоштовно</div>
+            <h1 style="font-size: 3.5rem; color: white;">Штучний інтелект: Майбутнє освіти</h1>
+            
+            <p style="font-size: 1.3rem; max-width: 800px; margin: 25px auto; color: rgba(255,255,255,0.9); line-height: 1.6;">
+                Наш проект дотримується принципу <strong>Open Education</strong>: знання мають бути доступними кожному, незалежно від статку. Вивчайте технології майбутнього без обмежень та прихованих платежів.
+            </p>
+
+            <div class="hero-btns">
+                <a href="theory.html" class="btn" style="padding: 15px 40px; font-size: 1.1rem;">Почати безкоштовно</a>
+                <a href="quiz.html" class="btn btn-outline" style="padding: 15px 40px; font-size: 1.1rem;">Перевірити знання</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="stats" class="section container">
+        <div class="about-grid">
+            <div class="about-text">
+                <h2>ШІ — це навичка №1 у 2026 році</h2>
+                <p>Ми створили цей ресурс, щоб дати кожному можливість опанувати інструменти, які раніше були доступні лише професіоналам. ШІ допомагає писати тексти, створювати дизайн та аналізувати дані за секунди.</p>
+                
+                <div style="display: flex; gap: 20px; margin-top: 30px;">
+                    <div style="flex: 1; text-align: center; background: #f8f9fa; padding: 25px; border-radius: 20px; border-bottom: 4px solid var(--primary);">
+                        <h3 style="font-size: 2.8rem; color: var(--primary); margin: 0;">85%</h3>
+                        <p style="font-size: 14px; color: #666; font-weight: 500;">професій зміняться під впливом ШІ</p>
+                    </div>
+                    <div style="flex: 1; text-align: center; background: #f8f9fa; padding: 25px; border-radius: 20px; border-bottom: 4px solid var(--primary);">
+                        <h3 style="font-size: 2.8rem; color: var(--primary); margin: 0;">FREE</h3>
+                        <p style="font-size: 14px; color: #666; font-weight: 500;">доступ для кожного учня</p>
+                    </div>
+                </div>
+            </div>
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800" alt="AI Robot" style="width: 100%; border-radius: 25px; box-shadow: 0 15px 40px rgba(0,0,0,0.1);">
+            </div>
+        </div>
+    </section>
+
+    <section class="section bg-light">
+        <div class="container">
+            <div class="section-header">
+                <h2>Твої безкоштовні помічники</h2>
+                <p>Ми відібрали найкращі інструменти, якими можна користуватися безкоштовно вже зараз</p>
+            </div>
+            <div class="features">
+                <div class="card" style="background: white; border-radius: 25px; padding: 40px;">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="ChatGPT" style="width: 60px; margin-bottom: 20px;">
+                    <h3>ChatGPT</h3>
+                    <p>Твій безкоштовний асистент для ідей, навчання та вирішення складних задач.</p>
+                    <a href="https://chatgpt.com" target="_blank" class="btn-sm" style="background: #10a37f; border: none;">Відкрити</a>
+                </div>
+                <div class="card" style="background: white; border-radius: 25px; padding: 40px;">
+                    <img src="https://cdn-icons-png.flaticon.com/512/5968/5968391.png" alt="Canva" style="width: 60px; margin-bottom: 20px;">
+                    <h3>Canva Magic</h3>
+                    <p>Створюй професійні презентації та графіку за допомогою вбудованого ШІ.</p>
+                    <a href="https://www.canva.com" target="_blank" class="btn-sm" style="background: #7d2ae8; border: none;">Відкрити</a>
+                </div>
+                <div class="card" style="background: white; border-radius: 25px; padding: 40px;">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" alt="DeepL" style="width: 60px; margin-bottom: 20px;">
+                    <h3>DeepL AI</h3>
+                    <p>Перекладай тексти будь-якої складності з неймовірною точністю безкоштовно.</p>
+                    <a href="https://www.deepl.com" target="_blank" class="btn-sm" style="background: #0f2e46; border: none;">Відкрити</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="news" class="section container">
+        <div class="section-header">
+            <h2>Світ ШІ сьогодні</h2>
+            <p>Актуальні події, які змінюють правила гри</p>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+            <article style="background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
+                <img src="https://images.unsplash.com/photo-1675271591211-126ad94e495d?auto=format&fit=crop&q=80&w=500" alt="Sora Video" style="width: 100%; height: 200px; object-fit: cover;">
+                <div style="padding: 25px;">
+                    <span style="color: var(--primary); font-size: 12px; font-weight: 900; text-transform: uppercase; letter-spacing: 1px;">Відео-генерація</span>
+                    <h4 style="margin: 10px 0; font-size: 1.2rem;">Sora: Новий рівень реальності</h4>
+                    <p style="font-size: 14px; color: #666; line-height: 1.5;">Створення реалістичного відео за текстом стає доступним інструментом для кожного творця.</p>
+                </div>
+            </article>
+
+            <article style="background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
+                <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&q=80&w=500" alt="Medicine AI" style="width: 100%; height: 200px; object-fit: cover;">
+                <div style="padding: 25px;">
+                    <span style="color: var(--primary); font-size: 12px; font-weight: 900; text-transform: uppercase; letter-spacing: 1px;">Медицина</span>
+                    <h4 style="margin: 10px 0; font-size: 1.2rem;">ШІ рятує життя</h4>
+                    <p style="font-size: 14px; color: #666; line-height: 1.5;">Діагностика хвороб стала на 40% точнішою завдяки використанню нейронних мереж.</p>
+                </div>
+            </article>
+
+            <article style="background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
+                <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?auto=format&fit=crop&q=80&w=500" alt="Education AI" style="width: 100%; height: 200px; object-fit: cover;">
+                <div style="padding: 25px;">
+                    <span style="color: var(--primary); font-size: 12px; font-weight: 900; text-transform: uppercase; letter-spacing: 1px;">Освіта</span>
+                    <h4 style="margin: 10px 0; font-size: 1.2rem;">Персоналізація</h4>
+                    <p style="font-size: 14px; color: #666; line-height: 1.5;">Тепер кожен може мати персонального вчителя у кишені абсолютно безкоштовно.</p>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <section class="section bg-light">
+        <div class="container">
+            <div class="about-grid" style="align-items: center;">
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800" alt="Cyber Security" style="width: 100%; border-radius: 25px;">
+                </div>
+                <div class="about-text">
+                    <h2>Етика та Безпека</h2>
+                    <p>ШІ — це суперсила, і ми вчимо користуватися нею відповідально. Безпека ваших даних та критичне мислення — наші пріоритети.</p>
+                    <ul style="list-style: none; padding: 0; margin-top: 25px;">
+                        <li style="margin-bottom: 15px;"><i class="fas fa-user-shield" style="color: var(--primary); margin-right: 15px;"></i> Анонімність та захист даних</li>
+                        <li style="margin-bottom: 15px;"><i class="fas fa-search" style="color: var(--primary); margin-right: 15px;"></i> Навички перевірки фактів (Fact-checking)</li>
+                        <li><i class="fas fa-balance-scale" style="color: var(--primary); margin-right: 15px;"></i> Відповідальне використання алгоритмів</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container" style="text-align: center;">
+            <p>&copy; 2026 Тетяна Гринда. Open Education Project для TNPU. Всі матеріали вільні для використання.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
