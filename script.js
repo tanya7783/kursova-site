@@ -1,13 +1,9 @@
-// --- КОД ДЛЯ ТЕСТУ (працює на сторінці quiz.html) ---
 const quizContainer = document.getElementById('quiz-container');
-
 if (quizContainer) {
     const questionElement = document.getElementById('question');
     const answerButtonsElement = document.getElementById('answer-buttons');
     const resultContainer = document.getElementById('result-container');
     const scoreElement = document.getElementById('score');
-
-    // Твої питання (масив questions)
     const questions = [
         {
             question: "Що таке Штучний Інтелект?",
@@ -62,7 +58,6 @@ if (quizContainer) {
             answerButtonsElement.appendChild(button);
         });
     }
-
     function resetState() {
         while (answerButtonsElement.firstChild) {
             answerButtonsElement.removeChild(answerButtonsElement.firstChild);
@@ -78,13 +73,11 @@ if (quizContainer) {
             showResults();
         }
     }
-
     function showResults() {
         document.getElementById('question-container').classList.add('hide');
         resultContainer.classList.remove('hide');
         scoreElement.innerText = score;
     }
-
     document.getElementById('restart-btn').addEventListener('click', startQuiz);
     startQuiz();
 }
