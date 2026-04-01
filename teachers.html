@@ -23,6 +23,7 @@
         .nav-links { list-style: none; display: flex; gap: 25px; margin: 0; }
         .nav-links a { text-decoration: none; color: var(--dark); font-weight: 500; transition: 0.3s; }
         .nav-links a:hover { color: var(--primary); }
+        
         .page-header { 
             background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%); 
             color: white; 
@@ -30,12 +31,14 @@
             text-align: center; 
             margin-bottom: 40px; 
         }
+        
         .teacher-grid { 
             display: grid; 
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
             gap: 30px; 
             margin-bottom: 50px; 
         }
+        
         .resource-item { 
             background: var(--white); 
             padding: 30px; 
@@ -48,17 +51,21 @@
         .res-icon { font-size: 40px; color: var(--primary); margin-bottom: 20px; }
         .resource-item h4 { font-size: 1.4rem; margin-bottom: 10px; color: var(--primary); }
         .resource-item p { color: #636e72; font-size: 0.95rem; margin-bottom: 20px; }
+        
         .download-link { 
             display: inline-block; 
-            padding: 10px 20px; 
+            padding: 12px 25px; 
             background: var(--primary); 
             color: white; 
             text-decoration: none; 
             border-radius: 50px; 
             font-weight: bold; 
             transition: 0.3s; 
+            cursor: pointer;
+            border: none;
         }
         .download-link:hover { background: #5649c1; box-shadow: 0 5px 15px rgba(108, 92, 231, 0.4); }
+        
         .prompt-box { 
             background: #2d3436; 
             color: #fab1a0; 
@@ -68,6 +75,36 @@
             font-size: 0.9rem; 
             border: 1px dashed #fab1a0; 
             margin-top: 15px; 
+        }
+
+        /* Стилі для Модального Вікна */
+        #downloadModal {
+            display: none; 
+            position: fixed; 
+            z-index: 2000; 
+            left: 0; top: 0; 
+            width: 100%; height: 100%; 
+            background: rgba(0,0,0,0.7); 
+            backdrop-filter: blur(5px);
+        }
+        .modal-content {
+            background: white; 
+            width: 90%;
+            max-width: 400px; 
+            margin: 15% auto; 
+            padding: 30px; 
+            border-radius: 25px; 
+            text-align: center; 
+            position: relative; 
+            animation: slideUp 0.3s ease;
+        }
+        .close-btn { position: absolute; right: 20px; top: 15px; cursor: pointer; font-size: 28px; color: #999; }
+        .progress-container { width: 100%; background: #eee; height: 12px; border-radius: 10px; margin: 25px 0; overflow: hidden; }
+        .progress-bar { width: 0%; height: 100%; background: var(--accent); transition: width 0.3s; }
+
+        @keyframes slideUp {
+            from { transform: translateY(40px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
 
         footer { background: var(--dark); color: white; text-align: center; padding: 40px 0; margin-top: 60px; }
@@ -95,21 +132,21 @@
     </section>
 
     <main class="container">
-    
+        
         <div class="teacher-grid">
             
             <div class="resource-item">
                 <div class="res-icon"><i class="fas fa-file-pdf"></i></div>
                 <h4>Навчальна програма (ІПФ)</h4>
                 <p>Методичні рекомендації щодо впровадження ШІ в професійну підготовку майстрів виробничого навчання.</p>
-                <a href="#" class="download-link">Завантажити програму</a>
+                <button class="download-link">Завантажити програму</button>
             </div>
 
             <div class="resource-item" style="border-top-color: var(--accent);">
                 <div class="res-icon" style="color: var(--accent);"><i class="fas fa-desktop"></i></div>
                 <h4>Пакет візуалізацій</h4>
                 <p>Готові набори слайдів та схем про нейронні мережі, створені за допомогою генеративного ШІ для лекцій.</p>
-                <a href="#" class="download-link" style="background: var(--accent);">Скачати слайди</a>
+                <button class="download-link" style="background: var(--accent);">Скачати слайди</button>
             </div>
 
             <div class="resource-item" style="border-top-color: #e17055; grid-column: span 1;">
@@ -125,17 +162,32 @@
                 <div class="res-icon" style="color: #0984e3;"><i class="fas fa-tools"></i></div>
                 <h4>Цифрова лабораторія</h4>
                 <p>Перелік ШІ-сервісів для автоматизації перевірки коду, генерації технічних креслень та 3D-моделей.</p>
-                <a href="#" class="download-link" style="background: #0984e3;">Відкрити список</a>
+                <button class="download-link" style="background: #0984e3;">Відкрити список</button>
             </div>
 
         </div>
 
         <div style="background: white; padding: 40px; border-radius: 20px; box-shadow: var(--shadow); margin-top: 40px;">
             <h3 style="color: var(--primary);">Чому це важливо для ТНПУ ІПФ?</h3>
-            <p>Використання штучного інтелекту в професійній освіті дозволяє майбутнім інженерам-педагогам значно швидше готувати дидактичний матеріал, адаптувати складні технічні схеми для учнів ПТНЗ та створювати інтерактивні середовища для навчання. Наша мета — поєднати традиційну педагогіку з потужністю сучасних алгоритмів.</p>
+            <p>Використання штучного інтелекту в професійній освіті дозволяє майбутнім інженерам-педагогам значно швидше готувати дидактичний матеріал, адаптувати складні технічні схеми для учнів ПТНЗ та створювати інтерактивні середовища для навчання.</p>
         </div>
 
     </main>
+
+    <div id="downloadModal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <i class="fas fa-cloud-download-alt" style="font-size: 50px; color: var(--primary); margin-bottom: 15px;"></i>
+            <h3 id="modalTitle" style="margin: 10px 0;">Обробка запиту</h3>
+            <p id="modalText" style="font-size: 0.9rem; color: #666;">Підключаємось до репозиторію ТНПУ...</p>
+            
+            <div class="progress-container">
+                <div id="progressBar" class="progress-bar"></div>
+            </div>
+            
+            <p id="statusText" style="font-size: 0.8rem; font-weight: bold; color: var(--accent);">Статус: Підготовка даних...</p>
+        </div>
+    </div>
 
     <footer>
         <div class="container">
@@ -143,7 +195,8 @@
             <p style="opacity: 0.7; font-size: 0.8rem;">Інженерно-педагогічний факультет ТНПУ ім. В. Гнатюка</p>
         </div>
     </footer>
- <script>
+
+    <script>
         function openDownload(title) {
             const modal = document.getElementById('downloadModal');
             const bar = document.getElementById('progressBar');
