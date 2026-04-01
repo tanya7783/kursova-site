@@ -143,6 +143,56 @@
             <p style="opacity: 0.7; font-size: 0.8rem;">Інженерно-педагогічний факультет ТНПУ ім. В. Гнатюка</p>
         </div>
     </footer>
+ <script>
+        function openDownload(title) {
+            const modal = document.getElementById('downloadModal');
+            const bar = document.getElementById('progressBar');
+            const status = document.getElementById('statusText');
+            const modalTitle = document.getElementById('modalTitle');
+            
+            modal.style.display = 'block';
+            modalTitle.innerText = title;
+            
+            let width = 0;
+            bar.style.width = '0%';
+            status.innerText = "Синхронізація з хмарою...";
+            status.style.color = "var(--primary)";
+
+            let interval = setInterval(() => {
+                if (width >= 100) {
+                    clearInterval(interval);
+                    status.innerText = "Готово! Завантаження почалося.";
+                    status.style.color = "var(--accent)";
+                    setTimeout(() => {
+                        closeModal();
+                    }, 1500);
+                } else {
+                    width += Math.floor(Math.random() * 15) + 5;
+                    if(width > 100) width = 100;
+                    bar.style.width = width + '%';
+                    if(width > 40) status.innerText = "Генерація пакету документів...";
+                    if(width > 80) status.innerText = "Фінальна перевірка безпеки...";
+                }
+            }, 250);
+        }
+        function closeModal() {
+            document.getElementById('downloadModal').style.display = 'none';
+        }
+
+        document.querySelectorAll('.download-link').forEach(button => {
+            button.addEventListener('click', function() {
+                const title = this.parentElement.querySelector('h4').innerText;
+                openDownload(title);
+            });
+        });
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('downloadModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
 
 </body>
 </html>
