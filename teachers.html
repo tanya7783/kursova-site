@@ -2,11 +2,79 @@
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
-    <title>Вчителям - AI Study</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вчителям - AI Study | ТНПУ ІПФ</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6c5ce7;
+            --bg: #f4f7f6;
+            --dark: #2d3436;
+            --accent: #00b894;
+            --white: #ffffff;
+            --shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: var(--dark); margin: 0; line-height: 1.6; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        header { background: var(--white); padding: 15px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
+        nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 24px; font-weight: 800; text-decoration: none; color: var(--dark); }
+        .logo span { color: var(--primary); }
+        .nav-links { list-style: none; display: flex; gap: 25px; margin: 0; }
+        .nav-links a { text-decoration: none; color: var(--dark); font-weight: 500; transition: 0.3s; }
+        .nav-links a:hover { color: var(--primary); }
+        .page-header { 
+            background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%); 
+            color: white; 
+            padding: 60px 0; 
+            text-align: center; 
+            margin-bottom: 40px; 
+        }
+        .teacher-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+            gap: 30px; 
+            margin-bottom: 50px; 
+        }
+        .resource-item { 
+            background: var(--white); 
+            padding: 30px; 
+            border-radius: 20px; 
+            box-shadow: var(--shadow); 
+            transition: 0.3s; 
+            border-top: 5px solid var(--primary);
+        }
+        .resource-item:hover { transform: translateY(-10px); }
+        .res-icon { font-size: 40px; color: var(--primary); margin-bottom: 20px; }
+        .resource-item h4 { font-size: 1.4rem; margin-bottom: 10px; color: var(--primary); }
+        .resource-item p { color: #636e72; font-size: 0.95rem; margin-bottom: 20px; }
+        .download-link { 
+            display: inline-block; 
+            padding: 10px 20px; 
+            background: var(--primary); 
+            color: white; 
+            text-decoration: none; 
+            border-radius: 50px; 
+            font-weight: bold; 
+            transition: 0.3s; 
+        }
+        .download-link:hover { background: #5649c1; box-shadow: 0 5px 15px rgba(108, 92, 231, 0.4); }
+        .prompt-box { 
+            background: #2d3436; 
+            color: #fab1a0; 
+            padding: 20px; 
+            border-radius: 10px; 
+            font-family: 'Courier New', Courier, monospace; 
+            font-size: 0.9rem; 
+            border: 1px dashed #fab1a0; 
+            margin-top: 15px; 
+        }
+
+        footer { background: var(--dark); color: white; text-align: center; padding: 40px 0; margin-top: 60px; }
+    </style>
 </head>
 <body>
+
     <header>
         <nav class="container">
             <a href="index.html" class="logo">AI<span>Study</span></a>
@@ -19,29 +87,62 @@
         </nav>
     </header>
 
-    <section class="section container">
-        <div class="section-header">
-            <h2>Методичний кабінет</h2>
-            <p>Допомога вчителю інформатики</p>
-        </div>
-        <div class="teacher-grid">
-            <div class="resource-item">
-                <div class="res-icon"><i class="fas fa-file-pdf"></i></div>
-                <div>
-                    <h4>Навчальна програма</h4>
-                    <p>План занять з теми "Штучний інтелект" для 8-9 класів.</p>
-                    <a href="#" class="download-link">Завантажити (PDF)</a>
-                </div>
-            </div>
-            <div class="resource-item">
-                <div class="res-icon"><i class="fas fa-file-powerpoint"></i></div>
-                <div>
-                    <h4>Презентаційні матеріали</h4>
-                    <p>Набір слайдів для уроків.</p>
-                    <a href="#" class="download-link">Завантажити (PPTX)</a>
-                </div>
-            </div>
+    <section class="page-header">
+        <div class="container">
+            <h1>Методичний кабінет інженера-педагога</h1>
+            <p>Цифрові інструменти та ШІ-стратегії для викладачів ІПФ ТНПУ</p>
         </div>
     </section>
+
+    <main class="container">
+    
+        <div class="teacher-grid">
+            
+            <div class="resource-item">
+                <div class="res-icon"><i class="fas fa-file-pdf"></i></div>
+                <h4>Навчальна програма (ІПФ)</h4>
+                <p>Методичні рекомендації щодо впровадження ШІ в професійну підготовку майстрів виробничого навчання.</p>
+                <a href="#" class="download-link">Завантажити програму</a>
+            </div>
+
+            <div class="resource-item" style="border-top-color: var(--accent);">
+                <div class="res-icon" style="color: var(--accent);"><i class="fas fa-desktop"></i></div>
+                <h4>Пакет візуалізацій</h4>
+                <p>Готові набори слайдів та схем про нейронні мережі, створені за допомогою генеративного ШІ для лекцій.</p>
+                <a href="#" class="download-link" style="background: var(--accent);">Скачати слайди</a>
+            </div>
+
+            <div class="resource-item" style="border-top-color: #e17055; grid-column: span 1;">
+                <div class="res-icon" style="color: #e17055;"><i class="fas fa-terminal"></i></div>
+                <h4>Промпт для плану уроку</h4>
+                <p>Скопіюйте цей текст і вставте в ChatGPT, щоб створити інструкційну картку до практичної роботи:</p>
+                <div class="prompt-box">
+                    "Дій як інженер-педагог. Склади інструкційно-технологічну картку для теми [назва теми]. Вкажи етапи, інструменти та правила ТБ."
+                </div>
+            </div>
+
+            <div class="resource-item" style="border-top-color: #0984e3;">
+                <div class="res-icon" style="color: #0984e3;"><i class="fas fa-tools"></i></div>
+                <h4>Цифрова лабораторія</h4>
+                <p>Перелік ШІ-сервісів для автоматизації перевірки коду, генерації технічних креслень та 3D-моделей.</p>
+                <a href="#" class="download-link" style="background: #0984e3;">Відкрити список</a>
+            </div>
+
+        </div>
+
+        <div style="background: white; padding: 40px; border-radius: 20px; box-shadow: var(--shadow); margin-top: 40px;">
+            <h3 style="color: var(--primary);">Чому це важливо для ТНПУ ІПФ?</h3>
+            <p>Використання штучного інтелекту в професійній освіті дозволяє майбутнім інженерам-педагогам значно швидше готувати дидактичний матеріал, адаптувати складні технічні схеми для учнів ПТНЗ та створювати інтерактивні середовища для навчання. Наша мета — поєднати традиційну педагогіку з потужністю сучасних алгоритмів.</p>
+        </div>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p><strong>AI Study Project</strong> | Тетяна Гринда | 2026</p>
+            <p style="opacity: 0.7; font-size: 0.8rem;">Інженерно-педагогічний факультет ТНПУ ім. В. Гнатюка</p>
+        </div>
+    </footer>
+
 </body>
 </html>
