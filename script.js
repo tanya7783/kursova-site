@@ -56,20 +56,18 @@
         document.getElementById('quiz-title').innerText = "Тест: " + type.toUpperCase();
         renderQuestion();
     }
+
     function renderQuestion() {
         const data = currentQuiz[currentIdx];
         document.getElementById('q-text').innerText = data.q;
         const imgElement = document.getElementById('q-img');
-        
         if(data.img) {
             imgElement.src = data.img;
             imgElement.style.display = 'block';
         } else {
             imgElement.style.display = 'none';
         }
-
         document.getElementById('question-counter').innerText = `Питання ${currentIdx + 1} з ${currentQuiz.length}`;
-        
         const optionsDiv = document.getElementById('options');
         optionsDiv.innerHTML = '';
         
@@ -80,14 +78,17 @@
             div.onclick = () => selectOption(index);
             optionsDiv.appendChild(div);
         });
+
         document.getElementById('prev-btn').style.visibility = currentIdx === 0 ? 'hidden' : 'visible';
         document.getElementById('next-btn').innerText = currentIdx === currentQuiz.length - 1 ? 'Завершити' : 'Далі';
         document.getElementById('next-btn').disabled = userAnswers[currentIdx] === null;
     }
+
     function selectOption(idx) {
         userAnswers[currentIdx] = idx;
         renderQuestion();
     }
+
     function nextQuestion() {
         if (currentIdx < currentQuiz.length - 1) {
             currentIdx++;
@@ -96,6 +97,7 @@
             finishQuiz();
         }
     }
+
     function prevQuestion() {
         if (currentIdx > 0) {
             currentIdx--;
@@ -108,20 +110,26 @@
         userAnswers.forEach((ans, i) => {
             if (ans === currentQuiz[i].correct) correctCount++;
         });
+
         const mastery = Math.round((correctCount / currentQuiz.length) * 100);
+        
         document.getElementById('quiz-platform').style.display = 'none';
         document.getElementById('result-screen').style.display = 'block';
         document.getElementById('mastery-val').innerText = mastery + '%';
+        
         let msg = "";
         if (mastery >= 90) msg = "Вражаюче! Ви експерт у цій темі.";
         else if (mastery >= 70) msg = "Чудовий результат. Ви добре засвоїли матеріал.";
         else if (mastery >= 50) msg = "Непогано, але варто ще раз переглянути теорію.";
         else msg = "Потрібно більше практики. Спробуйте ще раз вивчити модулі.";
+        
         document.getElementById('mastery-text').innerText = msg;
+
         completedQuizzes++;
         document.getElementById('completed-count').innerText = completedQuizzes;
         document.getElementById('avg-mastery').innerText = mastery + '%';
     }
+
     function resetQuiz() {
         document.getElementById('result-screen').style.display = 'none';
         document.getElementById('selection-screen').style.display = 'block';
