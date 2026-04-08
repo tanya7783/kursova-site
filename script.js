@@ -88,7 +88,6 @@
         userAnswers[currentIdx] = idx;
         renderQuestion();
     }
-
     function nextQuestion() {
         if (currentIdx < currentQuiz.length - 1) {
             currentIdx++;
@@ -97,14 +96,12 @@
             finishQuiz();
         }
     }
-
     function prevQuestion() {
         if (currentIdx > 0) {
             currentIdx--;
             renderQuestion();
         }
     }
-
     function finishQuiz() {
         let correctCount = 0;
         userAnswers.forEach((ans, i) => { if (ans === currentQuiz[i].correct) correctCount++; });
@@ -123,15 +120,12 @@
         document.getElementById('result-screen').style.display = 'none';
         document.getElementById('selection-screen').style.display = 'block';
     }
-
     function openAuthModal() {
         document.getElementById('authModal').style.display = 'block';
     }
-
     function closeAuthModal() {
         document.getElementById('authModal').style.display = 'none';
     }
-
     function fakeLogin(method) {
         alert("Ви успішно авторизувалися через " + method + "!");
         closeAuthModal();
