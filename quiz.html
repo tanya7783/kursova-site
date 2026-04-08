@@ -14,9 +14,7 @@
             --error: #ff7675;
             --white: #ffffff;
         }
-
         body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: var(--dark); margin: 0; }
-
         header.main-nav {
             background: var(--white);
             padding: 15px 0;
@@ -38,14 +36,24 @@
         .logo { font-size: 24px; font-weight: 800; color: var(--dark); text-decoration: none; }
         .logo span { color: var(--primary); }
 
-        .nav-links { list-style: none; display: flex; gap: 25px; margin: 0; padding: 0; }
+        .nav-links { list-style: none; display: flex; gap: 25px; margin: 0; padding: 0; align-items: center; }
         .nav-links a { text-decoration: none; color: var(--dark); font-weight: 500; transition: 0.3s; }
         .nav-links a:hover { color: var(--primary); }
 
+        /* Кнопка Увійти */
+        .btn-login {
+            background: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            padding: 8px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .btn-login:hover { background: var(--primary); color: white; }
         .container { max-width: 850px; margin: 0 auto; padding: 20px; }
-
         .stats-bar { background: var(--dark); color: white; padding: 15px; border-radius: 15px; margin: 20px 0; display: flex; justify-content: space-around; align-items: center; }
-
         .quiz-selection { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 30px; }
         .quiz-card-link { 
             background: white; padding: 30px; border-radius: 25px; text-align: center; 
@@ -65,16 +73,28 @@
         .option.correct { background: var(--accent) !important; color: white; border-color: var(--accent); }
         .option.wrong { background: var(--error) !important; color: white; border-color: var(--error); }
         .option.disabled { pointer-events: none; }
-
         .btn-quiz { padding: 12px 25px; border-radius: 50px; border: none; cursor: pointer; font-weight: bold; transition: 0.3s; }
         .btn-prev { background: #eee; color: #666; }
         .btn-next { background: var(--primary); color: white; }
-
         #result-screen { display: none; text-align: center; padding: 50px; background: white; border-radius: 30px; }
         .mastery-circle { width: 150px; height: 150px; border-radius: 50%; border: 10px solid var(--accent); display: flex; align-items: center; justify-content: center; font-size: 2.5rem; font-weight: 900; margin: 0 auto 20px; color: var(--accent); }
+        #authModal {
+            display: none; position: fixed; z-index: 3000; left: 0; top: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8); backdrop-filter: blur(8px);
+        }
+        .auth-content {
+            background: white; width: 90%; max-width: 400px; margin: 8% auto; padding: 40px;
+            border-radius: 30px; text-align: center; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+        .auth-methods { display: flex; flex-direction: column; gap: 15px; margin-top: 25px; }
+        .auth-btn { padding: 12px; border: 1px solid #ddd; border-radius: 10px; background: white; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; font-weight: 500; }
+        .auth-divider { margin: 20px 0; display: flex; align-items: center; color: #888; font-size: 0.8rem; }
+        .auth-divider::before, .auth-divider::after { content: ""; flex: 1; height: 1px; background: #eee; margin: 0 10px; }
+        .auth-input { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 10px; box-sizing: border-box; outline: none; }
     </style>
 </head>
 <body>
+
     <header class="main-nav">
         <nav class="nav-container">
             <a href="index.html" class="logo">AI<span>Study</span></a>
@@ -92,7 +112,6 @@
             <span>Пройдено тем: <b id="completed-count">0</b></span>
             <span>Майстерність: <b id="avg-mastery">0%</b></span>
         </div>
-
         <div id="selection-screen">
             <h1 style="text-align:center">Центр тестування</h1>
             <div class="quiz-selection">
@@ -135,6 +154,22 @@
             <div class="mastery-circle" id="mastery-val">0%</div>
             <p id="mastery-text"></p>
             <button class="btn-quiz btn-next" onclick="resetQuiz()">До вибору тем</button>
+        </div>
+    </div>
+
+    <div id="authModal">
+        <div class="auth-content">
+            <span onclick="closeAuthModal()" style="position: absolute; right: 25px; top: 20px; cursor: pointer; font-size: 24px;">&times;</span>
+            <h2>Авторизація</h2>
+            <p style="color: #666; font-size: 0.9rem;">Оберіть спосіб входу</p>
+            <div class="auth-methods">
+                <button class="auth-btn" onclick="fakeLogin('Google')"><i class="fab fa-google" style="color: #DB4437;"></i> Google</button>
+                <button class="auth-btn" onclick="fakeLogin('Microsoft')"><i class="fab fa-windows" style="color: #00A4EF;"></i> Microsoft</button>
+            </div>
+            <div class="auth-divider">або пошта</div>
+            <input type="email" class="auth-input" placeholder="Електронна пошта">
+            <input type="password" class="auth-input" placeholder="Пароль">
+            <button class="btn-quiz btn-next" style="width: 100%; border-radius: 10px;" onclick="fakeLogin('Пошту')">Увійти</button>
         </div>
     </div>
 
@@ -183,25 +218,21 @@
             { q: "Чи є контент ШІ копією інтернету?", img: "https://images.unsplash.com/photo-1695431604169-216503c807b1?q=80&w=600", options: ["Так", "Ні, це новий синтез", "Колір", "Інколи"], correct: 1 }
         ]
     };
-
     let currentQuiz = [];
     let currentIdx = 0;
     let score = 0;
     let answered = false;
     let completedCount = 0;
-
     function startQuiz(type) {
         currentQuiz = quizData[type];
         currentIdx = 0;
         score = 0;
         document.getElementById('selection-screen').style.display = 'none';
         document.getElementById('quiz-platform').style.display = 'block';
-        
         let titles = {'robotics': 'Робототехніка', 'neural': 'Нейронні мережі', 'genai': 'Генеративний ШІ'};
         document.getElementById('quiz-title').innerText = "Тест: " + titles[type];
         renderQuestion();
     }
-
     function renderQuestion() {
         answered = false;
         const data = currentQuiz[currentIdx];
@@ -209,10 +240,8 @@
         document.getElementById('q-img').src = data.img;
         document.getElementById('question-counter').innerText = `Запитання ${currentIdx + 1} з ${currentQuiz.length}`;
         document.getElementById('next-btn').style.display = 'none';
-
         const optionsDiv = document.getElementById('options');
         optionsDiv.innerHTML = '';
-        
         data.options.forEach((opt, index) => {
             const div = document.createElement('div');
             div.className = 'option';
@@ -221,12 +250,12 @@
             optionsDiv.appendChild(div);
         });
     }
+
     function selectOption(el, idx) {
         if(answered) return;
         answered = true;
         const correctIdx = currentQuiz[currentIdx].correct;
         const allOptions = document.querySelectorAll('.option');
-        
         if(idx === correctIdx) {
             el.classList.add('correct');
             el.querySelector('i').className = 'fas fa-check-circle';
@@ -237,34 +266,25 @@
             allOptions[correctIdx].classList.add('correct');
             allOptions[correctIdx].querySelector('i').className = 'fas fa-check-circle';
         }
-        
         allOptions.forEach(opt => opt.classList.add('disabled'));
         document.getElementById('next-btn').style.display = 'block';
         document.getElementById('next-btn').innerText = currentIdx === currentQuiz.length - 1 ? "Завершити" : "Далі";
     }
-
     function nextQuestion() {
         currentIdx++;
         if(currentIdx < currentQuiz.length) { renderQuestion(); } 
         else { showResult(); }
     }
-
     function prevQuestion() {
         if(currentIdx > 0) { currentIdx--; renderQuestion(); } 
         else { resetQuiz(); }
     }
-
     function showResult() {
         document.getElementById('quiz-platform').style.display = 'none';
         document.getElementById('result-screen').style.display = 'block';
         const mastery = Math.round((score / currentQuiz.length) * 100);
         document.getElementById('mastery-val').innerText = mastery + '%';
-        
-        let msg = "";
-        if (mastery >= 85) msg = "Вражаюче! Ви експерт у цій темі.";
-        else if (mastery >= 60) msg = "Добре засвоєно. Але варто дещо повторити.";
-        else msg = "Потрібно більше практики та вивчення теорії.";
-        
+        let msg = mastery >= 85 ? "Вражаюче! Ви експерт у цій темі." : (mastery >= 60 ? "Добре засвоєно. Але варто дещо повторити." : "Потрібно більше практики.");
         document.getElementById('mastery-text').innerText = msg;
         completedCount++;
         document.getElementById('completed-count').innerText = completedCount;
@@ -274,6 +294,30 @@
         document.getElementById('result-screen').style.display = 'none';
         document.getElementById('quiz-platform').style.display = 'none';
         document.getElementById('selection-screen').style.display = 'block';
+    }
+    function openAuthModal() {
+        document.getElementById('authModal').style.display = 'block';
+    }
+
+    function closeAuthModal() {
+        document.getElementById('authModal').style.display = 'none';
+    }
+
+    function fakeLogin(method) {
+        alert("Ви успішно авторизувалися через " + method + "!");
+        closeAuthModal();
+        const loginBtn = document.querySelector('.btn-login');
+        if(loginBtn) {
+            loginBtn.innerText = "Тетяна Г.";
+            loginBtn.style.background = "#00b894";
+            loginBtn.style.color = "white";
+            loginBtn.style.borderColor = "#00b894";
+        }
+    }
+
+    window.onclick = function(event) {
+        let modal = document.getElementById('authModal');
+        if (event.target == modal) closeAuthModal();
     }
 </script>
 </body>
