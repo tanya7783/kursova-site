@@ -20,10 +20,22 @@
         nav { display: flex; justify-content: space-between; align-items: center; }
         .logo { font-size: 24px; font-weight: 800; text-decoration: none; color: var(--dark); }
         .logo span { color: var(--primary); }
-        .nav-links { list-style: none; display: flex; gap: 25px; margin: 0; }
+        .nav-links { list-style: none; display: flex; gap: 25px; margin: 0; align-items: center; }
         .nav-links a { text-decoration: none; color: var(--dark); font-weight: 500; transition: 0.3s; }
         .nav-links a:hover { color: var(--primary); }
         
+        .btn-login {
+            background: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            padding: 8px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .btn-login:hover { background: var(--primary); color: white; }
+
         .page-header { 
             background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%); 
             color: white; 
@@ -76,27 +88,37 @@
             border: 1px dashed #fab1a0; 
             margin-top: 15px; 
         }
-        #downloadModal {
+
+        #downloadModal, #authModal {
             display: none; 
             position: fixed; 
             z-index: 2000; 
             left: 0; top: 0; 
             width: 100%; height: 100%; 
-            background: rgba(0,0,0,0.7); 
-            backdrop-filter: blur(5px);
+            background: rgba(0,0,0,0.8); 
+            backdrop-filter: blur(8px);
         }
-        .modal-content {
+        .modal-content, .auth-content {
             background: white; 
             width: 90%;
             max-width: 400px; 
-            margin: 15% auto; 
-            padding: 30px; 
-            border-radius: 25px; 
+            margin: 10% auto; 
+            padding: 40px; 
+            border-radius: 30px; 
             text-align: center; 
             position: relative; 
             animation: slideUp 0.3s ease;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
         }
-        .close-btn { position: absolute; right: 20px; top: 15px; cursor: pointer; font-size: 28px; color: #999; }
+        .auth-methods { display: flex; flex-direction: column; gap: 15px; margin-top: 25px; }
+        .auth-btn {
+            padding: 12px; border: 1px solid #ddd; border-radius: 10px; background: white;
+            cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; font-weight: 500;
+        }
+        .auth-divider { margin: 20px 0; display: flex; align-items: center; color: #888; font-size: 0.8rem; }
+        .auth-divider::before, .auth-divider::after { content: ""; flex: 1; height: 1px; background: #eee; margin: 0 10px; }
+        .auth-input { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 10px; outline: none; box-sizing: border-box; }
+
         .progress-container { width: 100%; background: #eee; height: 12px; border-radius: 10px; margin: 25px 0; overflow: hidden; }
         .progress-bar { width: 0%; height: 100%; background: var(--accent); transition: width 0.3s; }
 
@@ -131,9 +153,7 @@
     </section>
 
     <main class="container">
-        
         <div class="teacher-grid">
-            
             <div class="resource-item">
                 <div class="res-icon"><i class="fas fa-file-pdf"></i></div>
                 <h4>Навчальна програма (ІПФ)</h4>
@@ -144,46 +164,48 @@
             <div class="resource-item" style="border-top-color: var(--accent);">
                 <div class="res-icon" style="color: var(--accent);"><i class="fas fa-desktop"></i></div>
                 <h4>Пакет візуалізацій</h4>
-                <p>Готові набори слайдів та схем про нейронні мережі, створені за допомогою генеративного ШІ для лекцій.</p>
+                <p>Готові набори слайдів та схем про нейронні мережі, створені за допомогою генеративного ШІ.</p>
                 <button class="download-link" style="background: var(--accent);">Скачати слайди</button>
             </div>
 
-            <div class="resource-item" style="border-top-color: #e17055; grid-column: span 1;">
+            <div class="resource-item" style="border-top-color: #e17055;">
                 <div class="res-icon" style="color: #e17055;"><i class="fas fa-terminal"></i></div>
                 <h4>Промпт для плану уроку</h4>
-                <p>Скопіюйте цей текст і вставте в ChatGPT, щоб створити інструкційну картку до практичної роботи:</p>
+                <p>Скопіюйте цей текст і вставте в ChatGPT для створення техкарти:</p>
                 <div class="prompt-box">
-                    "Дій як інженер-педагог. Склади інструкційно-технологічну картку для теми [назва теми]. Вкажи етапи, інструменти та правила ТБ."
+                    "Дій як інженер-педагог. Склади інструкційно-технологічну картку для теми [назва теми]."
                 </div>
             </div>
 
             <div class="resource-item" style="border-top-color: #0984e3;">
                 <div class="res-icon" style="color: #0984e3;"><i class="fas fa-tools"></i></div>
                 <h4>Цифрова лабораторія</h4>
-                <p>Перелік ШІ-сервісів для автоматизації перевірки коду, генерації технічних креслень та 3D-моделей.</p>
+                <p>Перелік ШІ-сервісів для автоматизації перевірки коду та генерації 3D-моделей.</p>
                 <button class="download-link" style="background: #0984e3;">Відкрити список</button>
             </div>
-
         </div>
-
-        <div style="background: white; padding: 40px; border-radius: 20px; box-shadow: var(--shadow); margin-top: 40px;">
-            <h3 style="color: var(--primary);">Чому це важливо для ТНПУ ІПФ?</h3>
-            <p>Використання штучного інтелекту в професійній освіті дозволяє майбутнім інженерам-педагогам значно швидше готувати дидактичний матеріал, адаптувати складні технічні схеми для учнів ПТНЗ та створювати інтерактивні середовища для навчання.</p>
-        </div>
-
     </main>
+    <div id="authModal">
+        <div class="auth-content">
+            <span onclick="closeAuthModal()" style="position: absolute; right: 25px; top: 20px; cursor: pointer; font-size: 24px;">&times;</span>
+            <h2>Авторизація</h2>
+            <div class="auth-methods">
+                <button class="auth-btn" onclick="fakeLogin('Google')"><i class="fab fa-google" style="color:#DB4437"></i> Google</button>
+                <button class="auth-btn" onclick="fakeLogin('Microsoft')"><i class="fab fa-windows" style="color:#00A4EF"></i> Microsoft</button>
+            </div>
+            <div class="auth-divider">або за допомогою пошти</div>
+            <input type="email" class="auth-input" placeholder="Електронна пошта">
+            <input type="password" class="auth-input" placeholder="Пароль">
+            <button class="download-link" style="width:100%; border:none; margin-top:10px;" onclick="fakeLogin('Пошту')">Увійти</button>
+        </div>
+    </div>
 
     <div id="downloadModal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal()">&times;</span>
             <i class="fas fa-cloud-download-alt" style="font-size: 50px; color: var(--primary); margin-bottom: 15px;"></i>
-            <h3 id="modalTitle" style="margin: 10px 0;">Обробка запиту</h3>
-            <p id="modalText" style="font-size: 0.9rem; color: #666;">Підключаємось до репозиторію ТНПУ...</p>
-            
-            <div class="progress-container">
-                <div id="progressBar" class="progress-bar"></div>
-            </div>
-            
+            <h3 id="modalTitle">Обробка запиту</h3>
+            <div class="progress-container"><div id="progressBar" class="progress-bar"></div></div>
             <p id="statusText" style="font-size: 0.8rem; font-weight: bold; color: var(--accent);">Статус: Підготовка даних...</p>
         </div>
     </div>
@@ -196,55 +218,48 @@
     </footer>
 
     <script>
+        function openAuthModal() { document.getElementById('authModal').style.display = 'block'; }
+        function closeAuthModal() { document.getElementById('authModal').style.display = 'none'; }
+        function fakeLogin(m) {
+            alert("Ви успішно авторизувалися через " + m + "!");
+            closeAuthModal();
+            const btn = document.querySelector('.btn-login');
+            btn.innerText = "Тетяна Г.";
+            btn.style.background = "var(--accent)";
+            btn.style.color = "white";
+            btn.style.borderColor = "var(--accent)";
+        }
         function openDownload(title) {
             const modal = document.getElementById('downloadModal');
             const bar = document.getElementById('progressBar');
             const status = document.getElementById('statusText');
-            const modalTitle = document.getElementById('modalTitle');
-            
+            document.getElementById('modalTitle').innerText = title;
             modal.style.display = 'block';
-            modalTitle.innerText = title;
-            
             let width = 0;
-            bar.style.width = '0%';
-            status.innerText = "Синхронізація з хмарою...";
-            status.style.color = "var(--primary)";
-
             let interval = setInterval(() => {
                 if (width >= 100) {
                     clearInterval(interval);
                     status.innerText = "Готово! Завантаження почалося.";
-                    status.style.color = "var(--accent)";
-                    setTimeout(() => {
-                        closeModal();
-                    }, 1500);
+                    setTimeout(() => closeModal(), 1500);
                 } else {
                     width += Math.floor(Math.random() * 15) + 5;
                     if(width > 100) width = 100;
                     bar.style.width = width + '%';
-                    if(width > 40) status.innerText = "Генерація пакету документів...";
-                    if(width > 80) status.innerText = "Фінальна перевірка безпеки...";
                 }
             }, 250);
         }
-        function closeModal() {
-            document.getElementById('downloadModal').style.display = 'none';
-        }
 
+        function closeModal() { document.getElementById('downloadModal').style.display = 'none'; }
         document.querySelectorAll('.download-link').forEach(button => {
             button.addEventListener('click', function() {
                 const title = this.parentElement.querySelector('h4').innerText;
                 openDownload(title);
             });
         });
-
         window.onclick = function(event) {
-            const modal = document.getElementById('downloadModal');
-            if (event.target == modal) {
-                closeModal();
-            }
+            if (event.target == document.getElementById('downloadModal')) closeModal();
+            if (event.target == document.getElementById('authModal')) closeAuthModal();
         }
     </script>
-
 </body>
 </html>
