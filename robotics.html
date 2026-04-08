@@ -24,19 +24,15 @@
 
         .article-trigger:hover { background: #f0edff; }
         .article-content {
-
             padding: 0 40px; max-height: 0; overflow: hidden;
             transition: max-height 1s cubic-bezier(0, 1, 0, 1);
             line-height: 1.9; color: #444; font-size: 1.05rem;
-
         }
-
         .article-card.active .article-content {
             max-height: 15000px; 
             padding-bottom: 50px;
             transition: max-height 2s ease-in;
         }
-
         .article-card.active .fa-chevron-down { transform: rotate(180deg); color: var(--primary); }
         .highlight-blue { background: #eef2ff; padding: 25px; border-radius: 15px; border-left: 6px solid var(--primary); margin: 25px 0; }
 
@@ -52,31 +48,20 @@
 
             width: 100%;
             height: 180px;
-
             object-fit: cover;
             border-radius: 12px;
 
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
-
         .answer-option { background: white; padding: 15px 20px; margin: 10px 0; border-radius: 10px; cursor: pointer; transition: 0.3s; border: 2px solid #eee; }
-
         .answer-option:hover { border-color: var(--primary); background: #f8f9ff; }
-
         .correct { background: #dff9fb !important; border-color: #2ecc71 !important; }
-
         .wrong { background: #ffeaa7 !important; border-color: #fab1a0 !important; }
 
-
-
         .book-link {
-
             display: flex; align-items: center; gap: 15px; background: #fff; 
-
             padding: 15px; border-radius: 12px; border: 1px solid #eee; 
-
             text-decoration: none; color: inherit; margin-top: 15px; transition: 0.3s;
-
         }
 
         .book-link:hover { border-color: var(--primary); transform: translateX(5px); }
@@ -86,7 +71,6 @@
 </head>
 
 <body>
-
 
 
     <header>
@@ -102,28 +86,18 @@
                 <li><button class="btn-login" onclick="openAuthModal()">Увійти</button></li>
             </ul>
         </nav>
-
     </header>
-
     <section class="lesson-header">
-
         <div class="container">
-
             <span class="badge-free">БЕЗКОШТОВНА ЕНЦИКЛОПЕДІЯ</span>
             <h1 style="font-size: 3.5rem; margin-top: 20px; font-weight: 900;">Світ Робототехніки: Глибоке Занурення</h1>
             <p style="opacity: 0.8; max-width: 800px; margin: 25px auto; font-size: 1.2rem; line-height: 1.6;">Науково обґрунтований матеріал на основі провідних посібників 2024-2026 років.</p>
-            
         </div>
-
     </section>
-
-
-
     <div class="main-content container">
 
         <div style="display: grid; grid-template-columns: 3fr 1fr; gap: 50px;">
             <div id="course-body">
-
                <div class="article-card active"> <div class="article-trigger" onclick="toggleArticle(this)">
         <div>
             <span style="color: var(--primary); font-weight: bold; font-size: 1.2rem;">01.</span>
@@ -155,9 +129,6 @@
     </div>
 </div>
 
-
-
-
 <div class="article-card">
     <div class="article-trigger" onclick="toggleArticle(this)">
         <div>
@@ -185,7 +156,7 @@
         
         <div style="text-align: center; margin: 20px 0;">
             <img src="images/аль джазі.jpg" alt="Слон-годинник" style="max-width: 300px; border-radius: 15px;">
-            <p style="font-size: 0.9rem; color: #666;">Книга знвнь Аль-Джазарі</p>
+            <p style="font-size: 0.9rem; color: #666;">Книга знань Аль-Джазарі</p>
         </div>
 
         <p>XVIII століття стало золотою добою механічних андроїдів. Майстер <strong>П'єр Жаке-Дро</strong> створив унікальних «автоматів-каліграфів», 
@@ -261,13 +232,9 @@
                                 <h4 style="color: #e74c3c;"><i class="fas fa-minus-circle"></i> Недоліки (Contra):</h4>
 
                                 <ul style="padding-left: 20px; font-size: 14px;">
-
                                     <li><strong>Безробіття:</strong> Заміна людей машинами на низькокваліфікованих роботах веде до соціальної напруги.</li>
-
                                     <li><strong>Вартість:</strong> Надзвичайно високі початкові інвестиції у закупівлю та програмування обладнання.</li>
-
                                     <li><strong>Технозалежність:</strong> Уразливість перед кібератаками та програмними помилками.</li>
-
                                     <li><strong>Обслуговування:</strong> Потреба у вузькоспеціалізованих кадрах для ремонту та налагодження.</li>
                                 </ul>
                             </div>
@@ -280,32 +247,20 @@
                 </div>
 
                 <div class="article-card">
-
                     <div class="article-trigger" onclick="toggleArticle(this)">
-
                         <div>
-
                             <span style="color: var(--primary); font-weight: bold; font-size: 1.2rem;">04.</span>
-
                             <h3 style="display: inline; margin-left: 15px; font-size: 1.6rem;">Застосування: Де ШІ отримує «тіло»?</h3>
-
                         </div>
-
                         <i class="fas fa-chevron-down" style="font-size: 1.3rem;"></i>
-
                     </div>
 
                     <div class="article-content">
-
                         <p>Сьогодні робототехніка інтегрована у всі сфери життєдіяльності людини. Це не просто футуристичні прогнози — це реальність 2026 року.</p>
-
                         <ul style="list-style: none; padding: 0;">
-
                             <li style="margin-bottom: 20px;">
-
                                 <strong><i class="fas fa-user-md" style="color: #ff7675;"></i> Медицина:</strong> Роботизована хірургічна система Da Vinci
                                 дозволяє лікарям проводити операції на відстані тисяч кілометрів. Екзоскелети повертають можливість ходити людям із травмами хребта.
-                                
                             </li>
                             <li style="margin-bottom: 20px;">
 
@@ -320,16 +275,11 @@
                                 (Lights-out manufacturing), де освітлення та опалення не потрібні, бо там працюють лише роботи.
 
                             </li>
-
                             <li style="margin-bottom: 20px;">
-
                                 <strong><i class="fas fa-seedling" style="color: #00b894;"></i> Агрономія:</strong> Автономні трактори John Deere та дрони 
                                 для точкового обприскування пестицидами зменшують витрати ресурсів на 40%.
-
                             </li>
-
                         </ul>
-
                         <p>Роботи допомагають нам у побуті (пилососи, газонокосарки), у рятувальних операціях під завалами та у дослідженні Маріанської западини.
                             Їх роль — бути нашими очима та руками там, де людина не здатна вижити або помиляється від втоми.</p>
 
@@ -339,15 +289,10 @@
 
 
 <div class="article-card">
-
     <div class="article-trigger" onclick="toggleArticle(this)">
-
         <div>
-
             <span style="color: var(--primary); font-weight: bold; font-size: 1.2rem;">05.</span>
-
             <h3 style="display: inline; margin-left: 15px; font-size: 1.6rem;">Термінологічний словник: Мова робототехніки</h3>
-
         </div>
 
         <i class="fas fa-chevron-down" style="font-size: 1.3rem;"></i>
@@ -361,21 +306,15 @@
 
 
         <div style="margin-bottom: 40px; border-bottom: 1px solid #eee; padding-bottom: 20px;">
-
             <h4 style="color: var(--primary); font-size: 1.3rem;"><i class="fas fa-robot"></i> Маніпулятор</h4>
-
             <p>Це керований механізм, призначений для виконання рухових функцій, подібних до рухів людської руки. Він переміщує об'єкти в просторі за заданими координатами.</p>
 
             
 
         </div>
 
-
-
         <div style="margin-bottom: 40px; border-bottom: 1px solid #eee; padding-bottom: 20px;">
-
             <h4 style="color: var(--primary); font-size: 1.3rem;"><i class="fas fa-arrows-alt"></i> Ступінь вільності (DoF)</h4>
-
             <p>Це кожна незалежна координата, що описує рух ланки робота. Чим більше DoF, тим гнучкіший робот. Сучасні промислові маніпулятори зазвичай мають 6-7 ступенів вільності.</p>
 
 
@@ -406,12 +345,8 @@
 
 
         <div style="margin-bottom: 40px; border-bottom: 1px solid #eee; padding-bottom: 20px;">
-
             <h4 style="color: var(--primary); font-size: 1.3rem;"><i class="fas fa-brain"></i> Контролер</h4>
-
             <p>Електронний блок ("мозок"), що обробляє дані від сенсорів та видає команди актуаторам згідно з алгоритмом управління.</p>
-
-
         </div>
 
         <div style="margin-bottom: 40px;">
@@ -436,68 +371,37 @@
                 
 
                 <div style="margin-top: 40px; background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
-
                     <h2>Демонстрація Можливостей</h2>
-
                     <p>Подивіться, як реалізується теорія з посібників на прикладі Spot та Atlas від Boston Dynamics:</p>
-
                     <div style="border-radius: 15px; overflow: hidden; margin: 25px 0; border: 2px solid #6c5ce7;">
-
                         <iframe width="100%" height="450" src="https://www.youtube.com/embed/tF4DML7FIWk" frameborder="0" allowfullscreen></iframe>
-
                     </div>
-
-
                     <div id="miniQuiz" style="background: #f1f2f6; padding: 35px; border-radius: 20px;">
-
                         <h4 style="text-align: center;"><i class="fas fa-vial" style="color: var(--primary);"></i> Логічний Челендж</h4>
-
                         <p style="text-align: center; margin-top: 10px; font-weight: bold;">Уявіть автономного робота-дослідника в повній темряві.
                             Йому потрібно виявити скляні двері, щоб не розбитися. Яка система сенсорів буде найбільш надійною?</p>
-
-
                         <div style="max-width: 550px; margin: 25px auto;">
                             <div class="answer-option" onclick="checkAnswer(this, false)">А) Візуальна камера з нічним баченням</div>
                             <div class="answer-option" onclick="checkAnswer(this, true)">Б) Ультразвукова ехолокація (УЗД)</div>
                             <div class="answer-option" onclick="checkAnswer(this, false)">В) Датчик інтенсивності світла</div>
                             <div class="answer-option" onclick="checkAnswer(this, false)">Г) Гіроскопічна стабілізація</div>
-
                         </div>
-
                         <p id="quizRes" style="text-align: center; font-weight: bold; padding: 15px; border-radius: 10px;"></p>
-
                     </div>
-
                 </div>
-
-
             </div>
-
-
-
             <aside>
-
                 <div class="sidebar-sticky">
-
                     <div style="background: white; padding: 25px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
-
                         <h4 style="color: var(--primary);"><i class="fas fa-book-open"></i> Наукова Бібліотека</h4>
-
                         <p style="font-size: 13px; margin: 10px 0;">Опрацьовані джерела для цього модуля:</p>
-
-
                         <a href="#" class="book-link">
-
                             <i class="fas fa-file-pdf" style="color: #e74c3c;"></i>
-
                             <span style="font-size: 12px; font-weight: bold;">Основи робототехніки (2024)</span>
-
                         </a>
-
                         <a href="#" class="book-link">
                             <i class="fas fa-file-pdf" style="color: #2196f3;"></i>
                             <span style="font-size: 12px; font-weight: bold;">Огляд розвитку (Мокренко П. В.)</span>
-
                         </a>
 
                     </div>
@@ -512,7 +416,6 @@
                     </div>
 
                     <img src="https://images.unsplash.com/photo-1546776310-eef45dd6d63c?auto=format&fit=crop&q=80&w=300" alt="Robotics components" style="width: 100%; border-radius: 20px; margin-top: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
-
                 </div>
 
             </aside>
@@ -522,43 +425,30 @@
 
 
         <div style="text-align: center; margin-top: 80px;">
-
             <a href="theory.html" class="btn" style="padding: 18px 60px; text-decoration: none; font-size: 1.1rem;">← До Списку Модулів</a>
 
         </div>
-
     </div>
-
-
 
     <script>
 
         function toggleArticle(element) {
-
             const card = element.parentElement;
-
             card.classList.toggle('active');
 
         }
 
 
         function checkAnswer(el, correct) {
-
             const options = document.querySelectorAll('.answer-option');
-
             const resText = document.getElementById('quizRes');
-
             options.forEach(o => o.classList.remove('correct', 'wrong'));
 
             
             if(correct) {
-
                 el.classList.add('correct');
-
                 resText.innerText = "✅ Вірно! Ультразвукові хвилі відбиваються від твердих поверхонь (навіть прозорих), дозволяючи виявити скло в темряві.";
-
                 resText.style.background = "#e6fffa"; resText.style.color = "#27ae60";
-
             } else {
 
                 el.classList.add('wrong');
@@ -573,9 +463,60 @@
     </script>
 
     <footer>
-        <div class="container" style="text-align: center; padding: 50px 0; opacity: 0.6; border-top: 1px solid #eee;">
-            <p>&copy; 2026 AI Study Project | Тетяна Гринда | TNPU Open Education Mission</p>
+        <div class="container" style="text-align: center; padding: 40px 0;">
+            <p>&copy; 2026 Тетяна Гринда. Open Education Project для TNPU. Всі матеріали вільні для використання.</p>
         </div>
     </footer>
+
+    <div id="authModal">
+        <div class="auth-content">
+            <span onclick="closeAuthModal()" style="position: absolute; right: 25px; top: 20px; cursor: pointer; font-size: 24px;">&times;</span>
+            <h2>Авторизація</h2>
+            <p style="color: #666; font-size: 0.9rem;">Оберіть зручний спосіб входу в AI Study</p>
+
+            <div class="auth-methods">
+                <button class="auth-btn google" onclick="fakeLogin('Google')">
+                    <i class="fab fa-google"></i> Увійти через Google
+                </button>
+                <button class="auth-btn microsoft" onclick="fakeLogin('Microsoft')">
+                    <i class="fab fa-windows"></i> Увійти через Microsoft
+                </button>
+            </div>
+            <div class="auth-divider">або за допомогою пошти</div>
+            <input type="email" class="auth-input" placeholder="Електронна пошта">
+            <input type="password" class="auth-input" placeholder="Пароль">
+            <button class="btn" style="width: 100%; border: none; margin-top: 10px; background: var(--primary); color: white; padding: 12px; border-radius: 10px; cursor: pointer;" onclick="fakeLogin('Пошту')">
+                Увійти
+            </button>
+            <p style="margin-top: 20px; font-size: 0.8rem;">
+                Немає акаунту? <a href="#" style="color: var(--primary);">Зареєструватися</a>
+            </p>
+        </div>
+    </div>
+    <script>
+        function openAuthModal() {
+            document.getElementById('authModal').style.display = 'block';
+        }
+        function closeAuthModal() {
+            document.getElementById('authModal').style.display = 'none';
+        }
+        function fakeLogin(method) {
+            alert("Ви успішно авторизувалися через " + method + "!");
+            closeAuthModal();
+            const loginBtn = document.querySelector('.btn-login');
+            if(loginBtn) {
+                loginBtn.innerText = "Тетяна Г.";
+                loginBtn.style.background = "#00b894";
+                loginBtn.style.color = "white";
+            }
+        }
+        window.onclick = function(event) {
+            let modal = document.getElementById('authModal');
+            if (event.target == modal) {
+                closeAuthModal();
+            }
+        }
+    </script>
+    <script src="script.js"></script>
 </body>
 </html>
