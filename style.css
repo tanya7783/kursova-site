@@ -433,7 +433,6 @@ article:hover {
     transform: scale(1.05);
 }
 
-/* Модальне вікно авторизації */
 #authModal {
     display: none;
     position: fixed;
