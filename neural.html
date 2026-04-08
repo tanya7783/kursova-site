@@ -4,18 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Нейронні мережі: Академічний курс | AI Study</title>
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root { --primary: #6c5ce7; --bg: #f4f7f6; --dark: #2d3436; --accent: #00b894; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.9; color: var(--dark); background: var(--bg); margin: 0; }
-        
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; 
+        header { background: white; padding: 15px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
+        nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 24px; font-weight: 800; text-decoration: none; color: var(--dark); }
+        .logo span { color: var(--primary); }
+        .nav-links { list-style: none; display: flex; gap: 25px; margin: 0; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--dark); font-weight: 500; transition: 0.3s; }
+        .nav-links a:hover { color: var(--primary); }
+        .btn-login {
+            background: white; color: var(--primary); border: 2px solid var(--primary);
+            padding: 8px 20px; border-radius: 50px; cursor: pointer; font-weight: bold; transition: 0.3s;
+        }
+        .btn-login:hover { background: var(--primary); color: white; }
         .hero-header {
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
             color: white; padding: 50px 0; text-align: center; border-bottom: 8px solid var(--primary);
             position: relative; overflow: hidden;
         }
-
         .main-container { 
             display: grid; 
             grid-template-columns: 3fr 1fr; 
@@ -23,7 +33,6 @@
             padding: 40px 0; 
             align-items: start;
         }
-        
         .article-section { 
             background: white; 
             border-radius: 25px; 
@@ -32,7 +41,6 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.05); 
             border: 1px solid #eee; 
         }
-        
         .highlight-theory {
             background: #f8f9ff; border-left: 6px solid var(--primary);
             padding: 25px; border-radius: 0 20px 20px 0; margin: 25px 0; font-style: italic; font-size: 0.95rem;
@@ -49,10 +57,26 @@
         .pulse { width: 15px; height: 15px; background: var(--primary); border-radius: 50%; animation: pulse-move 2s infinite linear; }
         @keyframes pulse-move { 0% { transform: translateX(-80px); opacity: 0; } 50% { opacity: 1; } 100% { transform: translateX(80px); opacity: 0; } }
 
-        .sidebar-sticky { position: sticky; top: 20px; }
+        .sidebar-sticky { position: sticky; top: 100px; }
         .sidebar-card { background: white; padding: 25px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); margin-bottom: 20px; }
-        
-        /* Адаптивність для телефонів */
+
+        #authModal {
+            display: none; position: fixed; z-index: 3000; left: 0; top: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8); backdrop-filter: blur(8px);
+        }
+        .auth-content {
+            background: white; width: 90%; max-width: 400px; margin: 8% auto; padding: 40px;
+            border-radius: 30px; text-align: center; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+        .auth-methods { display: flex; flex-direction: column; gap: 15px; margin-top: 25px; }
+        .auth-btn {
+            padding: 12px; border: 1px solid #ddd; border-radius: 10px; background: white;
+            cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; font-weight: 500;
+        }
+        .auth-divider { margin: 20px 0; display: flex; align-items: center; color: #888; font-size: 0.8rem; }
+        .auth-divider::before, .auth-divider::after { content: ""; flex: 1; height: 1px; background: #eee; margin: 0 10px; }
+        .auth-input { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 10px; box-sizing: border-box; }
+
         @media (max-width: 992px) {
             .main-container { grid-template-columns: 1fr; padding: 20px; }
             .sidebar-sticky { position: static; }
@@ -63,12 +87,11 @@
 
     <header>
         <nav class="container">
-            <div class="logo">AI<span>Study</span></div>
+            <a href="index.html" class="logo">AI<span>Study</span></a>
             <ul class="nav-links">
                 <li><a href="index.html">Головна</a></li>
                 <li><a href="theory.html">Матеріали</a></li>
-                                <li><a href="teachers.html">Вчителям</a></li>
-
+                <li><a href="teachers.html">Вчителям</a></li>
                 <li><a href="quiz.html">Тести</a></li>
                 <li><button class="btn-login" onclick="openAuthModal()">Увійти</button></li>
             </ul>
@@ -88,28 +111,27 @@
             
             <article class="article-section">
                 <h2>01. Що таке ШНМ? (Фундаментальне визначення)</h2>
-                <p>Штучні нейронні мережі — це математичні моделі, побудовані за принципом функціонування біологічних мереж нервових клітин. Це обчислювальні системи, натхнені мозком тварин. ШНМ ґрунтується на сукупності з'єднаних вузлів, які називають штучними нейронами. Кожне з'єднання, як і синапси в біологічному мозку, може передавати сигнал. Штучний нейрон отримує сигнали, обробляє їх і може сигналізувати нейронам, з якими його з'єднано. «Сигнал» у з'єднанні це дійсне число. Вихід кожного нейрона обчислюється деякою нелінійною функцією суми його входів. З'єднання називають ребрами (edges). Нейрони та ребра зазвичай мають вагу, яка підлаштовується в процесі навчання. Вага збільшує або зменшує силу сигналу на з'єднанні. Нейрони можуть мати такий поріг, що сигнал надсилається лише тоді, коли сукупний сигнал перевищує цей поріг. </p>
+                <p>Штучні нейронні мережі — це математичні моделі, побудовані за принципом функціонування біологічних мереж нервових клітин. Це обчислювальні системи, натхнені мозком тварин. ШНМ ґрунтується на сукупності з'єднаних вузлів, які називають штучними нейронами. Кожне з'єднання, як і синапси в біологічному мозку, може передавати сигнал. Штучний нейрон отримує сигнали, обробляє їх і може сигналізувати нейронам, з якими його з'єднано. </p>
+                
                 
                 <img src="https://upload.wikimedia.org/wikipedia/commons/4/46/Colored_neural_network.svg" class="img-box" alt="Neural Network Structure">
 
                 <div class="highlight-theory">
                     Системи вчаться виконувати завдання, розглядаючи приклади, без програмування жорстких правил. Це дозволяє розпізнавати котів на фото, просто аналізуючи тисячі мічених зображень.
                 </div>
-                <p>Нейронні мережі є ядром сучасного штучного інтелекту. Вони дозволяють комп'ютерам розуміти людську мову, водити автомобілі та ставити медичні діагнози. Навчання здійснюється шляхом визначення різниці між передбаченням мережі та реальним результатом. Ця різниця називається похибкою. Послідовні підлаштовування ваг призводять до результатів, усе більше схожих на цільові.</p>
+                <p>Нейронні мережі є ядром сучасного штучного інтелекту. Вони дозволяють комп'ютерам розуміти людську мову, водити автомобілі та ставити медичні діагнози. Навчання здійснюється шляхом визначення різниці між передбаченням мережі та реальним результатом. Ця різниця називається похибкою.</p>
             </article>
 
             <article class="article-section">
                 <h2>02. Архітектура: Шари та Гіперпараметри</h2>
-                <p>Як правило, нейрони зібрано в шари. Різні шари виконують різні перетворення даних. Сигнали проходять від вхідного шару до вихідного. Багатошарові мережі дозволяють будувати ієрархію ознак. Перші шари можуть розпізнавати прості лінії, а наступні — складні форми. Пошук нейронної архітектури (ПНА) використовує машинне навчання для автоматизації побудови мереж. Гіперпараметри, такі як темп навчання та кількість нейронів, визначаються заздалегідь. Правильний вибір моделі залежить від застосування. Надмірно складні моделі навчаються повільно. Робастність мережі залежить від функції витрат та алгоритму навчання.</p>
-                
+                <p>Як правило, нейрони зібрано в шари. Різні шари виконують різні перетворення даних. Сигнали проходять від вхідного шару до вихідного. Багатошарові мережі дозволяють будувати ієрархію ознак. Перші шари можуть розпізнавати прості лінії, а наступні — складні форми.</p>
+                     
                 <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=1000" class="img-box" alt="AI Logic">
-
-                <p>Існують різні типи архітектур: згорткові мережі для зору, рекурентні для тексту та довга короткочасна пам'ять для послідовностей. Кожен тип має свої статичні та динамічні складові. Динамічні типи дозволяють топології еволюціонувати під час навчання. Це набагато складніше, але дає кращі результати в обробці мінливих даних.</p>
             </article>
 
             <article class="article-section">
                 <h2>03. Парадигми навчання та Метод Кухаря</h2>
-                <p>Існують три головні парадигми: кероване навчання, некероване та навчання з підкріпленням. Кероване навчання використовує мічені дані. Некероване навчання шукає приховані структури в даних. Навчання з підкріпленням базується на системі нагород та покарань, що часто використовується в робототехніці та іграх. Процес навчання — це ітераційне оновлення ваг для мінімізації похибки.</p>
+                <p>Існують три головні парадигми: кероване навчання, некероване та навчання з підкріпленням. Кероване навчання використовує мічені дані. Навчання з підкріпленням базується на системі нагород та покарань.</p>
                 
                 <div class="lab-box">
                     <h3><i class="fas fa-flask"></i> Лабораторія (Метод Backpropagation)</h3>
@@ -118,21 +140,16 @@
                     </div>
                     <p>Уявіть кухаря: якщо суп занадто солоний, він не просто викидає його, а аналізує, який інгредієнт (вага) зіпсував страву, і наступного разу додає менше солі. Так працює зворотне поширення помилки.</p>
                 </div>
-
-                <p>Алгоритм зворотного поширення помилки є найефективнішим методом тренування. Він обчислює градієнт функції втрат відносно всіх ваг у мережі. Це дозволяє вносити крихітні зміни в кожен нейрон, щоб крок за кроком наближатися до ідеальної точності. Сучасні GPU дозволяють проводити мільярди таких обчислень за секунду.</p>
             </article>
 
             <article class="article-section">
                 <h2>04. Історія ШНМ: Від 1943 року до сьогодення</h2>
-                <p>Дослідження почалися в 1943 році з праці Маккалоха та Піттса. Вони створили першу обчислювальну модель нейрона. У 1958 році Френк Розенблат винайшов перцептрон. Це була перша реалізація нейромережі, фінансована флотом США. Проте в 1969 році Мінскі та Пейперт виявили обмеження перцептронів, що спричинило застій у галузі. Відродження почалося у 80-х роках. Самоорганізаційні карти Кохонена та згорткові мережі Фукусіми змінили підхід до даних. У 2012 році глибоке навчання довело свою перевагу в розпізнаванні образів. Сьогодні ми живемо в еру трансформерів та великих мовних моделей, які стали можливими завдяки десятиліттям математичних пошуків.</p>
-                
+                <p>Дослідження почалися в 1943 році з праці Маккалоха та Піттса. У 1958 році Френк Розенблат винайшов перцептрон. Відродження почалося у 80-х роках. Сьогодні ми живемо в еру трансформерів та великих мовних моделей.</p>
                 <img src="https://images.unsplash.com/photo-1507413245164-6160d8298b31?auto=format&fit=crop&q=80&w=1000" class="img-box" alt="History of Technology">
             </article>
 
             <article class="article-section">
                 <h2>05. Сфери застосування та Майбутнє</h2>
-                <p>Застосування ШНМ охоплює майже всі сфери: від квантової хімії до керування транспортними засобами. У медицині вони діагностують хвороби, аналізуючи дані давачів. У фінансах — передбачають курси валют та виявляють шахрайство. Розпізнавання жестів, голосу та друкованого тексту стало стандартом. Робототехніка використовує мережі для скеровування маніпуляторів. </p>
-                
                 <table class="data-table">
                     <tr><th>Сфера</th><th>Приклад використання</th></tr>
                     <tr><td>Медицина</td><td>Аналіз рентгенівських знімків</td></tr>
@@ -140,8 +157,6 @@
                     <tr><td>Транспорт</td><td>Автопілот безпілотних авто</td></tr>
                     <tr><td>Мистецтво</td><td>Генерація зображень та музики</td></tr>
                 </table>
-
-                <p>Майбутнє нейронних мереж полягає в підвищенні їх енергоефективності та здатності до самонавчання без втручання людини. Вже сьогодні існують мережі, що змагаються між собою для покращення результатів. Це шлях до створення справжнього загального штучного інтелекту.</p>
                 <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=1000" class="img-box" alt="AI Future">
             </article>
 
@@ -155,18 +170,27 @@
             
             <div class="sidebar-card" style="background: var(--primary); color: white;">
                 <h4>Перевірити знання?</h4>
-                <p style="font-size: 0.8rem; margin: 10px 0;"></p>
+                <p style="font-size: 0.8rem; margin: 10px 0;">Модуль підготовлено Тетяною Гриндою для курсової роботи (ТНПУ).</p>
                 <a href="quiz.html" style="color: white; font-weight: bold; text-decoration: underline;">До тестів →</a>
-            </div>
-
-            <div class="sidebar-card">
-                <h4 style="color: var(--primary);">Швидка навігація</h4>
-                <a href="neural.html" style="display:block; font-size: 0.85rem; color: #555; margin-bottom: 5px;">01. Визначення</a>
-                <a href="#history" style="display:block; font-size: 0.85rem; color: #555;">04. Історія ШНМ</a>
             </div>
         </aside>
 
     </main>
+
+    <div id="authModal">
+        <div class="auth-content">
+            <span onclick="closeAuthModal()" style="position: absolute; right: 25px; top: 20px; cursor: pointer; font-size: 24px;">&times;</span>
+            <h2>Авторизація</h2>
+            <div class="auth-methods">
+                <button class="auth-btn" onclick="fakeLogin('Google')"><i class="fab fa-google" style="color: #DB4437;"></i> Google</button>
+                <button class="auth-btn" onclick="fakeLogin('Microsoft')"><i class="fab fa-windows" style="color: #00A4EF;"></i> Microsoft</button>
+            </div>
+            <div class="auth-divider">або пошта</div>
+            <input type="email" class="auth-input" placeholder="Пошта">
+            <input type="password" class="auth-input" placeholder="Пароль">
+            <button class="btn-login" style="width:100%; background: var(--primary); color:white; border:none" onclick="fakeLogin('Пошту')">Увійти</button>
+        </div>
+    </div>
 
     <footer>
         <div class="container" style="text-align: center; padding: 40px 0; opacity: 0.6;">
@@ -174,5 +198,25 @@
         </div>
     </footer>
 
+    <script>
+        function openAuthModal() { document.getElementById('authModal').style.display = 'block'; }
+        function closeAuthModal() { document.getElementById('authModal').style.display = 'none'; }
+        
+        function fakeLogin(method) {
+            alert("Ви успішно авторизувалися через " + method + "!");
+            closeAuthModal();
+            const loginBtn = document.querySelector('.btn-login');
+            if(loginBtn) {
+                loginBtn.innerText = "Тетяна Г.";
+                loginBtn.style.background = "#00b894";
+                loginBtn.style.color = "white";
+                loginBtn.style.borderColor = "#00b894";
+            }
+        }
+
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('authModal')) closeAuthModal();
+        }
+    </script>
 </body>
 </html>
