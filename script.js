@@ -43,10 +43,12 @@
             { q: "Що таке мультимодальність ШІ?", img: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=400", options: ["Багато мов", "Робота з текстом, фото та звуком одночасно", "Багато користувачів", "Велика ціна"], correct: 1 }
         ]
     };
+
     let currentQuiz = [];
     let currentIdx = 0;
     let userAnswers = [];
     let completedQuizzes = 0;
+
     function startQuiz(type) {
         currentQuiz = quizData[type];
         currentIdx = 0;
@@ -70,7 +72,6 @@
         document.getElementById('question-counter').innerText = `Питання ${currentIdx + 1} з ${currentQuiz.length}`;
         const optionsDiv = document.getElementById('options');
         optionsDiv.innerHTML = '';
-        
         data.options.forEach((opt, index) => {
             const div = document.createElement('div');
             div.className = 'option' + (userAnswers[currentIdx] === index ? ' selected' : '');
@@ -78,7 +79,6 @@
             div.onclick = () => selectOption(index);
             optionsDiv.appendChild(div);
         });
-
         document.getElementById('prev-btn').style.visibility = currentIdx === 0 ? 'hidden' : 'visible';
         document.getElementById('next-btn').innerText = currentIdx === currentQuiz.length - 1 ? 'Завершити' : 'Далі';
         document.getElementById('next-btn').disabled = userAnswers[currentIdx] === null;
@@ -107,24 +107,13 @@
 
     function finishQuiz() {
         let correctCount = 0;
-        userAnswers.forEach((ans, i) => {
-            if (ans === currentQuiz[i].correct) correctCount++;
-        });
-
+        userAnswers.forEach((ans, i) => { if (ans === currentQuiz[i].correct) correctCount++; });
         const mastery = Math.round((correctCount / currentQuiz.length) * 100);
-        
         document.getElementById('quiz-platform').style.display = 'none';
         document.getElementById('result-screen').style.display = 'block';
         document.getElementById('mastery-val').innerText = mastery + '%';
-        
-        let msg = "";
-        if (mastery >= 90) msg = "Вражаюче! Ви експерт у цій темі.";
-        else if (mastery >= 70) msg = "Чудовий результат. Ви добре засвоїли матеріал.";
-        else if (mastery >= 50) msg = "Непогано, але варто ще раз переглянути теорію.";
-        else msg = "Потрібно більше практики. Спробуйте ще раз вивчити модулі.";
-        
+        let msg = mastery >= 70 ? "Чудовий результат!" : "Потрібно більше практики.";
         document.getElementById('mastery-text').innerText = msg;
-
         completedQuizzes++;
         document.getElementById('completed-count').innerText = completedQuizzes;
         document.getElementById('avg-mastery').innerText = mastery + '%';
@@ -133,5 +122,23 @@
     function resetQuiz() {
         document.getElementById('result-screen').style.display = 'none';
         document.getElementById('selection-screen').style.display = 'block';
+    }
+
+    function openAuthModal() {
+        document.getElementById('authModal').style.display = 'block';
+    }
+
+    function closeAuthModal() {
+        document.getElementById('authModal').style.display = 'none';
+    }
+
+    function fakeLogin(method) {
+        alert("Ви успішно авторизувалися через " + method + "!");
+        closeAuthModal();
+        const loginBtn = document.querySelector('.btn-login');
+        if(loginBtn) {
+            loginBtn.innerText = "Тетяна Г.";
+            loginBtn.style.background = "#00b894";
+        }
     }
 </script>
