@@ -221,9 +221,12 @@
             if (event.target == document.getElementById('authModal')) closeAuthModal();
         }
 
-        <div class="menu-toggle" id="mobile-menu">
-        <i class="fas fa-bars"></i>
-    </div>
+      const menu = document.querySelector('#mobile-menu');
+    const menuLinks = document.querySelector('.nav-links');
+
+    menu.addEventListener('click', function() {
+        menuLinks.classList.toggle('active');
+    });
     </script>
 </body>
 </html>
