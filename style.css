@@ -511,48 +511,45 @@ article:hover {
 
 
 
-@media (max-width: 1024px) {
-    .container {
-        max-width: 95%;
-        padding: 0 15px;
-    }
-    .hero h1 {
-        font-size: 3rem;
-    }
-}
-
 @media (max-width: 768px) {
-    nav {
-        flex-direction: column;
-        gap: 15px;
-        padding: 15px 0;
-    }
     .nav-links {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 10px;
-        font-size: 0.9rem;
+        display: none; 
+        flex-direction: column;
+        position: absolute;
+        top: 70px; 
+        left: 0;
+        width: 100%;
+        background: white;
+        padding: 20px 0;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        z-index: 2000;
+        gap: 15px;
     }
 
-    .hero {
-        padding: 60px 0;
+    .nav-links.active {
+        display: flex !important;
     }
-    .hero h1 {
-        font-size: 2.2rem !important; 
-        line-height: 1.2;
+
+    nav {
+        flex-direction: row !important; 
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
     }
-    .hero p {
-        font-size: 1rem !important;
-        padding: 0 10px;
+
+    .menu-toggle {
+        display: block !important;
+        font-size: 24px;
+        cursor: pointer;
+        color: var(--primary);
     }
-    .hero-btns {
-        flex-direction: column; 
-        gap: 10px;
-    }
-    .hero-btns .btn {
-        width: 100%;
-        padding: 12px 0 !important;
-    }
+
+    .hero { padding: 60px 0; }
+    .hero h1 { font-size: 2.2rem !important; line-height: 1.2; }
+    .hero p { font-size: 1rem !important; padding: 0 10px; }
+    
+    .hero-btns { flex-direction: column; gap: 10px; }
+    .hero-btns .btn { width: 100%; padding: 12px 0 !important; }
 
     .about-grid, .features, .teacher-grid, .quiz-selection {
         grid-template-columns: 1fr !important; 
@@ -561,25 +558,9 @@ article:hover {
 
     .auth-content, .modal-content {
         width: 95% !important;
-        margin: 20% auto;
+        margin: 10% auto;
         padding: 20px;
     }
 }
 
-@media (max-width: 480px) {
-    .hero h1 {
-        font-size: 1.8rem !important;
-    }
-    .logo {
-        font-size: 1.5rem;
-    }
-}
-
-@media (min-width: 1600px) {
-    .container {
-        max-width: 1400px;
-    }
-    body {
-        font-size: 18px; 
-    }
-}
+.menu-toggle { display: none; }
