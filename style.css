@@ -504,3 +504,82 @@ article:hover {
     border-radius: 10px;
     outline: none;
 }
+
+
+
+
+
+
+
+@media (max-width: 1024px) {
+    .container {
+        max-width: 95%;
+        padding: 0 15px;
+    }
+    .hero h1 {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px 0;
+    }
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        font-size: 0.9rem;
+    }
+
+    .hero {
+        padding: 60px 0;
+    }
+    .hero h1 {
+        font-size: 2.2rem !important; 
+        line-height: 1.2;
+    }
+    .hero p {
+        font-size: 1rem !important;
+        padding: 0 10px;
+    }
+    .hero-btns {
+        flex-direction: column; 
+        gap: 10px;
+    }
+    .hero-btns .btn {
+        width: 100%;
+        padding: 12px 0 !important;
+    }
+
+    .about-grid, .features, .teacher-grid, .quiz-selection {
+        grid-template-columns: 1fr !important; 
+        gap: 20px;
+    }
+
+    .auth-content, .modal-content {
+        width: 95% !important;
+        margin: 20% auto;
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 1.8rem !important;
+    }
+    .logo {
+        font-size: 1.5rem;
+    }
+}
+
+@media (min-width: 1600px) {
+    .container {
+        max-width: 1400px;
+    }
+    body {
+        font-size: 18px; 
+    }
+}
