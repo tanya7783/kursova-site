@@ -135,4 +135,32 @@
             loginBtn.style.background = "#00b894";
         }
     }
+
+
+
+const menu = document.querySelector('#mobile-menu');
+const menuLinks = document.querySelector('.nav-links');
+
+if (menu && menuLinks) {
+    menu.addEventListener('click', function() {
+        menuLinks.classList.toggle('active');
+        
+        const icon = menu.querySelector('i');
+        if (icon) {
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        }
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            menuLinks.classList.remove('active');
+            const icon = menu.querySelector('i');
+            if (icon) {
+                icon.classList.add('fa-bars');
+                icon.classList.remove('fa-times');
+            }
+        });
+    });
+}
 </script>
