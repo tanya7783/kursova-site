@@ -98,6 +98,9 @@
     <header class="main-nav">
         <nav class="nav-container">
             <a href="index.html" class="logo">AI<span>Study</span></a>
+            <div class="menu-toggle" id="mobile-menu">
+        <i class="fas fa-bars"></i>
+    </div>
             <ul class="nav-links">
                 <li><a href="index.html">Головна</a></li>
                 <li><a href="theory.html">Матеріали</a></li>
@@ -319,6 +322,14 @@
         let modal = document.getElementById('authModal');
         if (event.target == modal) closeAuthModal();
     }
+
+     const menu = document.querySelector('#mobile-menu');
+    const menuLinks = document.querySelector('.nav-links');
+
+    menu.addEventListener('click', function() {
+        menuLinks.classList.toggle('active');
+    });
+
 </script>
 </body>
 </html>
