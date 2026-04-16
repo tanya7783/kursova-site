@@ -164,3 +164,43 @@ if (menu && menuLinks) {
     });
 }
 </script>
+
+
+
+
+
+
+
+let courseProgress = 0;
+
+function updateCourseProgress() {
+    const progressBar = document.getElementById("course-progress-bar");
+    if (!progressBar) return;
+
+    courseProgress = Math.min(100, completedQuizzes * 33); 
+
+    progressBar.style.width = courseProgress + "%";
+    progressBar.innerText = courseProgress + "%";
+
+    if (courseProgress >= 100) {
+        showCertificate();
+    }
+}
+
+
+function showCertificate() {
+    const cert = document.getElementById("course-certificate");
+    if (cert) {
+        cert.style.display = "block";
+    }
+}
+
+
+const originalFinishQuiz = finishQuiz;
+
+finishQuiz = function() {
+    originalFinishQuiz(); 
+    updateCourseProgress(); 
+};
+
+</script>
