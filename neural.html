@@ -3,32 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Нейронні мережі: Академічний курс | AI Study</title>
+    <title>Нейронні мережі | AI Study</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --primary: #6c5ce7; --bg: #f4f7f6; --dark: #2d3436; --accent: #00b894; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: var(--dark); background: var(--bg); margin: 0; }
-        
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        :root { 
+            --primary: #6c5ce7; 
+            --primary-light: #a29bfe;
+            --bg: #f4f7f6; 
+            --dark: #2d3436; 
+            --accent: #00b894; 
+        }
+        body { 
+            font-family: 'Segoe UI', sans-serif; 
+            line-height: 1.6; 
+            color: var(--dark); 
+            background: var(--bg); 
+            margin: 0; 
+        }
 
-        header { background: white; padding: 15px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
-        nav { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 24px; font-weight: 800; text-decoration: none; color: var(--dark); }
+        .container { 
+            max-width: 1100px; 
+            margin: 0 auto; 
+            padding: 0 20px; 
+        }
+        header { 
+            background: white; 
+            padding: 15px 0; 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1); 
+            position: sticky; 
+            top: 0; 
+            z-index: 1000; 
+        }
+        nav { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+        }
+
+        .logo { 
+            font-size: 24px; 
+            font-weight: 800; 
+            text-decoration: none; 
+            color: var(--dark); 
+        }
+
         .logo span { color: var(--primary); }
-        
-        .nav-links { list-style: none; display: flex; gap: 25px; margin: 0; align-items: center; }
-        .nav-links a { text-decoration: none; color: var(--dark); font-weight: 500; transition: 0.3s; }
+
+        .nav-links { 
+            list-style: none; 
+            display: flex; 
+            gap: 25px; 
+            margin: 0; 
+            padding: 0;
+            align-items: center; 
+        }
+
+        .nav-links a { 
+            text-decoration: none; 
+            color: var(--dark); 
+            font-weight: 500; 
+            transition: 0.3s; 
+        }
+
         .nav-links a:hover { color: var(--primary); }
 
         .btn-login {
-            background: transparent; color: var(--primary); border: 2px solid var(--primary);
-            padding: 8px 22px; border-radius: 50px; cursor: pointer; font-weight: bold; transition: 0.3s;
+            background: transparent; 
+            color: var(--primary); 
+            border: 2px solid var(--primary);
+            padding: 8px 22px; 
+            border-radius: 50px; 
+            cursor: pointer; 
+            font-weight: bold; 
+            transition: 0.3s;
         }
-        .btn-login:hover { background: var(--primary); color: white; }
+
+        .btn-login:hover { 
+            background: var(--primary); 
+            color: white; 
+        }
+        .menu-toggle { 
+            display: none; 
+            cursor: pointer; 
+            font-size: 24px; 
+            color: var(--primary);
+        }
 
         .hero-header {
-            background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%);
-            color: white; padding: 60px 0; text-align: center; margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white; 
+            padding: 40px 0; 
+            text-align: center; 
+            margin-bottom: 20px;
+        }
+
+        .hero-header h1 {
+            margin: 0;
+            font-size: 2rem;
+            font-weight: 700;
         }
 
         .main-container { 
@@ -48,35 +120,84 @@
 
         .img-box { 
             width: 100%; 
-            max-height: 400px; 
-            object-fit: cover; 
+            max-height: 450px; 
+            object-fit: contain; 
+            background: #fff;
             border-radius: 15px; 
             margin: 20px 0; 
         }
 
         .highlight-theory {
-            background: #f8f9ff; border-left: 5px solid var(--primary);
-            padding: 20px; border-radius: 0 15px 15px 0; margin: 20px 0;
+            background: #f8f9ff; 
+            border-left: 5px solid var(--primary);
+            padding: 20px; 
+            border-radius: 0 15px 15px 0; 
+            margin: 20px 0;
         }
 
-        .lab-box { background: #2d3436; color: white; padding: 25px; border-radius: 20px; border: 2px solid var(--primary); }
-        
+        .lab-box { 
+            background: #2d3436; 
+            color: white; 
+            padding: 25px; 
+            border-radius: 20px; 
+            border: 2px solid var(--primary); 
+        }
         #authModal {
-            display: none; position: fixed; z-index: 3000; left: 0; top: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.7); backdrop-filter: blur(5px);
+            display: none; 
+            position: fixed; 
+            z-index: 3000; 
+            left: 0; 
+            top: 0; 
+            width: 100%; 
+            height: 100%;
+            background: rgba(0,0,0,0.7); 
+            backdrop-filter: blur(5px);
         }
-        .auth-content {
-            background: white; width: 90%; max-width: 380px; margin: 10% auto; padding: 30px;
-            border-radius: 20px; text-align: center; position: relative;
-        }
-        .auth-input { width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
-        
-        .menu-toggle { display: none; cursor: pointer; font-size: 24px; }
 
-        @media (max-width: 992px) {
-            .main-container { grid-template-columns: 1fr; }
-            .nav-links { display: none; } 
-            .menu-toggle { display: block; }
+        .auth-content {
+            background: white; 
+            width: 90%; 
+            max-width: 380px; 
+            margin: 10% auto; 
+            padding: 30px;
+            border-radius: 20px; 
+            text-align: center; 
+            position: relative;
+        }
+
+        .auth-input { 
+            width: 100%; 
+            padding: 12px; 
+            margin-bottom: 10px; 
+            border: 1px solid #ddd; 
+            border-radius: 8px; 
+            box-sizing: border-box; 
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none; 
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: white;
+                padding: 20px 0;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            }
+
+            .nav-links.active {
+                display: flex; 
+            }
+
+            .menu-toggle {
+                display: block; 
+            }
+
+            .main-container {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -85,7 +206,9 @@
     <header>
         <nav class="container">
             <a href="index.html" class="logo">AI<span>Study</span></a>
-            <div class="menu-toggle" id="mobile-menu"><i class="fas fa-bars"></i></div>
+            <div class="menu-toggle" id="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
             <ul class="nav-links">
                 <li><a href="index.html">Головна</a></li>
                 <li><a href="theory.html">Матеріали</a></li>
@@ -99,8 +222,7 @@
     <section class="hero-header">
         <div class="container">
             <span style="background: rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 50px; font-size: 0.8rem; font-weight: bold;">ADVANCED MODULE</span>
-            <h1 style="margin-top: 15px;">Штучні нейронні мережі</h1>
-            <p>Глибоке занурення в архітектуру майбутнього</p>
+            <h1>Штучні нейронні мережі</h1>
         </div>
     </section>
 
@@ -111,26 +233,27 @@
                 <p>Штучні нейронні мережі — це математичні моделі, побудовані за принципом функціонування біологічних нервових клітин.</p>
                 <img src="https://upload.wikimedia.org/wikipedia/commons/4/46/Colored_neural_network.svg" class="img-box" alt="Structure">
                 <div class="highlight-theory">
-                    Системи вчаться виконувати завдання, розглядаючи приклади, без жорстких правил.
+                    Системи вчаться виконувати завдання, розглядаючи приклади, без програмування жорстких правил.
                 </div>
             </article>
 
             <article class="article-section">
                 <h2>02. Архітектура та Навчання</h2>
+                <p>Нейронні мережі складаються з шарів: вхідного, прихованих та вихідного.</p>
                 <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=1000" class="img-box" alt="AI">
                 <div class="lab-box">
-                    <h3><i class="fas fa-flask"></i> Метод Backpropagation</h3>
-                    <p>Уявіть кухаря: якщо суп занадто солоний, він аналізує, який інгредієнт (вага) зіпсував страву, і наступного разу додає менше солі.</p>
+                    <h3><i class="fas fa-flask"></i> Лабораторія: Метод Backpropagation</h3>
+                    <p>Процес коригування помилок у мережі подібний до роботи кухаря, який змінює рецепт страви на основі відгуків про смак.</p>
                 </div>
             </article>
         </div>
 
         <aside>
             <div class="article-section" style="padding: 20px; position: sticky; top: 100px;">
-                <h4 style="color: var(--primary);">Ключова теза</h4>
-                <p style="font-size: 0.9rem;">Нейронна мережа — це група вузлів, що обробляють сигнал.</p>
-                <hr>
-                <a href="quiz.html" style="display: block; text-align: center; background: var(--primary); color: white; padding: 10px; border-radius: 10px; text-decoration: none;">Пройти тест</a>
+                <h4 style="color: var(--primary); margin-top: 0;">Ключова теза</h4>
+                <p style="font-size: 0.9rem;">Нейронна мережа — це взаємопов'язана група вузлів, які отримують, обробляють та передають сигнали.</p>
+                <hr style="border: 0; border-top: 1px solid #eee; margin: 15px 0;">
+                <a href="quiz.html" style="display: block; text-align: center; background: var(--primary); color: white; padding: 12px; border-radius: 10px; text-decoration: none; font-weight: bold;">Пройти тест →</a>
             </div>
         </aside>
     </main>
@@ -145,16 +268,22 @@
         </div>
     </div>
 
+    <footer style="background: white; border-top: 1px solid #eee; padding: 30px 0; margin-top: 40px;">
+        <div class="container" style="text-align: center; opacity: 0.6; font-size: 0.9rem;">
+            <p>&copy; 2026 AI Study Project | TNPU</p>
+        </div>
+    </footer>
     <script>
         function openAuthModal() { document.getElementById('authModal').style.display = 'block'; }
         function closeAuthModal() { document.getElementById('authModal').style.display = 'none'; }
         
         function fakeLogin(method) {
-            alert("Ви успішно авторизувалися!");
+            alert("Успішний вхід!");
             closeAuthModal();
             const btn = document.querySelector('.btn-login');
             btn.innerText = "Тетяна Г.";
             btn.style.background = "var(--accent)";
+            btn.style.borderColor = "var(--accent)";
             btn.style.color = "white";
         }
 
@@ -162,16 +291,15 @@
             if (event.target == document.getElementById('authModal')) closeAuthModal();
         }
 
-        document.getElementById('mobile-menu').onclick = function() {
-            const links = document.querySelector('.nav-links');
-            links.style.display = links.style.display === 'flex' ? 'none' : 'flex';
-            links.style.flexDirection = 'column';
-            links.style.position = 'absolute';
-            links.style.top = '70px';
-            links.style.left = '0';
-            links.style.width = '100%';
-            links.style.background = 'white';
-        };
+        const menuBtn = document.getElementById('mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = menuBtn.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
     </script>
 </body>
 </html>
