@@ -6,198 +6,49 @@
     <title>Нейронні мережі | AI Study</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { 
-            --primary: #6c5ce7; 
-            --primary-light: #a29bfe;
-            --bg: #f4f7f6; 
-            --dark: #2d3436; 
-            --accent: #00b894; 
-        }
-        body { 
-            font-family: 'Segoe UI', sans-serif; 
-            line-height: 1.6; 
-            color: var(--dark); 
-            background: var(--bg); 
-            margin: 0; 
-        }
+        :root { --primary: #6c5ce7; --primary-light: #a29bfe; --bg: #f4f7f6; --dark: #2d3436; --accent: #00b894; }
+        body { font-family: 'Segoe UI', sans-serif; line-height: 1.8; color: var(--dark); background: var(--bg); margin: 0; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
 
-        .container { 
-            max-width: 1100px; 
-            margin: 0 auto; 
-            padding: 0 20px; 
-        }
-        header { 
-            background: white; 
-            padding: 15px 0; 
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1); 
-            position: sticky; 
-            top: 0; 
-            z-index: 1000; 
-        }
-        nav { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-        }
-
-        .logo { 
-            font-size: 24px; 
-            font-weight: 800; 
-            text-decoration: none; 
-            color: var(--dark); 
-        }
-
+        header { background: white; padding: 15px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
+        nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 24px; font-weight: 800; text-decoration: none; color: var(--dark); }
         .logo span { color: var(--primary); }
-
-        .nav-links { 
-            list-style: none; 
-            display: flex; 
-            gap: 25px; 
-            margin: 0; 
-            padding: 0;
-            align-items: center; 
-        }
-
-        .nav-links a { 
-            text-decoration: none; 
-            color: var(--dark); 
-            font-weight: 500; 
-            transition: 0.3s; 
-        }
-
+        .nav-links { list-style: none; display: flex; gap: 25px; margin: 0; padding: 0; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--dark); font-weight: 500; transition: 0.3s; }
         .nav-links a:hover { color: var(--primary); }
+        .btn-login { background: transparent; color: var(--primary); border: 2px solid var(--primary); padding: 8px 22px; border-radius: 50px; cursor: pointer; font-weight: bold; transition: 0.3s; }
+        .btn-login:hover { background: var(--primary); color: white; }
 
-        .btn-login {
-            background: transparent; 
-            color: var(--primary); 
-            border: 2px solid var(--primary);
-            padding: 8px 22px; 
-            border-radius: 50px; 
-            cursor: pointer; 
-            font-weight: bold; 
-            transition: 0.3s;
-        }
+        .menu-toggle { display: none; cursor: pointer; font-size: 24px; color: var(--primary); }
 
-        .btn-login:hover { 
-            background: var(--primary); 
-            color: white; 
-        }
-        .menu-toggle { 
-            display: none; 
-            cursor: pointer; 
-            font-size: 24px; 
-            color: var(--primary);
-        }
+        .hero-header { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%); color: white; padding: 40px 0; text-align: center; }
+        .hero-header h1 { margin: 0; font-size: 2.2rem; }
 
-        .hero-header {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-            color: white; 
-            padding: 40px 0; 
-            text-align: center; 
-            margin-bottom: 20px;
-        }
+        .main-container { display: grid; grid-template-columns: 3fr 1fr; gap: 40px; padding: 40px 0; align-items: start; }
+        .article-section { background: white; border-radius: 25px; padding: 40px; margin-bottom: 35px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        
+        .img-box { width: 100%; max-height: 450px; object-fit: contain; border-radius: 15px; margin: 25px 0; background: #fff; }
+        .highlight-theory { background: #f8f9ff; border-left: 6px solid var(--primary); padding: 25px; border-radius: 0 20px 20px 0; margin: 25px 0; font-style: italic; }
 
-        .hero-header h1 {
-            margin: 0;
-            font-size: 2rem;
-            font-weight: 700;
-        }
+        .data-table { width: 100%; border-collapse: collapse; margin: 30px 0; border-radius: 15px; overflow: hidden; }
+        .data-table th { background: var(--primary); color: white; padding: 15px; text-align: left; }
+        .data-table td { padding: 15px; border-bottom: 1px solid #eee; }
 
-        .main-container { 
-            display: grid; 
-            grid-template-columns: 3fr 1fr; 
-            gap: 30px; 
-            padding: 20px 0; 
-        }
+        .lab-box { background: #2d3436; color: white; padding: 30px; border-radius: 25px; margin: 30px 0; border: 3px solid var(--primary); }
+        .neuron-anim { display: flex; justify-content: center; align-items: center; gap: 15px; margin: 25px 0; }
+        .pulse { width: 15px; height: 15px; background: var(--primary); border-radius: 50%; animation: pulse-move 2s infinite linear; }
+        @keyframes pulse-move { 0% { transform: translateX(-80px); opacity: 0; } 50% { opacity: 1; } 100% { transform: translateX(80px); opacity: 0; } }
 
-        .article-section { 
-            background: white; 
-            border-radius: 20px; 
-            padding: 30px; 
-            margin-bottom: 30px; 
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05); 
-        }
-
-        .img-box { 
-            width: 100%; 
-            max-height: 450px; 
-            object-fit: contain; 
-            background: #fff;
-            border-radius: 15px; 
-            margin: 20px 0; 
-        }
-
-        .highlight-theory {
-            background: #f8f9ff; 
-            border-left: 5px solid var(--primary);
-            padding: 20px; 
-            border-radius: 0 15px 15px 0; 
-            margin: 20px 0;
-        }
-
-        .lab-box { 
-            background: #2d3436; 
-            color: white; 
-            padding: 25px; 
-            border-radius: 20px; 
-            border: 2px solid var(--primary); 
-        }
-        #authModal {
-            display: none; 
-            position: fixed; 
-            z-index: 3000; 
-            left: 0; 
-            top: 0; 
-            width: 100%; 
-            height: 100%;
-            background: rgba(0,0,0,0.7); 
-            backdrop-filter: blur(5px);
-        }
-
-        .auth-content {
-            background: white; 
-            width: 90%; 
-            max-width: 380px; 
-            margin: 10% auto; 
-            padding: 30px;
-            border-radius: 20px; 
-            text-align: center; 
-            position: relative;
-        }
-
-        .auth-input { 
-            width: 100%; 
-            padding: 12px; 
-            margin-bottom: 10px; 
-            border: 1px solid #ddd; 
-            border-radius: 8px; 
-            box-sizing: border-box; 
-        }
+        #authModal { display: none; position: fixed; z-index: 3000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); backdrop-filter: blur(8px); }
+        .auth-content { background: white; width: 90%; max-width: 400px; margin: 10% auto; padding: 40px; border-radius: 30px; text-align: center; position: relative; }
+        .auth-input { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 10px; box-sizing: border-box; }
 
         @media (max-width: 768px) {
-            .nav-links {
-                display: none; 
-                flex-direction: column;
-                position: absolute;
-                top: 70px;
-                left: 0;
-                width: 100%;
-                background: white;
-                padding: 20px 0;
-                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-            }
-
-            .nav-links.active {
-                display: flex; 
-            }
-
-            .menu-toggle {
-                display: block; 
-            }
-
-            .main-container {
-                grid-template-columns: 1fr;
-            }
+            .nav-links { display: none; flex-direction: column; position: absolute; top: 70px; left: 0; width: 100%; background: white; padding: 20px 0; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+            .nav-links.active { display: flex; }
+            .menu-toggle { display: block; }
+            .main-container { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -206,9 +57,7 @@
     <header>
         <nav class="container">
             <a href="index.html" class="logo">AI<span>Study</span></a>
-            <div class="menu-toggle" id="mobile-menu">
-                <i class="fas fa-bars"></i>
-            </div>
+            <div class="menu-toggle" id="mobile-menu"><i class="fas fa-bars"></i></div>
             <ul class="nav-links">
                 <li><a href="index.html">Головна</a></li>
                 <li><a href="theory.html">Матеріали</a></li>
@@ -227,79 +76,155 @@
     </section>
 
     <main class="container main-container">
-        <div class="theory-content">
-            <article class="article-section">
-                <h2>01. Що таке ШНМ?</h2>
-                <p>Штучні нейронні мережі — це математичні моделі, побудовані за принципом функціонування біологічних нервових клітин.</p>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/4/46/Colored_neural_network.svg" class="img-box" alt="Structure">
-                <div class="highlight-theory">
-                    Системи вчаться виконувати завдання, розглядаючи приклади, без програмування жорстких правил.
-                </div>
-            </article>
+       <div class="theory-content">
 
-            <article class="article-section">
-                <h2>02. Архітектура та Навчання</h2>
-                <p>Нейронні мережі складаються з шарів: вхідного, прихованих та вихідного.</p>
-                <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=1000" class="img-box" alt="AI">
-                <div class="lab-box">
-                    <h3><i class="fas fa-flask"></i> Лабораторія: Метод Backpropagation</h3>
-                    <p>Процес коригування помилок у мережі подібний до роботи кухаря, який змінює рецепт страви на основі відгуків про смак.</p>
-                </div>
-            </article>
+    <article class="article-section">
+        <h2>01. Що таке ШНМ? (Фундаментальне визначення)</h2>
+
+        <p>Штучні нейронні мережі (ШНМ) — це математичні та обчислювальні моделі, що імітують роботу біологічної нервової системи. Основна ідея полягає у створенні систем, які здатні самостійно навчатися на основі даних, знаходити закономірності та приймати рішення.</p>
+
+        <p>Кожна нейронна мережа складається з окремих елементів — нейронів, які з’єднані між собою. Кожен нейрон отримує вхідні сигнали, обробляє їх і передає далі. Цей процес подібний до роботи людського мозку.</p>
+
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/46/Colored_neural_network.svg" class="img-box">
+
+        <div class="highlight-theory">
+            Нейронні мережі не програмуються традиційним способом. Вони навчаються на прикладах, аналізуючи великі обсяги даних і самостійно формуючи правила.
         </div>
 
+        <h3>Основні характеристики ШНМ:</h3>
+        <ul>
+            <li>адаптивність (здатність навчатися)</li>
+            <li>паралельна обробка інформації</li>
+            <li>стійкість до помилок</li>
+            <li>здатність узагальнювати інформацію</li>
+        </ul>
+
+        <p>ШНМ широко застосовуються у сучасних технологіях, включаючи системи розпізнавання мовлення, обробку зображень, рекомендаційні системи та автономні транспортні засоби.</p>
+
+        <h3>Біологічна аналогія</h3>
+        <p>У біологічному мозку нейрони передають сигнали через синапси. У штучних мережах роль синапсів виконують ваги (weights), які визначають силу зв’язку між нейронами. Зміна цих ваг під час навчання дозволяє мережі покращувати результати.</p>
+    </article>
+
+
+    <article class="article-section">
+        <h2>02. Архітектура: Шари та Гіперпараметри</h2>
+
+        <p>Архітектура нейронної мережі визначає її структуру та можливості. Вона складається з кількох типів шарів, кожен з яких виконує свою функцію.</p>
+
+        <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=1000" class="img-box">
+
+        <h3>Основні типи шарів:</h3>
+        <ul>
+            <li><b>Вхідний шар</b> — приймає дані</li>
+            <li><b>Приховані шари</b> — виконують обробку</li>
+            <li><b>Вихідний шар</b> — формує результат</li>
+        </ul>
+
+        <p>Глибокі нейронні мережі (Deep Learning) можуть мати десятки або навіть сотні шарів. Це дозволяє їм вирішувати складні задачі.</p>
+
+        <h3>Гіперпараметри мережі:</h3>
+        <ul>
+            <li>кількість шарів</li>
+            <li>кількість нейронів у шарі</li>
+            <li>швидкість навчання (learning rate)</li>
+            <li>функція активації</li>
+        </ul>
+
+        <h3>Функції активації</h3>
+        <p>Функція активації визначає, як нейрон реагує на отриманий сигнал. Найпоширеніші функції:</p>
+        <ul>
+            <li>ReLU (Rectified Linear Unit)</li>
+            <li>Sigmoid</li>
+            <li>Tanh</li>
+        </ul>
+
+        <p>Без функцій активації нейронна мережа перетворюється на просту лінійну модель і втрачає свою ефективність.</p>
+
+        <h3>Регуляризація</h3>
+        <p>Щоб уникнути перенавчання (overfitting), використовуються методи регуляризації, такі як Dropout або L2-регуляризація. Вони допомагають моделі краще узагальнювати дані.</p>
+    </article>
+
+
+    <article class="article-section">
+        <h2>03. Парадигми навчання та Метод Кухаря</h2>
+
+        <p>Навчання нейронних мереж може відбуватися різними способами залежно від типу задачі.</p>
+
+        <h3>Основні парадигми:</h3>
+        <ul>
+            <li><b>Кероване навчання</b> — використання мічених даних</li>
+            <li><b>Некероване навчання</b> — пошук структури без міток</li>
+            <li><b>Навчання з підкріпленням</b> — навчання через винагороду</li>
+        </ul>
+
+        <div class="lab-box">
+            <h3><i class="fas fa-flask"></i> Лабораторія (Метод Backpropagation)</h3>
+
+            <div class="neuron-anim">
+                <div style="color: #00b894;">ВХІД</div>
+                <div class="pulse"></div>
+                <div style="color: #ff7675;">ВИХІД</div>
+            </div>
+
+            <p>Алгоритм зворотного поширення помилки (Backpropagation) є основою навчання нейронних мереж. Він дозволяє обчислювати помилку та коригувати ваги.</p>
+
+            <p>Принцип роботи:</p>
+            <ul>
+                <li>обчислюється результат</li>
+                <li>визначається помилка</li>
+                <li>помилка поширюється назад</li>
+                <li>оновлюються ваги</li>
+            </ul>
+
+            <p>Аналогія з кухарем: якщо страва невдала, кухар аналізує помилки та змінює рецепт.</p>
+        </div>
+
+        <h3>Функція втрат (Loss Function)</h3>
+        <p>Функція втрат показує, наскільки модель помиляється. Найпоширеніші:</p>
+        <ul>
+            <li>MSE (середньоквадратична помилка)</li>
+            <li>Cross-Entropy</li>
+        </ul>
+
+        <p>Мета навчання — мінімізувати значення цієї функції.</p>
+    </article>
+
         <aside>
-            <div class="article-section" style="padding: 20px; position: sticky; top: 100px;">
-                <h4 style="color: var(--primary); margin-top: 0;">Ключова теза</h4>
-                <p style="font-size: 0.9rem;">Нейронна мережа — це взаємопов'язана група вузлів, які отримують, обробляють та передають сигнали.</p>
-                <hr style="border: 0; border-top: 1px solid #eee; margin: 15px 0;">
-                <a href="quiz.html" style="display: block; text-align: center; background: var(--primary); color: white; padding: 12px; border-radius: 10px; text-decoration: none; font-weight: bold;">Пройти тест →</a>
+            <div class="article-section" style="padding: 25px; position: sticky; top: 100px;">
+                <h4 style="color: var(--primary); margin: 0 0 15px 0;">Ключова теза</h4>
+                <p style="font-size: 0.9rem; margin-bottom: 20px;">Нейронна мережа — це взаємопов'язана група вузлів, які отримують, обробляють та передають сигнали.</p>
+                <a href="quiz.html" style="display: block; text-align: center; background: var(--primary); color: white; padding: 12px; border-radius: 10px; text-decoration: none; font-weight: bold;">До тестів →</a>
             </div>
         </aside>
     </main>
 
     <div id="authModal">
         <div class="auth-content">
-            <span onclick="closeAuthModal()" style="position: absolute; right: 20px; top: 15px; cursor: pointer; font-size: 24px;">&times;</span>
-            <h3>Авторизація</h3>
+            <span onclick="closeAuthModal()" style="position: absolute; right: 25px; top: 20px; cursor: pointer; font-size: 24px;">&times;</span>
+            <h2>Авторизація</h2>
             <input type="email" class="auth-input" placeholder="Пошта">
             <input type="password" class="auth-input" placeholder="Пароль">
-            <button class="btn-login" style="width: 100%; background: var(--primary); color: white;" onclick="fakeLogin('Пошту')">Увійти</button>
+            <button class="btn-login" style="width:100%; background: var(--primary); color:white; border:none" onclick="fakeLogin('Пошту')">Увійти</button>
         </div>
     </div>
 
-    <footer style="background: white; border-top: 1px solid #eee; padding: 30px 0; margin-top: 40px;">
-        <div class="container" style="text-align: center; opacity: 0.6; font-size: 0.9rem;">
-            <p>&copy; 2026 AI Study Project | TNPU</p>
-        </div>
+    <footer style="background: white; border-top: 1px solid #eee; padding: 40px 0; text-align: center; opacity: 0.6;">
+        <p>&copy; 2026 AI Study Project | TNPU</p>
     </footer>
+
     <script>
         function openAuthModal() { document.getElementById('authModal').style.display = 'block'; }
         function closeAuthModal() { document.getElementById('authModal').style.display = 'none'; }
-        
-        function fakeLogin(method) {
-            alert("Успішний вхід!");
-            closeAuthModal();
-            const btn = document.querySelector('.btn-login');
-            btn.innerText = "Тетяна Г.";
-            btn.style.background = "var(--accent)";
-            btn.style.borderColor = "var(--accent)";
-            btn.style.color = "white";
-        }
-
-        window.onclick = function(event) {
-            if (event.target == document.getElementById('authModal')) closeAuthModal();
-        }
+        function fakeLogin(method) { alert("Успішно!"); closeAuthModal(); document.querySelector('.btn-login').innerText = "Тетяна Г."; }
+        window.onclick = function(e) { if (e.target == document.getElementById('authModal')) closeAuthModal(); }
 
         const menuBtn = document.getElementById('mobile-menu');
         const navLinks = document.querySelector('.nav-links');
-
-        menuBtn.addEventListener('click', () => {
+        menuBtn.onclick = () => {
             navLinks.classList.toggle('active');
-            const icon = menuBtn.querySelector('i');
-            icon.classList.toggle('fa-bars');
-            icon.classList.toggle('fa-times');
-        });
+            menuBtn.querySelector('i').classList.toggle('fa-bars');
+            menuBtn.querySelector('i').classList.toggle('fa-times');
+        };
     </script>
 </body>
 </html>
