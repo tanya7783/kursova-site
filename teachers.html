@@ -7,6 +7,18 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+
+
+
+
+         @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+
+
+        
         :root {
             --primary: #6c5ce7;
             --bg: #f4f7f6;
@@ -135,10 +147,12 @@
 
     <header>
         <nav class="container">
-            <a href="index.html" class="logo">AI<span>Study</span></a>
+            
+            <div class="logo">AI<span>Study</span></div>
             <div class="menu-toggle" id="mobile-menu">
         <i class="fas fa-bars"></i>
     </div>
+            
             <ul class="nav-links">
                 <li><a href="index.html">Головна</a></li>
                 <li><a href="theory.html">Матеріали</a></li>
@@ -260,10 +274,14 @@
                 openDownload(title);
             });
         });
+        
         window.onclick = function(event) {
-            if (event.target == document.getElementById('downloadModal')) closeModal();
-            if (event.target == document.getElementById('authModal')) closeAuthModal();
+            let modal = document.getElementById('authModal');
+            if (event.target = modal) {
+                closeAuthModal();
         }
+
+              }
 
         const menu = document.querySelector('#mobile-menu');
     const menuLinks = document.querySelector('.nav-links');
@@ -273,5 +291,6 @@
     });
 
     </script>
+    <script scr="script.js"></script>
 </body>
 </html>
