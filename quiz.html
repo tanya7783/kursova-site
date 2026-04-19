@@ -15,31 +15,33 @@
             --error: #ff7675;
             --white: #ffffff;
         }
-        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: var(--dark); margin: 0; }
+
+        body {
+            font-family: "Segoe UI", sans-serif;
+            background: var(--bg);
+            color: var(--dark);
+            margin: 0;
+        }
+
         header.main-nav {
             background: var(--white);
             padding: 15px 0;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
-        .nav-container {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 20px;
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--dark);
+            text-decoration: none;
         }
 
-        .logo { font-size: 24px; font-weight: 800; color: var(--dark); text-decoration: none; }
-        .logo span { color: var(--primary); }
-
-        .nav-links { list-style: none; display: flex; gap: 25px; margin: 0; padding: 0; align-items: center; }
-        .nav-links a { text-decoration: none; color: var(--dark); font-weight: 500; transition: 0.3s; }
-        .nav-links a:hover { color: var(--primary); }
+        .logo span {
+            color: var(--primary);
+        }
 
         .btn-login {
             background: white;
@@ -51,56 +53,266 @@
             font-weight: bold;
             transition: 0.3s;
         }
-        .btn-login:hover { background: var(--primary); color: white; }
-        .container { max-width: 850px; margin: 0 auto; padding: 20px; }
-        .stats-bar { background: var(--dark); color: white; padding: 15px; border-radius: 15px; margin: 20px 0; display: flex; justify-content: space-around; align-items: center; }
-        .quiz-selection { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 30px; }
-        .quiz-card-link { 
-            background: white; padding: 30px; border-radius: 25px; text-align: center; 
-            cursor: pointer; transition: 0.3s; border: 2px solid transparent; box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-        }
-        .quiz-card-link:hover { border-color: var(--primary); transform: translateY(-5px); }
-        .quiz-card-link i { margin-bottom: 15px; color: var(--primary); }
 
-        #quiz-platform { display: none; background: white; padding: 40px; border-radius: 30px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
-        .q-img { width: 100%; max-height: 320px; object-fit: cover; border-radius: 20px; margin-bottom: 25px; border: 1px solid #eee; }
-        
-        .option { 
-            padding: 16px 20px; border: 2px solid #eee; border-radius: 15px; cursor: pointer; 
-            margin-bottom: 12px; transition: 0.2s; font-weight: 500; display: flex; justify-content: space-between; align-items: center;
+        .btn-login:hover {
+            background: var(--primary);
+            color: white;
         }
-        .option:hover { background: #f8f9ff; border-color: var(--primary); }
-        .option.correct { background: var(--accent) !important; color: white; border-color: var(--accent); }
-        .option.wrong { background: var(--error) !important; color: white; border-color: var(--error); }
-        .option.disabled { pointer-events: none; }
-        .btn-quiz { padding: 12px 25px; border-radius: 50px; border: none; cursor: pointer; font-weight: bold; transition: 0.3s; }
-        .btn-prev { background: #eee; color: #666; }
-        .btn-next { background: var(--primary); color: white; }
-        #result-screen { display: none; text-align: center; padding: 50px; background: white; border-radius: 30px; }
-        .mastery-circle { width: 150px; height: 150px; border-radius: 50%; border: 10px solid var(--accent); display: flex; align-items: center; justify-content: center; font-size: 2.5rem; font-weight: 900; margin: 0 auto 20px; color: var(--accent); }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .stats-bar {
+            background: var(--dark);
+            color: white;
+            padding: 15px;
+            border-radius: 15px;
+            margin: 20px 0;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .quiz-selection {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .quiz-card-link {
+            background: white;
+            padding: 30px;
+            border-radius: 25px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.3s;
+            border: 2px solid transparent;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        }
+
+        .quiz-card-link:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .quiz-card-link i {
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        #quiz-platform {
+            display: none;
+            background: white;
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .q-img {
+            width: 100%;
+            max-height: 320px;
+            object-fit: cover;
+            border-radius: 20px;
+            margin-bottom: 25px;
+            border: 1px solid #eee;
+        }
+
+        .option {
+            padding: 16px 20px;
+            border: 2px solid #eee;
+            border-radius: 15px;
+            cursor: pointer;
+            margin-bottom: 12px;
+            transition: 0.2s;
+            font-weight: 500;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .option:hover {
+            background: #f8f9ff;
+            border-color: var(--primary);
+        }
+
+        .option.correct {
+            background: var(--accent) !important;
+            color: white;
+            border-color: var(--accent);
+        }
+
+        .option.wrong {
+            background: var(--error) !important;
+            color: white;
+            border-color: var(--error);
+        }
+
+        .option.disabled {
+            pointer-events: none;
+        }
+
+        .option span {
+            flex: 1;
+        }
+
+        .btn-quiz {
+            padding: 12px 25px;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-prev {
+            background: #eee;
+            color: #666;
+        }
+
+        .btn-next {
+            background: var(--primary);
+            color: white;
+        }
+
+        #result-screen {
+            display: none;
+            text-align: center;
+            padding: 50px;
+            background: white;
+            border-radius: 30px;
+        }
+
+        .mastery-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 10px solid var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin: 0 auto 20px;
+            color: var(--accent);
+        }
+
         #authModal {
-            display: none; position: fixed; z-index: 3000; left: 0; top: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.8); backdrop-filter: blur(8px);
+            display: none;
+            position: fixed;
+            z-index: 3000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(8px);
         }
+
         .auth-content {
-            background: white; width: 90%; max-width: 400px; margin: 8% auto; padding: 40px;
-            border-radius: 30px; text-align: center; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            background: white;
+            width: 90%;
+            max-width: 400px;
+            margin: 8% auto;
+            padding: 40px;
+            border-radius: 30px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
         }
-        .auth-methods { display: flex; flex-direction: column; gap: 15px; margin-top: 25px; }
-        .auth-btn { padding: 12px; border: 1px solid #ddd; border-radius: 10px; background: white; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; font-weight: 500; }
-        .auth-divider { margin: 20px 0; display: flex; align-items: center; color: #888; font-size: 0.8rem; }
-        .auth-divider::before, .auth-divider::after { content: ""; flex: 1; height: 1px; background: #eee; margin: 0 10px; }
-        .auth-input { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 10px; box-sizing: border-box; outline: none; }
+
+        .auth-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .auth-btn {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-weight: 500;
+        }
+
+        .auth-divider {
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            color: #888;
+            font-size: 0.8rem;
+        }
+
+        .auth-divider::before,
+        .auth-divider::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: #eee;
+            margin: 0 10px;
+        }
+
+        .auth-input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 16px 15px 24px;
+            }
+
+            .stats-bar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            #quiz-platform,
+            #result-screen {
+                padding: 24px 18px;
+                border-radius: 24px;
+            }
+
+            .quiz-card-link {
+                padding: 24px 18px;
+            }
+
+            .option {
+                align-items: flex-start;
+            }
+
+            .mastery-circle {
+                width: 120px;
+                height: 120px;
+                font-size: 2rem;
+            }
+        }
     </style>
 </head>
 <body>
-
     <header class="main-nav">
         <nav class="container">
             <div class="logo">AI<span>Study</span></div>
             <div class="menu-toggle" id="mobile-menu">
-        <i class="fas fa-bars"></i>
-    </div>
+                <i class="fas fa-bars"></i>
+            </div>
             <ul class="nav-links">
                 <li><a href="index.html">Головна</a></li>
                 <li><a href="theory.html">Матеріали</a></li>
@@ -110,13 +322,15 @@
             </ul>
         </nav>
     </header>
+
     <div class="container">
         <div class="stats-bar">
             <span>Пройдено тем: <b id="completed-count">0</b></span>
             <span>Майстерність: <b id="avg-mastery">0%</b></span>
         </div>
+
         <div id="selection-screen">
-            <h1 style="text-align:center">Центр тестування</h1>
+            <h1 style="text-align: center;">Центр тестування</h1>
             <div class="quiz-selection">
                 <div class="quiz-card-link" onclick="startQuiz('robotics')">
                     <i class="fas fa-robot fa-3x"></i>
@@ -137,18 +351,18 @@
         </div>
 
         <div id="quiz-platform">
-            <div style="display:flex; justify-content: space-between; margin-bottom: 20px;">
-                <b id="quiz-title" style="color:var(--primary)"></b>
+            <div class="mobile-split-row">
+                <b id="quiz-title" style="color: var(--primary);"></b>
                 <span id="question-counter"></span>
             </div>
             <div id="question-body">
                 <h2 id="q-text"></h2>
-                <img id="q-img" class="q-img" src="">
+                <img id="q-img" class="q-img" src="" alt="Зображення до запитання">
                 <div id="options"></div>
             </div>
-            <div style="display:flex; justify-content: space-between; margin-top:30px">
+            <div class="mobile-actions-row">
                 <button class="btn-quiz btn-prev" onclick="prevQuestion()" id="prev-btn">Назад</button>
-                <button class="btn-quiz btn-next" onclick="nextQuestion()" id="next-btn" style="display:none">Далі</button>
+                <button class="btn-quiz btn-next" onclick="nextQuestion()" id="next-btn" style="display: none;">Далі</button>
             </div>
         </div>
 
@@ -176,163 +390,210 @@
         </div>
     </div>
 
-<script>
-    const quizData = {
-        robotics: [
-            { q: "Який пристрій дозволяє роботу вимірювати відстань до стіни за допомогою ультразвуку?", img: "https://images.unsplash.com/photo-1555664424-778a1e5e1b48?q=80&w=600", options: ["Гіроскоп", "Ультразвуковий датчик", "Світлодіод", "Кнопка"], correct: 1 },
-            { q: "Для чого в робототехніці використовується сервопривід?", img: "https://images.unsplash.com/photo-1546776310-eef45dd6d63c?q=80&w=600", options: ["Для живлення", "Для точного повороту механізмів", "Для передачі Wi-Fi", "Для охолодження"], correct: 1 },
-            { q: "Як називається деталь маніпулятора, що виконує роль кисті руки?", img: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=600", options: ["Рама", "Гріппер (захоплювач)", "Колесо", "Акумулятор"], correct: 1 },
-            { q: "Який датчик допомагає роботу тримати рівновагу?", img: "https://images.unsplash.com/photo-1501823508130-dd437021d783?q=80&w=600", options: ["Термометр", "Гіроскоп/Акселерометр", "Мікрофон", "Датчик тиску"], correct: 1 },
-            { q: "Який тип роботів призначений для спільної роботи з людиною?", img: "https://images.unsplash.com/photo-1531747118685-ca8fa6e08806?q=80&w=600", options: ["Автопілот", "Коботи", "Верстати", "Роботи-іграшки"], correct: 1 },
-            { q: "Що означає абревіатура 'DoF'?", img: "https://images.unsplash.com/photo-1561144443-95186710b488?q=80&w=600", options: ["Заряд", "Ступені вільності", "Вага", "Час"], correct: 1 },
-            { q: "Який 'мозок' найчастіше в Arduino-роботах?", img: "https://images.unsplash.com/photo-1553406830-ef2513450d76?q=80&w=600", options: ["Блок живлення", "Мікроконтролер", "Материнська плата", "Звукова карта"], correct: 1 },
-            { q: "Що допомагає роботу орієнтуватися по супутниках?", img: "https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?q=80&w=600", options: ["Радар", "GPS модуль", "NFC мітка", "Ліхтар"], correct: 1 },
-            { q: "Популярна мова програмування для алгоритмів ШІ в роботах:", img: "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=600", options: ["HTML", "Python", "CSS", "SQL"], correct: 1 },
-            { q: "Що вимірює енкодер на двигуні?", img: "https://images.unsplash.com/photo-1504639725590-34d0984388bd?q=80&w=600", options: ["Температуру", "Кут повороту та оберти", "Вологість", "Яскравість"], correct: 1 },
-            { q: "Сканер простору лазером називається:", img: "https://images.unsplash.com/photo-1535378917042-10a22c95931a?q=80&w=600", options: ["Камера", "Лідар (LiDAR)", "Термостат", "Динамік"], correct: 1 },
-            { q: "Пристрій, що перетворює електрику в рух:", img: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=600", options: ["Резистор", "Електродвигун", "Діод", "Транзистор"], correct: 1 }
-        ],
-        neural: [
-            { q: "Базовий елемент нейромережі, що імітує клітину мозку:", img: "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=600", options: ["Транзистор", "Штучний нейрон", "Піксель", "Біт"], correct: 1 },
-            { q: "Шар, що відповідає за прийом початкових даних:", img: "https://images.unsplash.com/photo-1509228468518-180dd4864904?q=80&w=600", options: ["Вихідний", "Прихований", "Вхідний", "Шар ваг"], correct: 2 },
-            { q: "Що визначає силу зв'язку між нейронами?", img: "https://images.unsplash.com/photo-1507413245164-6160d8298b31?q=80&w=600", options: ["Розмір", "Вага (Weight)", "Колір", "Швидкість"], correct: 1 },
-            { q: "Процес виправлення помилок мережею називається:", img: "https://images.unsplash.com/photo-1555255707-c07966088b7b?q=80&w=600", options: ["Форматування", "Навчання", "Архів", "Сканування"], correct: 1 },
-            { q: "Функція, що вирішує передачу сигналу далі:", img: "https://images.unsplash.com/photo-1518186239751-6467fd21c998?q=80&w=600", options: ["Видалення", "Функція активації", "Множення", "Колір"], correct: 1 },
-            { q: "Алгоритм розподілу помилки назад по мережі:", img: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=600", options: ["Copy-Paste", "Backpropagation", "Bluetooth", "Reset"], correct: 1 },
-            { q: "Мережі для аналізу зображень:", img: "https://images.unsplash.com/photo-1527430297724-4686a4179982?q=80&w=600", options: ["Згорткові (CNN)", "Текстові", "Таблиці", "Калькулятори"], correct: 0 },
-            { q: "Один повний цикл через дані - це:", img: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=600", options: ["Рік", "Епоха", "Шар", "Тип"], correct: 1 },
-            { q: "Залізо для швидкого навчання ШІ:", img: "https://images.unsplash.com/photo-1591488320449-011701bb6704?q=80&w=600", options: ["Принтер", "GPU (Відеокарта)", "Мишка", "Монітор"], correct: 1 },
-            { q: "Коли мережа знає лише тренувальні дані - це:", img: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=600", options: ["Перенавчання", "Успіх", "Старт", "Видалення"], correct: 0 },
-            { q: "Шари між входом та виходом:", img: "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=600", options: ["Корпус", "Приховані шари", "Монітор", "Кабель"], correct: 1 },
-            { q: "Біологічний прототип ШНМ:", img: "https://images.unsplash.com/photo-1559757175-5700dde675bc?q=80&w=600", options: ["Серце", "Мозок людини", "М'язи", "Легені"], correct: 1 }
-        ],
-        genai: [
-            { q: "Перший масовий чат-бот GenAI:", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/ChatGPT_logo.svg/1024px-ChatGPT_logo.svg.png", options: ["Photoshop", "ChatGPT", "Excel", "Windows"], correct: 1 },
-            { q: "Текстовий запит до ШІ:", img: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=600", options: ["Код", "Промпт (Prompt)", "Пароль", "Посилання"], correct: 1 },
-            { q: "Створення картинки з шуму - це:", img: "https://images.unsplash.com/photo-1620121692029-d088224ddc74?q=80&w=600", options: ["Дифузія", "Друк", "Сканування", "Ксерокс"], correct: 0 },
-            { q: "Що таке LLM?", img: "https://images.unsplash.com/photo-1676299081847-5a3d07e6677f?q=80&w=600", options: ["Мала модель", "Велика мовна модель", "Пам'ять", "Диск"], correct: 1 },
-            { q: "Мережа для художніх ілюстрацій:", img: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600", options: ["Word", "Midjourney", "Notepad", "Suno"], correct: 1 },
-            { q: "Коли ШІ вигадує факти - це:", img: "https://images.unsplash.com/photo-1633512304193-4a6c42171ca5?q=80&w=600", options: ["Мрія", "Галюцинація", "Фантазія", "Помилка"], correct: 1 },
-            { q: "Архітектура сучасних моделей як GPT:", img: "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=600", options: ["Спіраль", "Трансформер", "Квадрат", "Трикутник"], correct: 1 },
-            { q: "Чат-бот Google з пошуком:", img: "https://upload.wikimedia.org/wikipedia/commons/8/8a/Google_Gemini_logo.svg", options: ["ChatGPT", "Gemini", "Claude", "Midjourney"], correct: 1 },
-            { q: "Приклади у промпті - це техніка:", img: "https://images.unsplash.com/photo-1507413245164-6160d8298b31?q=80&w=600", options: ["Zero-shot", "Few-shot prompting", "Copy", "No-shot"], correct: 1 },
-            { q: "ШІ для створення музики:", img: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=600", options: ["Suno AI", "Docs", "YouTube", "Spotify"], correct: 0 },
-            { q: "Робота з текстом, фото та звуком:", img: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=600", options: ["Мови", "Мультимодальність", "Швидкість", "Об'єм"], correct: 1 },
-            { q: "Чи є контент ШІ копією інтернету?", img: "https://images.unsplash.com/photo-1695431604169-216503c807b1?q=80&w=600", options: ["Так", "Ні, це новий синтез", "Колір", "Інколи"], correct: 1 }
-        ]
-    };
-    let currentQuiz = [];
-    let currentIdx = 0;
-    let score = 0;
-    let answered = false;
-    let completedCount = 0;
-    function startQuiz(type) {
-        currentQuiz = quizData[type];
-        currentIdx = 0;
-        score = 0;
-        document.getElementById('selection-screen').style.display = 'none';
-        document.getElementById('quiz-platform').style.display = 'block';
-        let titles = {'robotics': 'Робототехніка', 'neural': 'Нейронні мережі', 'genai': 'Генеративний ШІ'};
-        document.getElementById('quiz-title').innerText = "Тест: " + titles[type];
-        renderQuestion();
-    }
-    function renderQuestion() {
-        answered = false;
-        const data = currentQuiz[currentIdx];
-        document.getElementById('q-text').innerText = data.q;
-        document.getElementById('q-img').src = data.img;
-        document.getElementById('question-counter').innerText = `Запитання ${currentIdx + 1} з ${currentQuiz.length}`;
-        document.getElementById('next-btn').style.display = 'none';
-        const optionsDiv = document.getElementById('options');
-        optionsDiv.innerHTML = '';
-        data.options.forEach((opt, index) => {
-            const div = document.createElement('div');
-            div.className = 'option';
-            div.innerHTML = `<span>${opt}</span><i class="far fa-circle"></i>`;
-            div.onclick = () => selectOption(div, index);
-            optionsDiv.appendChild(div);
-        });
-    }
+    <script>
+        const quizData = {
+            robotics: [
+                { q: "Який пристрій дозволяє роботу вимірювати відстань до стіни за допомогою ультразвуку?", img: "https://images.unsplash.com/photo-1555664424-778a1e5e1b48?q=80&w=600", options: ["Гіроскоп", "Ультразвуковий датчик", "Світлодіод", "Кнопка"], correct: 1 },
+                { q: "Для чого в робототехніці використовується сервопривід?", img: "https://images.unsplash.com/photo-1546776310-eef45dd6d63c?q=80&w=600", options: ["Для живлення", "Для точного повороту механізмів", "Для передачі Wi-Fi", "Для охолодження"], correct: 1 },
+                { q: "Як називається деталь маніпулятора, що виконує роль кисті руки?", img: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=600", options: ["Рама", "Гріппер (захоплювач)", "Колесо", "Акумулятор"], correct: 1 },
+                { q: "Який датчик допомагає роботу тримати рівновагу?", img: "https://images.unsplash.com/photo-1501823508130-dd437021d783?q=80&w=600", options: ["Термометр", "Гіроскоп/Акселерометр", "Мікрофон", "Датчик тиску"], correct: 1 },
+                { q: "Який тип роботів призначений для спільної роботи з людиною?", img: "https://images.unsplash.com/photo-1531747118685-ca8fa6e08806?q=80&w=600", options: ["Автопілот", "Коботи", "Верстати", "Роботи-іграшки"], correct: 1 },
+                { q: "Що означає абревіатура 'DoF'?", img: "https://images.unsplash.com/photo-1561144443-95186710b488?q=80&w=600", options: ["Заряд", "Ступені вільності", "Вага", "Час"], correct: 1 },
+                { q: "Який 'мозок' найчастіше в Arduino-роботах?", img: "https://images.unsplash.com/photo-1553406830-ef2513450d76?q=80&w=600", options: ["Блок живлення", "Мікроконтролер", "Материнська плата", "Звукова карта"], correct: 1 },
+                { q: "Що допомагає роботу орієнтуватися по супутниках?", img: "https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?q=80&w=600", options: ["Радар", "GPS модуль", "NFC мітка", "Ліхтар"], correct: 1 },
+                { q: "Популярна мова програмування для алгоритмів ШІ в роботах:", img: "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=600", options: ["HTML", "Python", "CSS", "SQL"], correct: 1 },
+                { q: "Що вимірює енкодер на двигуні?", img: "https://images.unsplash.com/photo-1504639725590-34d0984388bd?q=80&w=600", options: ["Температуру", "Кут повороту та оберти", "Вологість", "Яскравість"], correct: 1 },
+                { q: "Сканер простору лазером називається:", img: "https://images.unsplash.com/photo-1535378917042-10a22c95931a?q=80&w=600", options: ["Камера", "Лідар (LiDAR)", "Термостат", "Динамік"], correct: 1 },
+                { q: "Пристрій, що перетворює електрику в рух:", img: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=600", options: ["Резистор", "Електродвигун", "Діод", "Транзистор"], correct: 1 }
+            ],
+            neural: [
+                { q: "Базовий елемент нейромережі, що імітує клітину мозку:", img: "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=600", options: ["Транзистор", "Штучний нейрон", "Піксель", "Біт"], correct: 1 },
+                { q: "Шар, що відповідає за прийом початкових даних:", img: "https://images.unsplash.com/photo-1509228468518-180dd4864904?q=80&w=600", options: ["Вихідний", "Прихований", "Вхідний", "Шар ваг"], correct: 2 },
+                { q: "Що визначає силу зв'язку між нейронами?", img: "https://images.unsplash.com/photo-1507413245164-6160d8298b31?q=80&w=600", options: ["Розмір", "Вага (Weight)", "Колір", "Швидкість"], correct: 1 },
+                { q: "Процес виправлення помилок мережею називається:", img: "https://images.unsplash.com/photo-1555255707-c07966088b7b?q=80&w=600", options: ["Форматування", "Навчання", "Архів", "Сканування"], correct: 1 },
+                { q: "Функція, що вирішує передачу сигналу далі:", img: "https://images.unsplash.com/photo-1518186239751-6467fd21c998?q=80&w=600", options: ["Видалення", "Функція активації", "Множення", "Колір"], correct: 1 },
+                { q: "Алгоритм розподілу помилки назад по мережі:", img: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=600", options: ["Copy-Paste", "Backpropagation", "Bluetooth", "Reset"], correct: 1 },
+                { q: "Мережі для аналізу зображень:", img: "https://images.unsplash.com/photo-1527430297724-4686a4179982?q=80&w=600", options: ["Згорткові (CNN)", "Текстові", "Таблиці", "Калькулятори"], correct: 0 },
+                { q: "Один повний цикл через дані - це:", img: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=600", options: ["Рік", "Епоха", "Шар", "Тип"], correct: 1 },
+                { q: "Залізо для швидкого навчання ШІ:", img: "https://images.unsplash.com/photo-1591488320449-011701bb6704?q=80&w=600", options: ["Принтер", "GPU (Відеокарта)", "Мишка", "Монітор"], correct: 1 },
+                { q: "Коли мережа знає лише тренувальні дані - це:", img: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=600", options: ["Перенавчання", "Успіх", "Старт", "Видалення"], correct: 0 },
+                { q: "Шари між входом та виходом:", img: "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=600", options: ["Корпус", "Приховані шари", "Монітор", "Кабель"], correct: 1 },
+                { q: "Біологічний прототип ШНМ:", img: "https://images.unsplash.com/photo-1559757175-5700dde675bc?q=80&w=600", options: ["Серце", "Мозок людини", "М'язи", "Легені"], correct: 1 }
+            ],
+            genai: [
+                { q: "Перший масовий чат-бот GenAI:", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/ChatGPT_logo.svg/1024px-ChatGPT_logo.svg.png", options: ["Photoshop", "ChatGPT", "Excel", "Windows"], correct: 1 },
+                { q: "Текстовий запит до ШІ:", img: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=600", options: ["Код", "Промпт (Prompt)", "Пароль", "Посилання"], correct: 1 },
+                { q: "Створення картинки з шуму - це:", img: "https://images.unsplash.com/photo-1620121692029-d088224ddc74?q=80&w=600", options: ["Дифузія", "Друк", "Сканування", "Ксерокс"], correct: 0 },
+                { q: "Що таке LLM?", img: "https://images.unsplash.com/photo-1676299081847-5a3d07e6677f?q=80&w=600", options: ["Мала модель", "Велика мовна модель", "Пам'ять", "Диск"], correct: 1 },
+                { q: "Мережа для художніх ілюстрацій:", img: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600", options: ["Word", "Midjourney", "Notepad", "Suno"], correct: 1 },
+                { q: "Коли ШІ вигадує факти - це:", img: "https://images.unsplash.com/photo-1633512304193-4a6c42171ca5?q=80&w=600", options: ["Мрія", "Галюцинація", "Фантазія", "Помилка"], correct: 1 },
+                { q: "Архітектура сучасних моделей як GPT:", img: "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=600", options: ["Спіраль", "Трансформер", "Квадрат", "Трикутник"], correct: 1 },
+                { q: "Чат-бот Google з пошуком:", img: "https://upload.wikimedia.org/wikipedia/commons/8/8a/Google_Gemini_logo.svg", options: ["ChatGPT", "Gemini", "Claude", "Midjourney"], correct: 1 },
+                { q: "Приклади у промпті - це техніка:", img: "https://images.unsplash.com/photo-1507413245164-6160d8298b31?q=80&w=600", options: ["Zero-shot", "Few-shot prompting", "Copy", "No-shot"], correct: 1 },
+                { q: "ШІ для створення музики:", img: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=600", options: ["Suno AI", "Docs", "YouTube", "Spotify"], correct: 0 },
+                { q: "Робота з текстом, фото та звуком:", img: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=600", options: ["Мови", "Мультимодальність", "Швидкість", "Об'єм"], correct: 1 },
+                { q: "Чи є контент ШІ копією інтернету?", img: "https://images.unsplash.com/photo-1695431604169-216503c807b1?q=80&w=600", options: ["Так", "Ні, це новий синтез", "Колір", "Інколи"], correct: 1 }
+            ]
+        };
 
-    function selectOption(el, idx) {
-        if(answered) return;
-        answered = true;
-        const correctIdx = currentQuiz[currentIdx].correct;
-        const allOptions = document.querySelectorAll('.option');
-        if(idx === correctIdx) {
-            el.classList.add('correct');
-            el.querySelector('i').className = 'fas fa-check-circle';
-            score++;
-        } else {
-            el.classList.add('wrong');
-            el.querySelector('i').className = 'fas fa-times-circle';
-            allOptions[correctIdx].classList.add('correct');
-            allOptions[correctIdx].querySelector('i').className = 'fas fa-check-circle';
+        let currentQuiz = [];
+        let currentIdx = 0;
+        let score = 0;
+        let answered = false;
+        let completedCount = 0;
+
+        function startQuiz(type) {
+            currentQuiz = quizData[type];
+            currentIdx = 0;
+            score = 0;
+            document.getElementById("selection-screen").style.display = "none";
+            document.getElementById("quiz-platform").style.display = "block";
+            document.getElementById("result-screen").style.display = "none";
+            const titles = { robotics: "Робототехніка", neural: "Нейронні мережі", genai: "Генеративний ШІ" };
+            document.getElementById("quiz-title").innerText = "Тест: " + titles[type];
+            renderQuestion();
         }
-        allOptions.forEach(opt => opt.classList.add('disabled'));
-        document.getElementById('next-btn').style.display = 'block';
-        document.getElementById('next-btn').innerText = currentIdx === currentQuiz.length - 1 ? "Завершити" : "Далі";
-    }
-    function nextQuestion() {
-        currentIdx++;
-        if(currentIdx < currentQuiz.length) { renderQuestion(); } 
-        else { showResult(); }
-    }
-    function prevQuestion() {
-        if(currentIdx > 0) { currentIdx--; renderQuestion(); } 
-        else { resetQuiz(); }
-    }
-    function showResult() {
-        document.getElementById('quiz-platform').style.display = 'none';
-        document.getElementById('result-screen').style.display = 'block';
-        const mastery = Math.round((score / currentQuiz.length) * 100);
-        document.getElementById('mastery-val').innerText = mastery + '%';
-        let msg = mastery >= 85 ? "Вражаюче! Ви експерт у цій темі." : (mastery >= 60 ? "Добре засвоєно. Але варто дещо повторити." : "Потрібно більше практики.");
-        document.getElementById('mastery-text').innerText = msg;
-        completedCount++;
-        document.getElementById('completed-count').innerText = completedCount;
-        document.getElementById('avg-mastery').innerText = mastery + '%';
-    }
-    function resetQuiz() {
-        document.getElementById('result-screen').style.display = 'none';
-        document.getElementById('quiz-platform').style.display = 'none';
-        document.getElementById('selection-screen').style.display = 'block';
-    }
-    function openAuthModal() {
-        document.getElementById('authModal').style.display = 'block';
-    }
 
-    function closeAuthModal() {
-        document.getElementById('authModal').style.display = 'none';
-    }
-
-    function fakeLogin(method) {
-        alert("Ви успішно авторизувалися через " + method + "!");
-        closeAuthModal();
-        const loginBtn = document.querySelector('.btn-login');
-        if(loginBtn) {
-            loginBtn.innerText = "Тетяна Г.";
-            loginBtn.style.background = "#00b894";
-            loginBtn.style.color = "white";
-            loginBtn.style.borderColor = "#00b894";
+        function renderQuestion() {
+            answered = false;
+            const data = currentQuiz[currentIdx];
+            document.getElementById("q-text").innerText = data.q;
+            document.getElementById("q-img").src = data.img;
+            document.getElementById("question-counter").innerText = `Запитання ${currentIdx + 1} з ${currentQuiz.length}`;
+            document.getElementById("next-btn").style.display = "none";
+            const optionsDiv = document.getElementById("options");
+            optionsDiv.innerHTML = "";
+            data.options.forEach((opt, index) => {
+                const div = document.createElement("div");
+                div.className = "option";
+                div.innerHTML = `<span>${opt}</span><i class="far fa-circle"></i>`;
+                div.onclick = () => selectOption(div, index);
+                optionsDiv.appendChild(div);
+            });
         }
-    }
 
-     window.onclick = function(event) {
-            let modal = document.getElementById('authModal');
-            if (event.target == modal) {
-                closeAuthModal();
+        function selectOption(el, idx) {
+            if (answered) return;
+            answered = true;
+            const correctIdx = currentQuiz[currentIdx].correct;
+            const allOptions = document.querySelectorAll(".option");
+            if (idx === correctIdx) {
+                el.classList.add("correct");
+                el.querySelector("i").className = "fas fa-check-circle";
+                score++;
+            } else {
+                el.classList.add("wrong");
+                el.querySelector("i").className = "fas fa-times-circle";
+                allOptions[correctIdx].classList.add("correct");
+                allOptions[correctIdx].querySelector("i").className = "fas fa-check-circle";
+            }
+            allOptions.forEach((opt) => opt.classList.add("disabled"));
+            document.getElementById("next-btn").style.display = "block";
+            document.getElementById("next-btn").innerText = currentIdx === currentQuiz.length - 1 ? "Завершити" : "Далі";
+        }
+
+        function nextQuestion() {
+            currentIdx++;
+            if (currentIdx < currentQuiz.length) {
+                renderQuestion();
+            } else {
+                showResult();
             }
         }
 
-        const menu = document.querySelector('#mobile-menu');
-    const menuLinks = document.querySelector('.nav-links');
+        function prevQuestion() {
+            if (currentIdx > 0) {
+                currentIdx--;
+                renderQuestion();
+            } else {
+                resetQuiz();
+            }
+        }
 
-    menu.addEventListener('click', function() {
-        menuLinks.classList.toggle('active');
-    });
+        function showResult() {
+            document.getElementById("quiz-platform").style.display = "none";
+            document.getElementById("result-screen").style.display = "block";
+            const mastery = Math.round((score / currentQuiz.length) * 100);
+            document.getElementById("mastery-val").innerText = mastery + "%";
+            const msg = mastery >= 85 ? "Вражаюче! Ви експерт у цій темі." : (mastery >= 60 ? "Добре засвоєно. Але варто дещо повторити." : "Потрібно більше практики.");
+            document.getElementById("mastery-text").innerText = msg;
+            completedCount++;
+            document.getElementById("completed-count").innerText = completedCount;
+            document.getElementById("avg-mastery").innerText = mastery + "%";
+        }
 
-</script>
-    <script scr="script.js"></script>
+        function resetQuiz() {
+            document.getElementById("result-screen").style.display = "none";
+            document.getElementById("quiz-platform").style.display = "none";
+            document.getElementById("selection-screen").style.display = "block";
+        }
+
+        function openAuthModal() {
+            document.getElementById("authModal").style.display = "block";
+            closeMobileMenu();
+        }
+
+        function closeAuthModal() {
+            document.getElementById("authModal").style.display = "none";
+        }
+
+        function fakeLogin(method) {
+            alert("Ви успішно авторизувалися через " + method + "!");
+            closeAuthModal();
+            const loginBtn = document.querySelector(".btn-login");
+            if (loginBtn) {
+                loginBtn.innerText = "Тетяна Г.";
+                loginBtn.style.background = "white";
+                loginBtn.style.color = "var(--primary)";
+                loginBtn.style.borderColor = "var(--primary)";
+            }
+        }
+
+        const menu = document.querySelector("#mobile-menu");
+        const menuLinks = document.querySelector(".nav-links");
+
+        function closeMobileMenu() {
+            if (!menu || !menuLinks) return;
+            menuLinks.classList.remove("active");
+            const icon = menu.querySelector("i");
+            if (icon) {
+                icon.classList.add("fa-bars");
+                icon.classList.remove("fa-times");
+            }
+        }
+
+        if (menu && menuLinks) {
+            menu.addEventListener("click", function(event) {
+                event.stopPropagation();
+                menuLinks.classList.toggle("active");
+                const icon = menu.querySelector("i");
+                if (icon) {
+                    icon.classList.toggle("fa-bars");
+                    icon.classList.toggle("fa-times");
+                }
+            });
+
+            document.querySelectorAll(".nav-links a, .nav-links button").forEach((item) => {
+                item.addEventListener("click", () => {
+                    if (!item.classList.contains("btn-login")) {
+                        closeMobileMenu();
+                    }
+                });
+            });
+
+            document.addEventListener("click", function(event) {
+                if (!menuLinks.contains(event.target) && !menu.contains(event.target)) {
+                    closeMobileMenu();
+                }
+            });
+        }
+
+        window.addEventListener("click", function(event) {
+            const modal = document.getElementById("authModal");
+            if (event.target === modal) {
+                closeAuthModal();
+            }
+        });
+    </script>
 </body>
 </html>
