@@ -561,17 +561,21 @@ article:hover {
 
 @media (max-width: 768px) {
 
+    
+    .features {
+        grid-template-columns: 1fr;
+    }
+
+    
     header {
         position: relative;
     }
-
     nav {
         display: flex;
         justify-content: space-between;
         align-items: center;
         padding: 10px 15px;
     }
-
     .menu-toggle {
         display: block !important;
         font-size: 26px;
