@@ -317,12 +317,14 @@
         }
     }
 
-    window.onclick = function(event) {
-        let modal = document.getElementById('authModal');
-        if (event.target == modal) closeAuthModal();
-    }
+     window.onclick = function(event) {
+            let modal = document.getElementById('authModal');
+            if (event.target == modal) {
+                closeAuthModal();
+            }
+        }
 
-     const menu = document.querySelector('#mobile-menu');
+        const menu = document.querySelector('#mobile-menu');
     const menuLinks = document.querySelector('.nav-links');
 
     menu.addEventListener('click', function() {
@@ -330,5 +332,6 @@
     });
 
 </script>
+    <script scr="script.js"></script>
 </body>
 </html>
