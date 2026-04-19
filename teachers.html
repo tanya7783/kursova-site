@@ -7,36 +7,60 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-
-
-
-
-         @keyframes fadeInUp {
+        @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-
-
-        
         :root {
             --primary: #6c5ce7;
             --bg: #f4f7f6;
             --dark: #2d3436;
             --accent: #00b894;
             --white: #ffffff;
-            --shadow: 0 10px 30px rgba(0,0,0,0.08);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
         }
-        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: var(--dark); margin: 0; line-height: 1.6; }
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
-        header { background: var(--white); padding: 15px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
-        nav { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 24px; font-weight: 800; text-decoration: none; color: var(--dark); }
-        .logo span { color: var(--primary); }
-        .nav-links { list-style: none; display: flex; gap: 25px; margin: 0; align-items: center; }
-        .nav-links a { text-decoration: none; color: var(--dark); font-weight: 500; transition: 0.3s; }
-        .nav-links a:hover { color: var(--primary); }
-        
+
+        body {
+            font-family: "Segoe UI", sans-serif;
+            background: var(--bg);
+            color: var(--dark);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: var(--white);
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            text-decoration: none;
+            color: var(--dark);
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
         .btn-login {
             background: white;
             color: var(--primary);
@@ -47,112 +71,230 @@
             font-weight: bold;
             transition: 0.3s;
         }
-        .btn-login:hover { background: var(--primary); color: white; }
 
-        .page-header { 
-            background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%); 
-            color: white; 
-            padding: 60px 0; 
-            text-align: center; 
-            margin-bottom: 40px; 
+        .btn-login:hover {
+            background: var(--primary);
+            color: white;
         }
-        
-        .teacher-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
-            gap: 30px; 
-            margin-bottom: 50px; 
+
+        .page-header {
+            background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            margin-bottom: 40px;
         }
-        
-        .resource-item { 
-            background: var(--white); 
-            padding: 30px; 
-            border-radius: 20px; 
-            box-shadow: var(--shadow); 
-            transition: 0.3s; 
+
+        .page-header h1,
+        .page-header p {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .teacher-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .resource-item {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            transition: 0.3s;
             border-top: 5px solid var(--primary);
         }
-        .resource-item:hover { transform: translateY(-10px); }
-        .res-icon { font-size: 40px; color: var(--primary); margin-bottom: 20px; }
-        .resource-item h4 { font-size: 1.4rem; margin-bottom: 10px; color: var(--primary); }
-        .resource-item p { color: #636e72; font-size: 0.95rem; margin-bottom: 20px; }
-        
-        .download-link { 
-            display: inline-block; 
-            padding: 12px 25px; 
-            background: var(--primary); 
-            color: white; 
-            text-decoration: none; 
-            border-radius: 50px; 
-            font-weight: bold; 
-            transition: 0.3s; 
+
+        .resource-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .res-icon {
+            font-size: 40px;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .resource-item h4 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .resource-item p {
+            color: #636e72;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        .download-link {
+            display: inline-block;
+            padding: 12px 25px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: 0.3s;
             cursor: pointer;
             border: none;
         }
-        .download-link:hover { background: #5649c1; box-shadow: 0 5px 15px rgba(108, 92, 231, 0.4); }
-        
-        .prompt-box { 
-            background: #2d3436; 
-            color: #fab1a0; 
-            padding: 20px; 
-            border-radius: 10px; 
-            font-family: 'Courier New', Courier, monospace; 
-            font-size: 0.9rem; 
-            border: 1px dashed #fab1a0; 
-            margin-top: 15px; 
+
+        .download-link:hover {
+            background: #5649c1;
+            box-shadow: 0 5px 15px rgba(108, 92, 231, 0.4);
         }
 
-        #downloadModal, #authModal {
-            display: none; 
-            position: fixed; 
-            z-index: 2000; 
-            left: 0; top: 0; 
-            width: 100%; height: 100%; 
-            background: rgba(0,0,0,0.8); 
+        .prompt-box {
+            background: #2d3436;
+            color: #fab1a0;
+            padding: 20px;
+            border-radius: 10px;
+            font-family: "Courier New", Courier, monospace;
+            font-size: 0.9rem;
+            border: 1px dashed #fab1a0;
+            margin-top: 15px;
+            white-space: normal;
+            overflow-wrap: anywhere;
+            word-break: break-word;
+        }
+
+        #downloadModal,
+        #authModal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
             backdrop-filter: blur(8px);
         }
-        .modal-content, .auth-content {
-            background: white; 
-            width: 90%;
-            max-width: 400px; 
-            margin: 10% auto; 
-            padding: 40px; 
-            border-radius: 30px; 
-            text-align: center; 
-            position: relative; 
-            animation: slideUp 0.3s ease;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-        }
-        .auth-methods { display: flex; flex-direction: column; gap: 15px; margin-top: 25px; }
-        .auth-btn {
-            padding: 12px; border: 1px solid #ddd; border-radius: 10px; background: white;
-            cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; font-weight: 500;
-        }
-        .auth-divider { margin: 20px 0; display: flex; align-items: center; color: #888; font-size: 0.8rem; }
-        .auth-divider::before, .auth-divider::after { content: ""; flex: 1; height: 1px; background: #eee; margin: 0 10px; }
-        .auth-input { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 10px; outline: none; box-sizing: border-box; }
 
-        .progress-container { width: 100%; background: #eee; height: 12px; border-radius: 10px; margin: 25px 0; overflow: hidden; }
-        .progress-bar { width: 0%; height: 100%; background: var(--accent); transition: width 0.3s; }
+        .modal-content,
+        .auth-content {
+            background: white;
+            width: 90%;
+            max-width: 400px;
+            margin: 10% auto;
+            padding: 40px;
+            border-radius: 30px;
+            text-align: center;
+            position: relative;
+            animation: slideUp 0.3s ease;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .auth-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .auth-btn {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-weight: 500;
+        }
+
+        .auth-divider {
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            color: #888;
+            font-size: 0.8rem;
+        }
+
+        .auth-divider::before,
+        .auth-divider::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: #eee;
+            margin: 0 10px;
+        }
+
+        .auth-input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            outline: none;
+            box-sizing: border-box;
+        }
+
+        .progress-container {
+            width: 100%;
+            background: #eee;
+            height: 12px;
+            border-radius: 10px;
+            margin: 25px 0;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
 
         @keyframes slideUp {
             from { transform: translateY(40px); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
         }
 
-        footer { background: var(--dark); color: white; text-align: center; padding: 40px 0; margin-top: 60px; }
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 60px;
+        }
+
+        @media (max-width: 768px) {
+            .page-header {
+                padding: 48px 0;
+                margin-bottom: 28px;
+            }
+
+            .page-header h1 {
+                font-size: 1.9rem;
+            }
+
+            .teacher-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .resource-item {
+                padding: 24px 18px;
+            }
+
+            .download-link {
+                width: 100%;
+                text-align: center;
+            }
+        }
     </style>
 </head>
 <body>
-
     <header>
         <nav class="container">
-            
             <div class="logo">AI<span>Study</span></div>
             <div class="menu-toggle" id="mobile-menu">
-        <i class="fas fa-bars"></i>
-    </div>
-            
+                <i class="fas fa-bars"></i>
+            </div>
             <ul class="nav-links">
                 <li><a href="index.html">Головна</a></li>
                 <li><a href="theory.html">Матеріали</a></li>
@@ -203,18 +345,19 @@
             </div>
         </div>
     </main>
+
     <div id="authModal">
         <div class="auth-content">
             <span onclick="closeAuthModal()" style="position: absolute; right: 25px; top: 20px; cursor: pointer; font-size: 24px;">&times;</span>
             <h2>Авторизація</h2>
             <div class="auth-methods">
-                <button class="auth-btn" onclick="fakeLogin('Google')"><i class="fab fa-google" style="color:#DB4437"></i> Google</button>
-                <button class="auth-btn" onclick="fakeLogin('Microsoft')"><i class="fab fa-windows" style="color:#00A4EF"></i> Microsoft</button>
+                <button class="auth-btn" onclick="fakeLogin('Google')"><i class="fab fa-google" style="color: #DB4437;"></i> Google</button>
+                <button class="auth-btn" onclick="fakeLogin('Microsoft')"><i class="fab fa-windows" style="color: #00A4EF;"></i> Microsoft</button>
             </div>
             <div class="auth-divider">або за допомогою пошти</div>
             <input type="email" class="auth-input" placeholder="Електронна пошта">
             <input type="password" class="auth-input" placeholder="Пароль">
-            <button class="download-link" style="width:100%; border:none; margin-top:10px;" onclick="fakeLogin('Пошту')">Увійти</button>
+            <button class="download-link" style="width: 100%; border: none; margin-top: 10px;" onclick="fakeLogin('Пошту')">Увійти</button>
         </div>
     </div>
 
@@ -236,61 +379,109 @@
     </footer>
 
     <script>
-        function openAuthModal() { document.getElementById('authModal').style.display = 'block'; }
-        function closeAuthModal() { document.getElementById('authModal').style.display = 'none'; }
-        function fakeLogin(m) {
-            alert("Ви успішно авторизувалися через " + m + "!");
-            closeAuthModal();
-            const btn = document.querySelector('.btn-login');
-            btn.innerText = "Тетяна Г.";
-            btn.style.background = "var(--accent)";
-            btn.style.color = "white";
-            btn.style.borderColor = "var(--accent)";
+        function openAuthModal() {
+            document.getElementById("authModal").style.display = "block";
+            closeMobileMenu();
         }
+
+        function closeAuthModal() {
+            document.getElementById("authModal").style.display = "none";
+        }
+
+        function fakeLogin(method) {
+            alert("Ви успішно авторизувалися через " + method + "!");
+            closeAuthModal();
+            const btn = document.querySelector(".btn-login");
+            if (btn) {
+                btn.innerText = "Тетяна Г.";
+                btn.style.background = "white";
+                btn.style.color = "var(--primary)";
+                btn.style.borderColor = "var(--primary)";
+            }
+        }
+
         function openDownload(title) {
-            const modal = document.getElementById('downloadModal');
-            const bar = document.getElementById('progressBar');
-            const status = document.getElementById('statusText');
-            document.getElementById('modalTitle').innerText = title;
-            modal.style.display = 'block';
+            const modal = document.getElementById("downloadModal");
+            const bar = document.getElementById("progressBar");
+            const status = document.getElementById("statusText");
+            document.getElementById("modalTitle").innerText = title;
+            modal.style.display = "block";
+            bar.style.width = "0%";
+            status.innerText = "Статус: Підготовка даних...";
             let width = 0;
-            let interval = setInterval(() => {
+            const interval = setInterval(() => {
                 if (width >= 100) {
                     clearInterval(interval);
                     status.innerText = "Готово! Завантаження почалося.";
                     setTimeout(() => closeModal(), 1500);
                 } else {
                     width += Math.floor(Math.random() * 15) + 5;
-                    if(width > 100) width = 100;
-                    bar.style.width = width + '%';
+                    if (width > 100) width = 100;
+                    bar.style.width = width + "%";
                 }
             }, 250);
         }
 
-        function closeModal() { document.getElementById('downloadModal').style.display = 'none'; }
-        document.querySelectorAll('.download-link').forEach(button => {
-            button.addEventListener('click', function() {
-                const title = this.parentElement.querySelector('h4').innerText;
+        function closeModal() {
+            document.getElementById("downloadModal").style.display = "none";
+        }
+
+        document.querySelectorAll(".download-link").forEach((button) => {
+            button.addEventListener("click", function() {
+                const title = this.parentElement.querySelector("h4").innerText;
                 openDownload(title);
             });
         });
-        
-        window.onclick = function(event) {
-            let modal = document.getElementById('authModal');
-            if (event.target = modal) {
-                closeAuthModal();
+
+        const menu = document.querySelector("#mobile-menu");
+        const menuLinks = document.querySelector(".nav-links");
+
+        function closeMobileMenu() {
+            if (!menu || !menuLinks) return;
+            menuLinks.classList.remove("active");
+            const icon = menu.querySelector("i");
+            if (icon) {
+                icon.classList.add("fa-bars");
+                icon.classList.remove("fa-times");
+            }
         }
 
-              }
+        if (menu && menuLinks) {
+            menu.addEventListener("click", function(event) {
+                event.stopPropagation();
+                menuLinks.classList.toggle("active");
+                const icon = menu.querySelector("i");
+                if (icon) {
+                    icon.classList.toggle("fa-bars");
+                    icon.classList.toggle("fa-times");
+                }
+            });
 
-        const menu = document.querySelector('#mobile-menu');
-    const menuLinks = document.querySelector('.nav-links');
+            document.querySelectorAll(".nav-links a, .nav-links button").forEach((item) => {
+                item.addEventListener("click", () => {
+                    if (!item.classList.contains("btn-login")) {
+                        closeMobileMenu();
+                    }
+                });
+            });
 
-    menu.addEventListener('click', function() {
-        menuLinks.classList.toggle('active');
-    });
+            document.addEventListener("click", function(event) {
+                if (!menuLinks.contains(event.target) && !menu.contains(event.target)) {
+                    closeMobileMenu();
+                }
+            });
+        }
 
+        window.addEventListener("click", function(event) {
+            const authModal = document.getElementById("authModal");
+            const downloadModal = document.getElementById("downloadModal");
+            if (event.target === authModal) {
+                closeAuthModal();
+            }
+            if (event.target === downloadModal) {
+                closeModal();
+            }
+        });
     </script>
-    <script scr="script.js"></script>
 </body>
 </html>
