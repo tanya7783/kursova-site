@@ -264,24 +264,17 @@
         </div>
     </div>
 
+    <script type="module" src="firebase-auth.js"></script>
+
     <script>
         function openAuthModal() {
-            document.getElementById("authModal").style.display = "block";
+            const modal = document.getElementById("authModal");
+            if (modal) modal.style.display = "block";
         }
 
         function closeAuthModal() {
-            document.getElementById("authModal").style.display = "none";
-        }
-
-        function fakeLogin(method) {
-            alert("Ви успішно авторизувалися через " + method + "!");
-            closeAuthModal();
-            const loginBtn = document.querySelector(".btn-login");
-            if (loginBtn) {
-                loginBtn.innerText = "Тетяна Г.";
-                loginBtn.style.background = "#00b894";
-                loginBtn.style.color = "white";
-            }
+            const modal = document.getElementById("authModal");
+            if (modal) modal.style.display = "none";
         }
 
         window.onclick = function(event) {
@@ -297,7 +290,6 @@
         if (menu && menuLinks) {
             menu.addEventListener("click", function() {
                 menuLinks.classList.toggle("active");
-
                 const icon = menu.querySelector("i");
                 if (icon) {
                     icon.classList.toggle("fa-bars");
@@ -317,6 +309,7 @@
             });
         }
     </script>
+
     <script src="script.js"></script>
 </body>
 </html>
