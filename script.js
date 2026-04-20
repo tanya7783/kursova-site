@@ -48,8 +48,15 @@
     let currentIdx = 0;
     let userAnswers = [];
     let completedQuizzes = 0;
+    let isUserLoggedIn = false; // Змінна для контролю входу
 
     function startQuiz(type) {
+        // Перевірка: якщо тест "neural" або "genai" і користувач не зайшов — відкриваємо логін
+        if ((type === 'neural' || type === 'genai') && !isUserLoggedIn) {
+            openAuthModal();
+            return;
+        }
+
         currentQuiz = quizData[type];
         currentIdx = 0;
         userAnswers = new Array(currentQuiz.length).fill(null);
@@ -88,6 +95,7 @@
         userAnswers[currentIdx] = idx;
         renderQuestion();
     }
+
     function nextQuestion() {
         if (currentIdx < currentQuiz.length - 1) {
             currentIdx++;
@@ -96,12 +104,14 @@
             finishQuiz();
         }
     }
+
     function prevQuestion() {
         if (currentIdx > 0) {
             currentIdx--;
             renderQuestion();
         }
     }
+
     function finishQuiz() {
         let correctCount = 0;
         userAnswers.forEach((ans, i) => { if (ans === currentQuiz[i].correct) correctCount++; });
@@ -111,24 +121,35 @@
         document.getElementById('mastery-val').innerText = mastery + '%';
         let msg = mastery >= 70 ? "Чудовий результат!" : "Потрібно більше практики.";
         document.getElementById('mastery-text').innerText = msg;
+        
         completedQuizzes++;
         document.getElementById('completed-count').innerText = completedQuizzes;
         document.getElementById('avg-mastery').innerText = mastery + '%';
+        
+        updateCourseProgress(); // Оновлюємо прогрес бару
     }
 
     function resetQuiz() {
         document.getElementById('result-screen').style.display = 'none';
         document.getElementById('selection-screen').style.display = 'block';
     }
+
     function openAuthModal() {
         document.getElementById('authModal').style.display = 'block';
     }
+
     function closeAuthModal() {
         document.getElementById('authModal').style.display = 'none';
     }
+
     function fakeLogin(method) {
         alert("Ви успішно авторизувалися через " + method + "!");
+        isUserLoggedIn = true; // Тепер тести доступні!
         closeAuthModal();
+        
+        // Оновлюємо інтерфейс квізів (прибираємо "замочки" візуально, якщо вони є)
+        if (typeof updateQuizAccess === "function") updateQuizAccess();
+
         const loginBtn = document.querySelector('.btn-login');
         if(loginBtn) {
             loginBtn.innerText = "Тетяна Г.";
@@ -136,71 +157,43 @@
         }
     }
 
+    // Мобільне меню
+    const menu = document.querySelector('#mobile-menu');
+    const menuLinks = document.querySelector('.nav-links');
 
-
-const menu = document.querySelector('#mobile-menu');
-const menuLinks = document.querySelector('.nav-links');
-
-if (menu && menuLinks) {
-    menu.addEventListener('click', function() {
-        menuLinks.classList.toggle('active');
-        
-        const icon = menu.querySelector('i');
-        if (icon) {
-            icon.classList.toggle('fa-bars');
-            icon.classList.toggle('fa-times');
-        }
-    });
-
-    document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', () => {
-            menuLinks.classList.remove('active');
+    if (menu && menuLinks) {
+        menu.addEventListener('click', function() {
+            menuLinks.classList.toggle('active');
             const icon = menu.querySelector('i');
             if (icon) {
-                icon.classList.add('fa-bars');
-                icon.classList.remove('fa-times');
+                icon.classList.toggle('fa-bars');
+                icon.classList.toggle('fa-times');
             }
         });
+    }
+
+    // ЛОГІКА ПРОГРЕСУ
+    let courseProgress = 0;
+    function updateCourseProgress() {
+        const progressBar = document.getElementById("course-progress-bar");
+        if (!progressBar) return;
+
+        courseProgress = Math.min(100, completedQuizzes * 34); // 3 тести приблизно по 33.3%
+        progressBar.style.width = courseProgress + "%";
+        progressBar.innerText = courseProgress + "%";
+
+        if (courseProgress >= 100) {
+            showCertificate();
+        }
+    }
+
+    function showCertificate() {
+        const cert = document.getElementById("course-certificate");
+        if (cert) cert.style.display = "block";
+    }
+
+    // Ініціалізація доступу при завантаженні
+    document.addEventListener("DOMContentLoaded", () => {
+        if (typeof updateQuizAccess === "function") updateQuizAccess();
     });
-}
-</script>
-
-
-
-
-
-
-
-let courseProgress = 0;
-
-function updateCourseProgress() {
-    const progressBar = document.getElementById("course-progress-bar");
-    if (!progressBar) return;
-
-    courseProgress = Math.min(100, completedQuizzes * 33); 
-
-    progressBar.style.width = courseProgress + "%";
-    progressBar.innerText = courseProgress + "%";
-
-    if (courseProgress >= 100) {
-        showCertificate();
-    }
-}
-
-
-function showCertificate() {
-    const cert = document.getElementById("course-certificate");
-    if (cert) {
-        cert.style.display = "block";
-    }
-}
-
-
-const originalFinishQuiz = finishQuiz;
-
-finishQuiz = function() {
-    originalFinishQuiz(); 
-    updateCourseProgress(); 
-};
-
 </script>
