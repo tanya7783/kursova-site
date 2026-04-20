@@ -216,22 +216,20 @@
         }
 
         .auth-divider {
-            margin: 20px 0;
-            display: flex;
-            align-items: center;
-            color: #888;
-            font-size: 0.8rem;
-        }
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    color: #888;
+    font-size: 0.8rem;
+}
 
-        .auth-divider::before,
-        .auth-divider::after {
-            content: "";
-            flex: 1;
-            height: 1px;
-            background: #eee;
-            margin: 0 10px;
-        }
-
+        .auth-divider::before, .auth-divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #eee;
+    margin: 0 10px;
+}
         .auth-input {
             width: 100%;
             padding: 12px;
@@ -326,8 +324,7 @@
 
     <section class="page-header">
         <div class="container">
-            <h1>Методичний кабінет інженера-педагога</h1>
-            <p>Цифрові інструменти та ШІ-стратегії для викладачів ІПФ ТНПУ</p>
+            <h1>Методичний кабінет педагога</h1>
         </div>
     </section>
 
@@ -365,16 +362,28 @@
         </div>
     </main>
 
-   <div id="authModal">
-        <div class="auth-content">
-            <span onclick="closeAuthModal()" style="position: absolute; right: 25px; top: 20px; cursor: pointer; font-size: 24px;">&times;</span>
-            <h2>Авторизація</h2>
-            <p style="color: #666; font-size: 0.9rem;">Увійдіть, щоб отримати доступ до методичних матеріалів</p>
-            <div class="auth-methods" style="margin-top: 20px;">
-                <input type="email" class="auth-input" placeholder="Електронна пошта">
-                <input type="password" class="auth-input" placeholder="Пароль">
-                </div>
-        </div>
+  <div id="authModal">
+    <div class="auth-content">
+        <span onclick="closeAuthModal()" style="position: absolute; right: 25px; top: 20px; cursor: pointer; font-size: 24px;">&times;</span>
+        <h2>Авторизація</h2>
+        <p style="color: #666; font-size: 0.9rem;">Оберіть спосіб входу</p>
+
+        <div class="auth-methods">
+            </div>
+
+        <div class="auth-divider">або пошта</div>
+
+        <input type="email" class="auth-input" placeholder="Електронна пошта">
+        <input type="password" class="auth-input" placeholder="Пароль">
+        
+        <button class="btn-quiz btn-next" style="width: 100%; border-radius: 10px;" id="authLoginBtn">Увійти</button>
+
+        <p style="margin-top: 18px; font-size: 0.9rem;">
+            Немає акаунта?
+            <a href="#" id="authRegisterLink" style="color: var(--primary);">Зареєструватися</a>
+        </p>
+    </div>
+</div>
     </div>
 
     <div id="downloadModal">
