@@ -106,6 +106,47 @@
             color: var(--primary);
         }
 
+        .quiz-card-link.locked {
+            position: relative;
+            opacity: 0.75;
+            border-color: #dfe6e9;
+        }
+
+        .quiz-card-link.locked::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.45);
+        }
+
+        .quiz-card-link.locked i,
+        .quiz-card-link.locked h3,
+        .quiz-card-link.locked p,
+        .quiz-card-link.locked .lock-badge {
+            position: relative;
+            z-index: 1;
+        }
+
+        .lock-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: #fff4e5;
+            color: #9a6700;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        #quiz-access-note {
+            margin-top: 18px;
+            text-align: center;
+            color: #6c5ce7;
+            font-weight: 600;
+        }
+
         #quiz-platform {
             display: none;
             background: white;
@@ -331,23 +372,31 @@
 
         <div id="selection-screen">
             <h1 style="text-align: center;">Центр тестування</h1>
+
             <div class="quiz-selection">
                 <div class="quiz-card-link" onclick="startQuiz('robotics')">
                     <i class="fas fa-robot fa-3x"></i>
                     <h3>Робототехніка</h3>
                     <p>12 запитань</p>
+                    <p>Відкрито для всіх</p>
                 </div>
-                <div class="quiz-card-link" onclick="startQuiz('neural')">
+
+                <div class="quiz-card-link locked" id="neural-card" onclick="startQuiz('neural')">
                     <i class="fas fa-network-wired fa-3x"></i>
                     <h3>Нейронні мережі</h3>
                     <p>12 запитань</p>
+                    <div class="lock-badge"><i class="fas fa-lock"></i> Потрібен вхід</div>
                 </div>
-                <div class="quiz-card-link" onclick="startQuiz('genai')">
+
+                <div class="quiz-card-link locked" id="genai-card" onclick="startQuiz('genai')">
                     <i class="fas fa-magic fa-3x"></i>
                     <h3>Генеративний ШІ</h3>
                     <p>12 запитань</p>
+                    <div class="lock-badge"><i class="fas fa-lock"></i> Потрібен вхід</div>
                 </div>
             </div>
+
+            <p id="quiz-access-note">Тест 2 і Тест 3 відкриваються після входу у справжній акаунт та підтвердження пошти.</p>
         </div>
 
         <div id="quiz-platform">
@@ -379,14 +428,22 @@
             <span onclick="closeAuthModal()" style="position: absolute; right: 25px; top: 20px; cursor: pointer; font-size: 24px;">&times;</span>
             <h2>Авторизація</h2>
             <p style="color: #666; font-size: 0.9rem;">Оберіть спосіб входу</p>
+
             <div class="auth-methods">
                 <button class="auth-btn" onclick="fakeLogin('Google')"><i class="fab fa-google" style="color: #DB4437;"></i> Google</button>
                 <button class="auth-btn" onclick="fakeLogin('Microsoft')"><i class="fab fa-windows" style="color: #00A4EF;"></i> Microsoft</button>
             </div>
+
             <div class="auth-divider">або пошта</div>
+
             <input type="email" class="auth-input" placeholder="Електронна пошта">
             <input type="password" class="auth-input" placeholder="Пароль">
             <button class="btn-quiz btn-next" style="width: 100%; border-radius: 10px;" onclick="fakeLogin('Пошту')">Увійти</button>
+
+            <p style="margin-top: 18px; font-size: 0.9rem;">
+                Немає акаунта?
+                <a href="#" style="color: var(--primary);">Зареєструватися</a>
+            </p>
         </div>
     </div>
 
@@ -426,7 +483,7 @@
                 { q: "Створення картинки з шуму - це:", img: "https://images.unsplash.com/photo-1620121692029-d088224ddc74?q=80&w=600", options: ["Дифузія", "Друк", "Сканування", "Ксерокс"], correct: 0 },
                 { q: "Що таке LLM?", img: "https://images.unsplash.com/photo-1676299081847-5a3d07e6677f?q=80&w=600", options: ["Мала модель", "Велика мовна модель", "Пам'ять", "Диск"], correct: 1 },
                 { q: "Мережа для художніх ілюстрацій:", img: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600", options: ["Word", "Midjourney", "Notepad", "Suno"], correct: 1 },
-                { q: "Коли ШІ вигадує факти - це:", img: "https://images.unsplash.com/photo-1633512304193-4a6c42171ca5?q=80&w=600", options: ["Мрія", "Галюцинація", "Фантазія", "Помилка"], correct: 1 },
+                { q: "Коли ШІ вигадає факти - це:", img: "https://images.unsplash.com/photo-1633512304193-4a6c42171ca5?q=80&w=600", options: ["Мрія", "Галюцинація", "Фантазія", "Помилка"], correct: 1 },
                 { q: "Архітектура сучасних моделей як GPT:", img: "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=600", options: ["Спіраль", "Трансформер", "Квадрат", "Трикутник"], correct: 1 },
                 { q: "Чат-бот Google з пошуком:", img: "https://upload.wikimedia.org/wikipedia/commons/8/8a/Google_Gemini_logo.svg", options: ["ChatGPT", "Gemini", "Claude", "Midjourney"], correct: 1 },
                 { q: "Приклади у промпті - це техніка:", img: "https://images.unsplash.com/photo-1507413245164-6160d8298b31?q=80&w=600", options: ["Zero-shot", "Few-shot prompting", "Copy", "No-shot"], correct: 1 },
@@ -443,13 +500,25 @@
         let completedCount = 0;
 
         function startQuiz(type) {
+            const protectedQuiz = type === "neural" || type === "genai";
+
+            if (protectedQuiz && !window.aiStudyAuth?.requireVerifiedUser()) {
+                return;
+            }
+
             currentQuiz = quizData[type];
             currentIdx = 0;
             score = 0;
             document.getElementById("selection-screen").style.display = "none";
             document.getElementById("quiz-platform").style.display = "block";
             document.getElementById("result-screen").style.display = "none";
-            const titles = { robotics: "Робототехніка", neural: "Нейронні мережі", genai: "Генеративний ШІ" };
+
+            const titles = {
+                robotics: "Робототехніка",
+                neural: "Нейронні мережі",
+                genai: "Генеративний ШІ"
+            };
+
             document.getElementById("quiz-title").innerText = "Тест: " + titles[type];
             renderQuestion();
         }
@@ -461,8 +530,10 @@
             document.getElementById("q-img").src = data.img;
             document.getElementById("question-counter").innerText = `Запитання ${currentIdx + 1} з ${currentQuiz.length}`;
             document.getElementById("next-btn").style.display = "none";
+
             const optionsDiv = document.getElementById("options");
             optionsDiv.innerHTML = "";
+
             data.options.forEach((opt, index) => {
                 const div = document.createElement("div");
                 div.className = "option";
@@ -477,6 +548,7 @@
             answered = true;
             const correctIdx = currentQuiz[currentIdx].correct;
             const allOptions = document.querySelectorAll(".option");
+
             if (idx === correctIdx) {
                 el.classList.add("correct");
                 el.querySelector("i").className = "fas fa-check-circle";
@@ -487,6 +559,7 @@
                 allOptions[correctIdx].classList.add("correct");
                 allOptions[correctIdx].querySelector("i").className = "fas fa-check-circle";
             }
+
             allOptions.forEach((opt) => opt.classList.add("disabled"));
             document.getElementById("next-btn").style.display = "block";
             document.getElementById("next-btn").innerText = currentIdx === currentQuiz.length - 1 ? "Завершити" : "Далі";
@@ -515,7 +588,13 @@
             document.getElementById("result-screen").style.display = "block";
             const mastery = Math.round((score / currentQuiz.length) * 100);
             document.getElementById("mastery-val").innerText = mastery + "%";
-            const msg = mastery >= 85 ? "Вражаюче! Ви експерт у цій темі." : (mastery >= 60 ? "Добре засвоєно. Але варто дещо повторити." : "Потрібно більше практики.");
+
+            const msg = mastery >= 85
+                ? "Вражаюче! Ви експерт у цій темі."
+                : (mastery >= 60
+                    ? "Добре засвоєно. Але варто дещо повторити."
+                    : "Потрібно більше практики.");
+
             document.getElementById("mastery-text").innerText = msg;
             completedCount++;
             document.getElementById("completed-count").innerText = completedCount;
@@ -528,24 +607,35 @@
             document.getElementById("selection-screen").style.display = "block";
         }
 
-        function openAuthModal() {
-            document.getElementById("authModal").style.display = "block";
-            closeMobileMenu();
-        }
+        function updateQuizAccess() {
+            const unlocked = Boolean(window.aiStudyAuth?.isVerified());
+            const note = document.getElementById("quiz-access-note");
+            const protectedCards = ["neural-card", "genai-card"];
 
-        function closeAuthModal() {
-            document.getElementById("authModal").style.display = "none";
-        }
+            protectedCards.forEach((id) => {
+                const card = document.getElementById(id);
+                if (!card) return;
 
-        function fakeLogin(method) {
-            alert("Ви успішно авторизувалися через " + method + "!");
-            closeAuthModal();
-            const loginBtn = document.querySelector(".btn-login");
-            if (loginBtn) {
-                loginBtn.innerText = "Тетяна Г.";
-                loginBtn.style.background = "white";
-                loginBtn.style.color = "var(--primary)";
-                loginBtn.style.borderColor = "var(--primary)";
+                card.classList.toggle("locked", !unlocked);
+
+                const badge = card.querySelector(".lock-badge");
+                if (!badge) return;
+
+                if (unlocked) {
+                    badge.innerHTML = '<i class="fas fa-lock-open"></i> Відкрито';
+                    badge.style.background = "#e8fff7";
+                    badge.style.color = "#008763";
+                } else {
+                    badge.innerHTML = '<i class="fas fa-lock"></i> Потрібен вхід';
+                    badge.style.background = "#fff4e5";
+                    badge.style.color = "#9a6700";
+                }
+            });
+
+            if (note) {
+                note.textContent = unlocked
+                    ? "Тест 2 і Тест 3 вже відкриті для вашого підтвердженого акаунта."
+                    : "Тест 2 і Тест 3 відкриваються після входу у справжній акаунт та підтвердження пошти.";
             }
         }
 
@@ -588,12 +678,9 @@
             });
         }
 
-        window.addEventListener("click", function(event) {
-            const modal = document.getElementById("authModal");
-            if (event.target === modal) {
-                closeAuthModal();
-            }
-        });
+        document.addEventListener("DOMContentLoaded", updateQuizAccess);
     </script>
+
+    <script type="module" src="firebase-auth.js"></script>
 </body>
 </html>
