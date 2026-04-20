@@ -346,18 +346,15 @@
         </div>
     </main>
 
-    <div id="authModal">
+   <div id="authModal">
         <div class="auth-content">
             <span onclick="closeAuthModal()" style="position: absolute; right: 25px; top: 20px; cursor: pointer; font-size: 24px;">&times;</span>
             <h2>Авторизація</h2>
-            <div class="auth-methods">
-                <button class="auth-btn" onclick="fakeLogin('Google')"><i class="fab fa-google" style="color: #DB4437;"></i> Google</button>
-                <button class="auth-btn" onclick="fakeLogin('Microsoft')"><i class="fab fa-windows" style="color: #00A4EF;"></i> Microsoft</button>
-            </div>
-            <div class="auth-divider">або за допомогою пошти</div>
-            <input type="email" class="auth-input" placeholder="Електронна пошта">
-            <input type="password" class="auth-input" placeholder="Пароль">
-            <button class="download-link" style="width: 100%; border: none; margin-top: 10px;" onclick="fakeLogin('Пошту')">Увійти</button>
+            <p style="color: #666; font-size: 0.9rem;">Увійдіть, щоб отримати доступ до методичних матеріалів</p>
+            <div class="auth-methods" style="margin-top: 20px;">
+                <input type="email" class="auth-input" placeholder="Електронна пошта">
+                <input type="password" class="auth-input" placeholder="Пароль">
+                </div>
         </div>
     </div>
 
@@ -378,6 +375,8 @@
         </div>
     </footer>
 
+    <script type="module" src="firebase-auth.js"></script>
+
     <script>
         function openAuthModal() {
             document.getElementById("authModal").style.display = "block";
@@ -388,26 +387,20 @@
             document.getElementById("authModal").style.display = "none";
         }
 
-        function fakeLogin(method) {
-            alert("Ви успішно авторизувалися через " + method + "!");
-            closeAuthModal();
-            const btn = document.querySelector(".btn-login");
-            if (btn) {
-                btn.innerText = "Тетяна Г.";
-                btn.style.background = "white";
-                btn.style.color = "var(--primary)";
-                btn.style.borderColor = "var(--primary)";
-            }
+        function closeModal() {
+            document.getElementById("downloadModal").style.display = "none";
         }
 
         function openDownload(title) {
             const modal = document.getElementById("downloadModal");
             const bar = document.getElementById("progressBar");
             const status = document.getElementById("statusText");
+            
             document.getElementById("modalTitle").innerText = title;
             modal.style.display = "block";
             bar.style.width = "0%";
             status.innerText = "Статус: Підготовка даних...";
+            
             let width = 0;
             const interval = setInterval(() => {
                 if (width >= 100) {
@@ -420,10 +413,6 @@
                     bar.style.width = width + "%";
                 }
             }, 250);
-        }
-
-        function closeModal() {
-            document.getElementById("downloadModal").style.display = "none";
         }
 
         document.querySelectorAll(".download-link").forEach((button) => {
@@ -464,23 +453,13 @@
                     }
                 });
             });
-
-            document.addEventListener("click", function(event) {
-                if (!menuLinks.contains(event.target) && !menu.contains(event.target)) {
-                    closeMobileMenu();
-                }
-            });
         }
 
         window.addEventListener("click", function(event) {
             const authModal = document.getElementById("authModal");
             const downloadModal = document.getElementById("downloadModal");
-            if (event.target === authModal) {
-                closeAuthModal();
-            }
-            if (event.target === downloadModal) {
-                closeModal();
-            }
+            if (event.target === authModal) closeAuthModal();
+            if (event.target === downloadModal) closeModal();
         });
     </script>
 </body>
