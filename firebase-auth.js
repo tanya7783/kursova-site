@@ -268,3 +268,28 @@ function refreshAuxButtons() {
   const logoutButton = document.getElementById("authLogoutBtn");
 
   if (resendButton)
+
+
+
+
+
+
+
+
+const auth = getAuth(app);
+state.auth = auth;
+
+onAuthStateChanged(auth, (user) => {
+  state.user = user;
+  updateLoginButtons(); 
+  
+  if (typeof updateQuizAccess === 'function') {
+    updateQuizAccess();
+  }
+  
+  refreshAuxButtons(); 
+});
+
+window.openAuthModal = openAuthModal;
+window.closeAuthModal = closeAuthModal;
+window.logoutUser = logoutUser;
