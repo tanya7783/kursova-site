@@ -112,9 +112,11 @@
 
 .theory-card img {
     width: 100% !important;
-    height: 220px !important; 
+    min-width: 100% !important; /* Додаємо це, щоб не стискалася */
+    height: 250px !important;    /* Збільшив висоту до 250px, щоб було побільше */
     object-fit: cover !important;
-    display: block;
+    display: block !important;
+    border-bottom: 1px solid #eee; /* Легке розділення з текстом */
 }
     .card-content {
         padding: 30px 25px;
