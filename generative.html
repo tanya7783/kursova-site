@@ -169,6 +169,53 @@
 
         .fade-in { animation: fadeIn 1s ease-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+
+
+        
+
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block !important; 
+        cursor: pointer;
+        font-size: 24px;
+        color: var(--dark);
+    }
+
+    .nav-links {
+        display: none; 
+        flex-direction: column;
+        position: absolute;
+        top: 70px; 
+        left: 0;
+        width: 100%;
+        background: var(--white);
+        padding: 20px 0;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        gap: 15px;
+        z-index: 999;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links li {
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-links li button {
+        width: 80%;
+    }
+}
+
+@media (min-width: 769px) {
+    .menu-toggle {
+        display: none;
+    }
+}
     </style>
 </head>
 <body>
@@ -541,6 +588,32 @@ Grammarly: У 2026 році це вже не просто перевірка о�
 
          const menu = document.querySelector('#mobile-menu');
     const menuLinks = document.querySelector('.nav-links');
+
+
+
+
+
+        menu.addEventListener('click', function() {
+    menuLinks.classList.toggle('active');
+    
+    // Зміна іконки бургера на хрестик
+    const icon = menu.querySelector('i');
+    icon.classList.toggle('fa-bars');
+    icon.classList.toggle('fa-times');
+});
+
+// Закриваємо меню при кліку на посилання
+document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+        menuLinks.classList.remove('active');
+        menu.querySelector('i').classList.add('fa-bars');
+        menu.querySelector('i').classList.remove('fa-times');
+    });
+});
+
+
+
+        
 
     menu.addEventListener('click', function() {
         menuLinks.classList.toggle('active');
