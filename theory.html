@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
    <style>
-    /* 1. ЗАГАЛЬНІ НАЛАШТУВАННЯ ТА МОДАЛКА */
     #authModal {
         display: none;
         position: fixed;
@@ -17,7 +16,6 @@
         background: rgba(0,0,0,0.8);
         backdrop-filter: blur(8px);
     }
-
     .auth-content {
         background: white;
         width: 90%;
@@ -70,8 +68,6 @@
         outline: none;
         box-sizing: border-box;
     }
-
-    /* 2. КНОПКИ В ШАПЦІ (ЛОГІН) */
     .btn-login {
         background: white;
         color: var(--primary);
@@ -84,7 +80,6 @@
     }
     .btn-login:hover { background: var(--primary); color: white; }
 
-    /* 3. СЕКЦІЯ ТЕОРІЇ (СІТКА ТА КАРТКИ) */
     .theory-section {
     max-width: 1200px !important;
     margin: 50px auto !important;
@@ -116,11 +111,10 @@
     }
 
 .theory-card img {
-    width: 100%;
-    height: 240px; /* 🔥 виглядає значно солідніше */
-    object-fit: cover;
-    border-top-left-radius: 30px;
-    border-top-right-radius: 30px;
+    width: 100% !important;
+    height: 220px !important; 
+    object-fit: cover !important;
+    display: block;
 }
     .card-content {
         padding: 30px 25px;
@@ -128,10 +122,8 @@
         flex-direction: column;
         align-items: center; 
         text-align: center;
-        flex-grow: 1; /* Займає вільний простір */
+        flex-grow: 1; 
     }
-
-    /* Бейджі */
     .level-badge {
         font-size: 0.7rem;
         font-weight: 800;
@@ -140,10 +132,9 @@
         border-radius: 20px;
         margin-bottom: 15px;
         letter-spacing: 1px;
-        background: #f0f0f0; /* Стандартний фон */
+        background: #f0f0f0; 
     }
     
-    /* Специфічні кольори бейджів, якщо вони додані в HTML */
     .level-badge:contains("БАЗОВИЙ") { background: #e3f2fd; color: #1976d2; }
     .level-badge:contains("СЕРЕДНІЙ") { background: #fff8e1; color: #ffa000; }
     .level-badge:contains("ПРОСУНУТИЙ") { background: #e8f5e9; color: #388e3c; }
@@ -165,27 +156,25 @@
         color: #636e72;
         line-height: 1.6;
         margin-bottom: 25px;
-        flex-grow: 1; /* Виштовхує кнопку до низу */
+        flex-grow: 1; 
     }
 
-    /* 4. КНОПКА "ВИВЧИТИ МОДУЛЬ" (Уніфікована) */
     .btn-sm {
         display: block !important;
         width: 100%;
-        max-width: 280px; /* Трохи ширша для солідності */
-        margin: 0 auto !important; /* Центрування всередині контенту */
+        max-width: 280px; 
+        margin: 0 auto !important; 
         padding: 14px 20px !important;
         background-color: var(--primary) !important; 
         color: white !important; 
         text-decoration: none !important;
-        border-radius: 15px !important; /* Закруглення як на скріншоті */
+        border-radius: 15px !important; 
         font-weight: bold !important;
         text-align: center !important;
         transition: 0.3s ease !important;
         box-shadow: 0 4px 15px rgba(108, 92, 231, 0.2);
         border: none !important;
     }
-
     .btn-sm:hover {
         background-color: var(--primary-hover) !important;
         transform: translateY(-2px);
@@ -197,17 +186,13 @@
         grid-template-columns: repeat(2, 1fr);
     }
 }
-
-/* 📱 ПЛАНШЕТИ / ТЕЛЕФОНИ */
 @media (max-width: 768px) {
     .theory-grid {
         grid-template-columns: 1fr;
     }
-
     .theory-section {
         margin: 20px auto;
     }
-
     .theory-card {
         border-radius: 20px;
     }
@@ -260,7 +245,6 @@
         <div class="container">
 <div class="features theory-grid">                
     
-    <!-- 1 -->
     <div class="card" style="padding: 0; overflow: hidden; display: flex; flex-direction: column; border: none; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
         <img src="https://images.unsplash.com/photo-1546776310-eef45dd6d63c?auto=format&fit=crop&q=80&w=600">
         <div style="padding: 25px;">
@@ -270,8 +254,6 @@
             <a href="robotics.html" class="btn-sm">Вивчити модуль</a>
         </div>
     </div>
-
-    <!-- 2 -->
     <div class="card" style="padding: 0; overflow: hidden; display: flex; flex-direction: column; border: none; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
         <img src="https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&q=80&w=600">
         <div style="padding: 25px;">
@@ -282,7 +264,6 @@
         </div>
     </div>
 
-    <!-- 3 -->
     <div class="card" style="padding: 0; overflow: hidden; display: flex; flex-direction: column; border: none; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
         <img src="https://images.unsplash.com/photo-1675271591211-126ad94e495d?auto=format&fit=crop&q=80&w=600">
         <div style="padding: 25px;">
@@ -296,9 +277,6 @@
 </div>
 
 
-
-
-    
         </div>
     </section>
 
