@@ -183,6 +183,17 @@
         color: var(--dark);
     }
 
+
+
+    
+    @media (min-width: 769px) {
+    .menu-toggle {
+        display: none !important;
+    }
+}
+
+
+    
     .nav-links {
         display: none; 
         flex-direction: column;
@@ -573,12 +584,10 @@ Grammarly: У 2026 році це вже не просто перевірка о�
     </div>
 
     <script>
-    // Функція для розгортання тем (акордеон)
     function toggle(btn) {
         btn.parentElement.classList.toggle('active');
     }
 
-    // Модальне вікно авторизації
     function openAuthModal() { document.getElementById('authModal').style.display = 'block'; }
     function closeAuthModal() { document.getElementById('authModal').style.display = 'none'; }
     
@@ -597,20 +606,17 @@ Grammarly: У 2026 році це вже не просто перевірка о�
         if (event.target == document.getElementById('authModal')) closeAuthModal();
     }
 
-    // ЛОГІКА МОБІЛЬНОГО МЕНЮ
     const menu = document.querySelector('#mobile-menu');
     const menuLinks = document.querySelector('.nav-links');
 
     menu.addEventListener('click', function() {
         menuLinks.classList.toggle('active');
         
-        // Зміна іконки (барс -> хрестик)
         const icon = menu.querySelector('i');
         icon.classList.toggle('fa-bars');
         icon.classList.toggle('fa-times');
     });
 
-    // Авто-закриття при кліку на посилання
     document.querySelectorAll('.nav-links a').forEach(link => {
         link.addEventListener('click', () => {
             menuLinks.classList.remove('active');
