@@ -109,6 +109,58 @@
             transition: 0.3s;
         }
         .btn-login:hover { background: var(--primary); color: white; }
+
+
+
+
+
+
+
+
+
+        .theory-section {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.theory-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    align-items: stretch;
+}
+
+.theory-card {
+    background: white;
+    border-radius: 25px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    transition: 0.3s;
+    height: 100%; 
+}
+
+.theory-card img {
+    width: 100%;
+    height: 200px; 
+    object-fit: cover; 
+}
+
+.card-content {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex-grow: 1;
+}
+
+.card-content p {
+    margin-bottom: 20px;
+    flex-grow: 1; 
+}
     </style>
 </head>
 <body>
