@@ -6,230 +6,201 @@
     <title>Навчальні матеріали | AI Study</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        #authModal {
-            display: none;
-            position: fixed;
-            z-index: 3000;
-            left: 0; top: 0;
-            width: 100%; height: 100%;
-            background: rgba(0,0,0,0.8);
-            backdrop-filter: blur(8px);
-        }
+   <style>
+    /* 1. ЗАГАЛЬНІ НАЛАШТУВАННЯ ТА МОДАЛКА */
+    #authModal {
+        display: none;
+        position: fixed;
+        z-index: 3000;
+        left: 0; top: 0;
+        width: 100%; height: 100%;
+        background: rgba(0,0,0,0.8);
+        backdrop-filter: blur(8px);
+    }
 
-        .auth-content {
-            background: white;
-            width: 90%;
-            max-width: 400px;
-            margin: 8% auto;
-            padding: 40px;
-            border-radius: 30px;
-            text-align: center;
-            position: relative;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-        }
+    .auth-content {
+        background: white;
+        width: 90%;
+        max-width: 400px;
+        margin: 8% auto;
+        padding: 40px;
+        border-radius: 30px;
+        text-align: center;
+        position: relative;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+    }
 
-        .auth-methods { display: flex; flex-direction: column; gap: 15px; margin-top: 25px; }
+    .auth-methods { display: flex; flex-direction: column; gap: 15px; margin-top: 25px; }
 
-        .auth-btn {
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            background: white;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            font-weight: 500;
-            transition: 0.2s;
-        }
+    .auth-btn {
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        background: white;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        font-weight: 500;
+        transition: 0.2s;
+    }
 
-        .auth-btn:hover { background: #f8f9ff; border-color: var(--primary); }
-        .auth-btn.google i { color: #DB4437; }
-        .auth-btn.microsoft i { color: #00A4EF; }
+    .auth-btn:hover { background: #f8f9ff; border-color: var(--primary); }
+    .auth-btn.google i { color: #DB4437; }
+    .auth-btn.microsoft i { color: #00A4EF; }
 
-        .auth-divider {
-            margin: 20px 0;
-            display: flex;
-            align-items: center;
-            color: #888;
-            font-size: 0.8rem;
-        }
-        .auth-divider::before, .auth-divider::after {
-            content: ""; flex: 1; height: 1px; background: #eee; margin: 0 10px;
-        }
+    .auth-divider {
+        margin: 20px 0;
+        display: flex;
+        align-items: center;
+        color: #888;
+        font-size: 0.8rem;
+    }
+    .auth-divider::before, .auth-divider::after {
+        content: ""; flex: 1; height: 1px; background: #eee; margin: 0 10px;
+    }
 
-        .auth-input {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 15px;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            outline: none;
-            box-sizing: border-box;
-        }
+    .auth-input {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        outline: none;
+        box-sizing: border-box;
+    }
 
+    /* 2. КНОПКИ В ШАПЦІ (ЛОГІН) */
+    .btn-login {
+        background: white;
+        color: var(--primary);
+        border: 2px solid var(--primary);
+        padding: 8px 20px;
+        border-radius: 50px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+    .btn-login:hover { background: var(--primary); color: white; }
 
+    /* 3. СЕКЦІЯ ТЕОРІЇ (СІТКА ТА КАРТКИ) */
+    .theory-section {
+        max-width: 1200px;
+        margin: 50px auto;
+        padding: 0 20px;
+    }
 
+    .theory-grid {
+        display: grid;
+        /* Чітко 3 колонки на комп'ютері */
+        grid-template-columns: repeat(3, 1fr); 
+        gap: 25px;
+        align-items: stretch; /* Картки однієї висоти в ряду */
+    }
 
-       .btn-sm {
-    display: block !important;
-    width: 100%;
-    max-width: 200px; 
-    margin: 20px auto 0 !important;
-    padding: 12px 20px !important;
-    background-color: var(--primary) !important; 
-    color: white !important; 
-    text-decoration: none !important;
-    border-radius: 25px !important;
-    font-weight: bold !important;
-    text-align: center !important;
-    transition: 0.3s ease !important;
-    box-shadow: 0 4px 15px rgba(108, 92, 231, 0.2);
-}
+    .theory-card {
+        background: #ffffff;
+        border-radius: 30px; 
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03); 
+        transition: transform 0.3s ease;
+        height: 100%;
+    }
 
-.btn-sm:hover {
-    background-color: var(--primary-hover) !important;
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(108, 92, 231, 0.3);
-}
+    .theory-card:hover {
+        transform: translateY(-5px);
+    }
 
+    .theory-card img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+    }
 
+    .card-content {
+        padding: 30px 25px;
+        display: flex;
+        flex-direction: column;
+        align-items: center; 
+        text-align: center;
+        flex-grow: 1; /* Займає вільний простір */
+    }
 
-        
-        .btn-login {
-            background: white;
-            color: var(--primary);
-            border: 2px solid var(--primary);
-            padding: 8px 20px;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-        .btn-login:hover { background: var(--primary); color: white; }
+    /* Бейджі */
+    .level-badge {
+        font-size: 0.7rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        padding: 5px 15px;
+        border-radius: 20px;
+        margin-bottom: 15px;
+        letter-spacing: 1px;
+        background: #f0f0f0; /* Стандартний фон */
+    }
+    
+    /* Специфічні кольори бейджів, якщо вони додані в HTML */
+    .level-badge:contains("БАЗОВИЙ") { background: #e3f2fd; color: #1976d2; }
+    .level-badge:contains("СЕРЕДНІЙ") { background: #fff8e1; color: #ffa000; }
+    .level-badge:contains("ПРОСУНУТИЙ") { background: #e8f5e9; color: #388e3c; }
 
+    .card-content i {
+        font-size: 40px;
+        color: var(--primary);
+        margin-bottom: 15px;
+    }
 
+    .card-content h3 {
+        font-size: 1.4rem;
+        margin-bottom: 15px;
+        color: #2d3436;
+    }
 
+    .card-content p {
+        font-size: 0.95rem;
+        color: #636e72;
+        line-height: 1.6;
+        margin-bottom: 25px;
+        flex-grow: 1; /* Виштовхує кнопку до низу */
+    }
 
+    /* 4. КНОПКА "ВИВЧИТИ МОДУЛЬ" (Уніфікована) */
+    .btn-sm {
+        display: block !important;
+        width: 100%;
+        max-width: 280px; /* Трохи ширша для солідності */
+        margin: 0 auto !important; /* Центрування всередині контенту */
+        padding: 14px 20px !important;
+        background-color: var(--primary) !important; 
+        color: white !important; 
+        text-decoration: none !important;
+        border-radius: 15px !important; /* Закруглення як на скріншоті */
+        font-weight: bold !important;
+        text-align: center !important;
+        transition: 0.3s ease !important;
+        box-shadow: 0 4px 15px rgba(108, 92, 231, 0.2);
+        border: none !important;
+    }
 
+    .btn-sm:hover {
+        background-color: var(--primary-hover) !important;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(108, 92, 231, 0.3);
+    }
 
+    /* 5. АДАПТИВНІСТЬ ДЛЯ МОБІЛОК ТА ПЛАНШЕТІВ */
+    @media (max-width: 992px) {
+        .theory-grid { grid-template-columns: repeat(2, 1fr); }
+    }
 
-
-.theory-section {
-    max-width: 1200px;
-    margin: 50px auto;
-    padding: 0 20px;
-}
-
-/* Сітка, яка тримає 3 картки в ряд */
-.theory-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Рівно 3 колонки */
-    gap: 25px;
-    align-items: stretch; /* Однакова висота карток */
-}
-
-/* Стиль самої картки */
-.theory-card {
-    background: #ffffff;
-    border-radius: 30px; /* Сильне закруглення кутів, як на фото */
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03); /* Дуже м'яка тінь */
-    transition: transform 0.3s ease;
-    height: 100%;
-}
-
-/* Картинка зверху */
-.theory-card img {
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
-}
-
-/* Контент всередині картки */
-.card-content {
-    padding: 30px 25px;
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Центрування тексту та іконок */
-    text-align: center;
-    flex-grow: 1;
-}
-
-/* Бейдж рівня (Базовий, Середній і т.д.) */
-.level-badge {
-    font-size: 0.7rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    padding: 5px 15px;
-    border-radius: 20px;
-    margin-bottom: 15px;
-    letter-spacing: 1px;
-}
-
-/* Кольори для бейджів */
-.level-base { background: #e3f2fd; color: #1976d2; }
-.level-medium { background: #fff8e1; color: #ffa000; }
-.level-pro { background: #e8f5e9; color: #388e3c; }
-
-/* Іконка теми */
-.card-content i {
-    font-size: 40px;
-    color: var(--primary);
-    margin-bottom: 15px;
-}
-
-.card-content h3 {
-    font-size: 1.4rem;
-    margin-bottom: 15px;
-    color: #2d3436;
-}
-
-.card-content p {
-    font-size: 0.95rem;
-    color: #636e72;
-    line-height: 1.6;
-    margin-bottom: 25px;
-    flex-grow: 1; /* Виштовхує кнопку в самий низ */
-}
-
-/* Кнопка "Вивчити модуль" — точно як на скріншоті */
-.btn-sm {
-    display: block;
-    width: 100%;
-    background-color: #6c5ce7 !important; /* Фіолетовий колір */
-    color: #ffffff !important;
-    padding: 14px 0;
-    border-radius: 12px; /* Трохи менше закруглення для кнопки */
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 1rem;
-    transition: background 0.3s;
-}
-
-.btn-sm:hover {
-    background-color: #5649c1 !important;
-}
-
-/* Адаптація для планшетів та телефонів */
-@media (max-width: 992px) {
-    .theory-grid { grid-template-columns: repeat(2, 1fr); }
-}
-
-@media (max-width: 768px) {
-    .theory-grid { grid-template-columns: 1fr; }
-    .theory-section { margin: 20px auto; }
-}
-
-
-
-
-        
-    </style>
+    @media (max-width: 768px) {
+        .theory-grid { grid-template-columns: 1fr; }
+        .theory-section { margin: 20px auto; }
+        .theory-card { border-radius: 20px; }
+    }
+</style>
 </head>
 <body>
     <header>
