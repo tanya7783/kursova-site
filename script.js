@@ -48,10 +48,9 @@
     let currentIdx = 0;
     let userAnswers = [];
     let completedQuizzes = 0;
-    let isUserLoggedIn = false; // Змінна для контролю входу
+    let isUserLoggedIn = false; 
 
     function startQuiz(type) {
-        // Перевірка: якщо тест "neural" або "genai" і користувач не зайшов — відкриваємо логін
         if ((type === 'neural' || type === 'genai') && !isUserLoggedIn) {
             openAuthModal();
             return;
@@ -126,7 +125,7 @@
         document.getElementById('completed-count').innerText = completedQuizzes;
         document.getElementById('avg-mastery').innerText = mastery + '%';
         
-        updateCourseProgress(); // Оновлюємо прогрес бару
+        updateCourseProgress(); 
     }
 
     function resetQuiz() {
@@ -144,10 +143,9 @@
 
     function fakeLogin(method) {
         alert("Ви успішно авторизувалися через " + method + "!");
-        isUserLoggedIn = true; // Тепер тести доступні!
+        isUserLoggedIn = true; 
         closeAuthModal();
         
-        // Оновлюємо інтерфейс квізів (прибираємо "замочки" візуально, якщо вони є)
         if (typeof updateQuizAccess === "function") updateQuizAccess();
 
         const loginBtn = document.querySelector('.btn-login');
@@ -157,7 +155,6 @@
         }
     }
 
-    // Мобільне меню
     const menu = document.querySelector('#mobile-menu');
     const menuLinks = document.querySelector('.nav-links');
 
@@ -172,13 +169,12 @@
         });
     }
 
-    // ЛОГІКА ПРОГРЕСУ
     let courseProgress = 0;
     function updateCourseProgress() {
         const progressBar = document.getElementById("course-progress-bar");
         if (!progressBar) return;
 
-        courseProgress = Math.min(100, completedQuizzes * 34); // 3 тести приблизно по 33.3%
+        courseProgress = Math.min(100, completedQuizzes * 34); 
         progressBar.style.width = courseProgress + "%";
         progressBar.innerText = courseProgress + "%";
 
@@ -186,13 +182,11 @@
             showCertificate();
         }
     }
-
     function showCertificate() {
         const cert = document.getElementById("course-certificate");
         if (cert) cert.style.display = "block";
     }
 
-    // Ініціалізація доступу при завантаженні
     document.addEventListener("DOMContentLoaded", () => {
         if (typeof updateQuizAccess === "function") updateQuizAccess();
     });
