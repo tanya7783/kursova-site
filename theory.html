@@ -112,11 +112,14 @@
 
 .theory-card img {
     width: 100% !important;
-    min-width: 100% !important; /* Додаємо це, щоб не стискалася */
-    height: 250px !important;    /* Збільшив висоту до 250px, щоб було побільше */
+    min-width: 100% !important; 
+    height: 250px !important;
     object-fit: cover !important;
     display: block !important;
-    border-bottom: 1px solid #eee; /* Легке розділення з текстом */
+    
+    /* ДОДАЙ ЦІ ДВА РЯДКИ: */
+    flex-shrink: 0 !important;   /* Забороняє блоку стискати картинку */
+    align-self: stretch !important; /* Змушує картинку розтягнутися на всю ширину, ігноруючи center */
 }
     .card-content {
         padding: 30px 25px;
