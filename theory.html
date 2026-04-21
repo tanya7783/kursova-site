@@ -118,88 +118,111 @@
 
 
 .theory-section {
-    max-width: 1100px; /* Обмежуємо ширину, щоб не розповзалося */
-    margin: 40px auto;
+    max-width: 1200px;
+    margin: 50px auto;
     padding: 0 20px;
 }
 
-/* Сітка: чітко 3 колонки на ПК, 1 на телефоні */
+/* Сітка, яка тримає 3 картки в ряд */
 .theory-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Робимо рівно 3 колонки поруч */
+    grid-template-columns: repeat(3, 1fr); /* Рівно 3 колонки */
     gap: 25px;
-    align-items: stretch;
+    align-items: stretch; /* Однакова висота карток */
 }
 
-/* Сама картка */
+/* Стиль самої картки */
 .theory-card {
-    background: white;
-    border-radius: 20px;
+    background: #ffffff;
+    border-radius: 30px; /* Сильне закруглення кутів, як на фото */
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-    transition: 0.3s;
-    height: 100%; 
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03); /* Дуже м'яка тінь */
+    transition: transform 0.3s ease;
+    height: 100%;
 }
 
-/* Акуратна картинка зверху */
+/* Картинка зверху */
 .theory-card img {
     width: 100%;
-    height: 180px; /* Фіксована висота, щоб не була на весь екран */
-    object-fit: cover; 
+    height: 220px;
+    object-fit: cover;
 }
 
-/* Контент всередині */
+/* Контент всередині картки */
 .card-content {
-    padding: 25px;
+    padding: 30px 25px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: center; /* Центрування тексту та іконок */
     text-align: center;
-    flex-grow: 1; /* Заповнює простір, щоб кнопки були в ряд */
+    flex-grow: 1;
 }
 
-/* Текст опису */
+/* Бейдж рівня (Базовий, Середній і т.д.) */
+.level-badge {
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    padding: 5px 15px;
+    border-radius: 20px;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+/* Кольори для бейджів */
+.level-base { background: #e3f2fd; color: #1976d2; }
+.level-medium { background: #fff8e1; color: #ffa000; }
+.level-pro { background: #e8f5e9; color: #388e3c; }
+
+/* Іконка теми */
+.card-content i {
+    font-size: 40px;
+    color: var(--primary);
+    margin-bottom: 15px;
+}
+
+.card-content h3 {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    color: #2d3436;
+}
+
 .card-content p {
     font-size: 0.95rem;
-    line-height: 1.5;
-    margin-bottom: 20px;
-    flex-grow: 1; /* Штовхає кнопку вниз */
     color: #636e72;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    flex-grow: 1; /* Виштовхує кнопку в самий низ */
 }
 
-/* Кнопка "Вивчити модуль" */
+/* Кнопка "Вивчити модуль" — точно як на скріншоті */
 .btn-sm {
-    background-color: var(--primary) !important;
-    color: white !important;
-    padding: 10px 25px;
-    border-radius: 25px;
+    display: block;
+    width: 100%;
+    background-color: #6c5ce7 !important; /* Фіолетовий колір */
+    color: #ffffff !important;
+    padding: 14px 0;
+    border-radius: 12px; /* Трохи менше закруглення для кнопки */
     text-decoration: none;
     font-weight: bold;
-    transition: 0.3s;
-    display: inline-block;
+    font-size: 1rem;
+    transition: background 0.3s;
 }
 
 .btn-sm:hover {
-    background-color: var(--primary-hover) !important;
-    transform: translateY(-2px);
+    background-color: #5649c1 !important;
 }
 
-/* АДАПТИВНІСТЬ: на планшетах 2 в ряд, на телефонах 1 */
+/* Адаптація для планшетів та телефонів */
 @media (max-width: 992px) {
-    .theory-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
+    .theory-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 768px) {
-    .theory-grid {
-        grid-template-columns: 1fr; /* На телефоні стовпчиком */
-    }
-    .theory-section {
-        margin: 20px auto;
-    }
+    .theory-grid { grid-template-columns: 1fr; }
+    .theory-section { margin: 20px auto; }
 }
 
 
