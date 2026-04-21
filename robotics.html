@@ -66,6 +66,57 @@
 
         .book-link:hover { border-color: var(--primary); transform: translateX(5px); }
 
+
+
+
+
+
+@media (max-width: 992px) {
+    .main-content > div {
+        grid-template-columns: 1fr !important; /
+        gap: 30px;
+    }
+
+    aside {
+        order: 2; 
+    }
+
+    #course-body {
+        order: 1; 
+    }
+
+    .article-content {
+        padding: 0 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .lesson-header h1 {
+        font-size: 2rem !important; 
+    }
+    
+    .nav-links {
+        display: none; 
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: white;
+        padding: 20px 0;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        z-index: 2000;
+    }
+
+    .nav-links.active {
+        display: flex !important; 
+    }
+
+    .menu-toggle {
+        display: block !important;
+    }
+}
+
     </style>
 
 </head>
