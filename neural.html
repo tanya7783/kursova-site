@@ -550,7 +550,7 @@
     <script>
         function openAuthModal() { document.getElementById('authModal').style.display = 'block'; }
         function closeAuthModal() { document.getElementById('authModal').style.display = 'none'; }
-        function fakeLogin(method) { alert("Успішно!"); closeAuthModal(); document.querySelector('.btn-login').innerText = "Тетяна Г."; }
+        function fakeLogin(method) { alert("Успішно!"); closeAuthModal(); document.querySelector('.btn-login').innerText = "User"; }
         window.onclick = function(e) { if (e.target == document.getElementById('authModal')) closeAuthModal(); }
 
         const menuBtn = document.getElementById('mobile-menu');
